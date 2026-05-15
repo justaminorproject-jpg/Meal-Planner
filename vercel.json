@@ -1,10 +1,14 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/claude.js", "use": "@vercel/node" }
+    { "src": "api/claude.js",   "use": "@vercel/node" },
+    { "src": "api/sponsors.js", "use": "@vercel/node" },
+    { "src": "api/data.js",     "use": "@vercel/node" }
   ],
   "routes": [
-    { "src": "/api/claude", "dest": "/api/claude.js" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    { "src": "/api/claude",    "dest": "/api/claude.js"   },
+    { "src": "/api/sponsors",  "dest": "/api/sponsors.js" },
+    { "src": "/api/data",      "dest": "/api/data.js"     },
+    { "src": "/(.*)",          "dest": "/index.html"      }
   ]
 }

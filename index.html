@@ -51,13 +51,13 @@ var fl=document.createElement("link");fl.rel="stylesheet";fl.href="https://fonts
 </script>
 <script>
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
-function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
@@ -239,20 +239,20 @@ function hashPassword(_x) {
   return _hashPassword.apply(this, arguments);
 } // ─── Ad Unit ──────────────────────────────────────────────────────────────────
 function _hashPassword() {
-  _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(pw) {
+  _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(pw) {
     var buf;
-    return _regenerator().w(function (_context8) {
-      while (1) switch (_context8.n) {
+    return _regenerator().w(function (_context0) {
+      while (1) switch (_context0.n) {
         case 0:
-          _context8.n = 1;
+          _context0.n = 1;
           return crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
         case 1:
-          buf = _context8.v;
-          return _context8.a(2, Array.from(new Uint8Array(buf)).map(function (b) {
+          buf = _context0.v;
+          return _context0.a(2, Array.from(new Uint8Array(buf)).map(function (b) {
             return b.toString(16).padStart(2, "0");
           }).join(""));
       }
-    }, _callee8);
+    }, _callee0);
   }));
   return _hashPassword.apply(this, arguments);
 }
@@ -554,7 +554,7 @@ var divider = {
 
 // ─── Main App ─────────────────────────────────────────────────────────────────
 function App() {
-  var _window$MP_ADS8;
+  var _window$MP_ADS9;
   // Settings
   var _useState = useState(7),
     _useState2 = _slicedToArray(_useState, 2),
@@ -705,52 +705,72 @@ function App() {
     _useState70 = _slicedToArray(_useState69, 2),
     sSvd = _useState70[0],
     setSSvd = _useState70[1];
-  // Monetization
-  var _useState71 = useState(function () {
-      return localStorage.getItem("mp_ads_pubid") || "";
-    }),
+  var _useState71 = useState("idle"),
     _useState72 = _slicedToArray(_useState71, 2),
-    adsPub = _useState72[0],
-    setAdsPub = _useState72[1];
+    syncStatus = _useState72[0],
+    setSyncStatus = _useState72[1]; // idle|saving|saved|error
   var _useState73 = useState(function () {
-      return localStorage.getItem("mp_ads_on") === "1";
+      return localStorage.getItem("mp_admin_api_key") || "";
     }),
     _useState74 = _slicedToArray(_useState73, 2),
-    adsOn = _useState74[0],
-    setAdsOn = _useState74[1];
-  var _useState75 = useState(function () {
-      return localStorage.getItem("mp_amazon_tag") || "";
-    }),
+    adminApiKey = _useState74[0],
+    setAdminApiKey = _useState74[1];
+  var _useState75 = useState(""),
     _useState76 = _slicedToArray(_useState75, 2),
-    amTag = _useState76[0],
-    setAmTag = _useState76[1];
+    apiKeyInput2 = _useState76[0],
+    setApiKeyInput2 = _useState76[1];
   var _useState77 = useState(function () {
-      return localStorage.getItem("mp_amazon_on") === "1";
+      return !!localStorage.getItem("mp_admin_api_key");
     }),
     _useState78 = _slicedToArray(_useState77, 2),
-    amOn = _useState78[0],
-    setAmOn = _useState78[1];
+    apiKeySet = _useState78[0],
+    setApiKeySet = _useState78[1];
+  // Monetization
   var _useState79 = useState(function () {
-      return localStorage.getItem("mp_instacart_id") || "";
+      return localStorage.getItem("mp_ads_pubid") || "";
     }),
     _useState80 = _slicedToArray(_useState79, 2),
-    icId = _useState80[0],
-    setIcId = _useState80[1];
+    adsPub = _useState80[0],
+    setAdsPub = _useState80[1];
   var _useState81 = useState(function () {
-      return localStorage.getItem("mp_instacart_on") === "1";
+      return localStorage.getItem("mp_ads_on") === "1";
     }),
     _useState82 = _slicedToArray(_useState81, 2),
-    icOn = _useState82[0],
-    setIcOn = _useState82[1];
-  var _useState83 = useState(false),
+    adsOn = _useState82[0],
+    setAdsOn = _useState82[1];
+  var _useState83 = useState(function () {
+      return localStorage.getItem("mp_amazon_tag") || "";
+    }),
     _useState84 = _slicedToArray(_useState83, 2),
-    adsSvd = _useState84[0],
-    setAdsSvd = _useState84[1];
+    amTag = _useState84[0],
+    setAmTag = _useState84[1];
+  var _useState85 = useState(function () {
+      return localStorage.getItem("mp_amazon_on") === "1";
+    }),
+    _useState86 = _slicedToArray(_useState85, 2),
+    amOn = _useState86[0],
+    setAmOn = _useState86[1];
+  var _useState87 = useState(function () {
+      return localStorage.getItem("mp_instacart_id") || "";
+    }),
+    _useState88 = _slicedToArray(_useState87, 2),
+    icId = _useState88[0],
+    setIcId = _useState88[1];
+  var _useState89 = useState(function () {
+      return localStorage.getItem("mp_instacart_on") === "1";
+    }),
+    _useState90 = _slicedToArray(_useState89, 2),
+    icOn = _useState90[0],
+    setIcOn = _useState90[1];
+  var _useState91 = useState(false),
+    _useState92 = _slicedToArray(_useState91, 2),
+    adsSvd = _useState92[0],
+    setAdsSvd = _useState92[1];
 
   // Load persisted data
   useEffect(function () {
     _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-      var r, s, b, _t, _t2, _t3;
+      var r, b, res, data, s, _res, _data, _window$MP_ADS3, m, adminKey, _res2, _data2, _b, _t, _t2, _t3, _t4, _t5, _t6, _t7;
       return _regenerator().w(function (_context) {
         while (1) switch (_context.p = _context.n) {
           case 0:
@@ -768,10 +788,10 @@ function App() {
           case 3:
             _context.p = 3;
             _context.n = 4;
-            return window.storage.get("meal-sponsors");
+            return window.storage.get("meal-billing");
           case 4:
-            s = _context.v;
-            if (s !== null && s !== void 0 && s.value) setSponsors(JSON.parse(s.value));
+            b = _context.v;
+            if (b !== null && b !== void 0 && b.value) setBilling(JSON.parse(b.value));
             _context.n = 6;
             break;
           case 5:
@@ -780,24 +800,113 @@ function App() {
           case 6:
             _context.p = 6;
             _context.n = 7;
-            return window.storage.get("meal-billing");
+            return fetch("/api/sponsors");
           case 7:
-            b = _context.v;
-            if (b !== null && b !== void 0 && b.value) setBilling(JSON.parse(b.value));
-            _context.n = 9;
-            break;
+            res = _context.v;
+            _context.n = 8;
+            return res.json();
           case 8:
-            _context.p = 8;
-            _t3 = _context.v;
+            data = _context.v;
+            if (Array.isArray(data.sponsors)) setSponsors(data.sponsors);
+            _context.n = 13;
+            break;
           case 9:
+            _context.p = 9;
+            _t3 = _context.v;
+            _context.p = 10;
+            _context.n = 11;
+            return window.storage.get("meal-sponsors");
+          case 11:
+            s = _context.v;
+            if (s !== null && s !== void 0 && s.value) setSponsors(JSON.parse(s.value));
+            _context.n = 13;
+            break;
+          case 12:
+            _context.p = 12;
+            _t4 = _context.v;
+          case 13:
+            _context.p = 13;
+            _context.n = 14;
+            return fetch("/api/data?key=mp_monetization");
+          case 14:
+            _res = _context.v;
+            _context.n = 15;
+            return _res.json();
+          case 15:
+            _data = _context.v;
+            if (_data.value) {
+              m = _data.value;
+              if (m.adsPub) setAdsPub(m.adsPub);
+              if (m.amTag) setAmTag(m.amTag);
+              if (m.icId) setIcId(m.icId);
+              setAdsOn(!!m.adsOn);
+              setAmOn(!!m.amOn);
+              setIcOn(!!m.icOn);
+              // Apply immediately to window.MP_ADS
+              window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
+                enabled: !!m.adsOn,
+                pubId: m.adsPub || "",
+                amazon: {
+                  enabled: !!m.amOn,
+                  tag: m.amTag || ""
+                },
+                instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS3 = window.MP_ADS) === null || _window$MP_ADS3 === void 0 ? void 0 : _window$MP_ADS3.instacart) || {}), {}, {
+                  enabled: !!m.icOn,
+                  affiliateId: m.icId || ""
+                })
+              });
+            }
+            _context.n = 17;
+            break;
+          case 16:
+            _context.p = 16;
+            _t5 = _context.v;
+          case 17:
+            // Load billing from server if admin API key is available
+            adminKey = localStorage.getItem("mp_admin_api_key");
+            if (!adminKey) {
+              _context.n = 25;
+              break;
+            }
+            _context.p = 18;
+            _context.n = 19;
+            return fetch("/api/data?key=mp_billing", {
+              headers: {
+                "X-Admin-Key": adminKey
+              }
+            });
+          case 19:
+            _res2 = _context.v;
+            _context.n = 20;
+            return _res2.json();
+          case 20:
+            _data2 = _context.v;
+            if (Array.isArray(_data2.value)) setBilling(_data2.value);
+            _context.n = 25;
+            break;
+          case 21:
+            _context.p = 21;
+            _t6 = _context.v;
+            _context.p = 22;
+            _context.n = 23;
+            return window.storage.get("meal-billing");
+          case 23:
+            _b = _context.v;
+            if (_b !== null && _b !== void 0 && _b.value) setBilling(JSON.parse(_b.value));
+            _context.n = 25;
+            break;
+          case 24:
+            _context.p = 24;
+            _t7 = _context.v;
+          case 25:
             return _context.a(2);
         }
-      }, _callee, null, [[6, 8], [3, 5], [0, 2]]);
+      }, _callee, null, [[22, 24], [18, 21], [13, 16], [10, 12], [6, 9], [3, 5], [0, 2]]);
     }))();
     // Apply saved ad config
     var p = localStorage.getItem("mp_ads_pubid");
     if (p) {
-      var _window$MP_ADS3;
+      var _window$MP_ADS4;
       window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
         enabled: localStorage.getItem("mp_ads_on") === "1",
         pubId: p,
@@ -805,7 +914,7 @@ function App() {
           enabled: localStorage.getItem("mp_amazon_on") === "1",
           tag: localStorage.getItem("mp_amazon_tag") || ""
         },
-        instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS3 = window.MP_ADS) === null || _window$MP_ADS3 === void 0 ? void 0 : _window$MP_ADS3.instacart) || {}), {}, {
+        instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS4 = window.MP_ADS) === null || _window$MP_ADS4 === void 0 ? void 0 : _window$MP_ADS4.instacart) || {}), {}, {
           enabled: localStorage.getItem("mp_instacart_on") === "1",
           affiliateId: localStorage.getItem("mp_instacart_id") || ""
         })
@@ -814,7 +923,7 @@ function App() {
   }, []);
   var saveRating = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(name, stars) {
-      var next, _t4;
+      var next, _t8;
       return _regenerator().w(function (_context2) {
         while (1) switch (_context2.p = _context2.n) {
           case 0:
@@ -828,7 +937,7 @@ function App() {
             break;
           case 3:
             _context2.p = 3;
-            _t4 = _context2.v;
+            _t8 = _context2.v;
           case 4:
             return _context2.a(2);
         }
@@ -843,11 +952,12 @@ function App() {
   };
   var saveSponsors = /*#__PURE__*/function () {
     var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(list) {
-      var _t5;
+      var key, res, _t9, _t0;
       return _regenerator().w(function (_context3) {
         while (1) switch (_context3.p = _context3.n) {
           case 0:
             setSponsors(list);
+            // Also save to localStorage as local cache
             _context3.p = 1;
             _context3.n = 2;
             return window.storage.set("meal-sponsors", JSON.stringify(list));
@@ -856,11 +966,55 @@ function App() {
             break;
           case 3:
             _context3.p = 3;
-            _t5 = _context3.v;
+            _t9 = _context3.v;
           case 4:
+            // Sync to server so all visitors see the sponsors
+            key = localStorage.getItem("mp_admin_api_key");
+            if (key) {
+              _context3.n = 5;
+              break;
+            }
+            return _context3.a(2);
+          case 5:
+            setSyncStatus("saving");
+            _context3.p = 6;
+            _context3.n = 7;
+            return fetch("/api/sponsors", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Admin-Key": key
+              },
+              body: JSON.stringify({
+                sponsors: list
+              })
+            });
+          case 7:
+            res = _context3.v;
+            if (res.ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+            _context3.n = 9;
+            break;
+          case 8:
+            _context3.p = 8;
+            _t0 = _context3.v;
+            setSyncStatus("error");
+            setTimeout(function () {
+              return setSyncStatus("idle");
+            }, 3000);
+          case 9:
             return _context3.a(2);
         }
-      }, _callee3, null, [[1, 3]]);
+      }, _callee3, null, [[6, 8], [1, 3]]);
     }));
     return function saveSponsors(_x4) {
       return _ref5.apply(this, arguments);
@@ -868,7 +1022,7 @@ function App() {
   }();
   var saveBilling = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(list) {
-      var _t6;
+      var ok, _t1;
       return _regenerator().w(function (_context4) {
         while (1) switch (_context4.p = _context4.n) {
           case 0:
@@ -881,8 +1035,26 @@ function App() {
             break;
           case 3:
             _context4.p = 3;
-            _t6 = _context4.v;
+            _t1 = _context4.v;
           case 4:
+            // Sync billing to server (admin-only read, persists across devices)
+            setSyncStatus("saving");
+            _context4.n = 5;
+            return serverPost("mp_billing", list);
+          case 5:
+            ok = _context4.v;
+            if (ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+          case 6:
             return _context4.a(2);
         }
       }, _callee4, null, [[1, 3]]);
@@ -891,31 +1063,113 @@ function App() {
       return _ref6.apply(this, arguments);
     };
   }();
-  var saveAds = function saveAds() {
-    var _window$MP_ADS4;
-    localStorage.setItem("mp_ads_pubid", adsPub);
-    localStorage.setItem("mp_ads_on", adsOn ? "1" : "0");
-    localStorage.setItem("mp_amazon_tag", amTag);
-    localStorage.setItem("mp_amazon_on", amOn ? "1" : "0");
-    localStorage.setItem("mp_instacart_id", icId);
-    localStorage.setItem("mp_instacart_on", icOn ? "1" : "0");
-    window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
-      enabled: adsOn,
-      pubId: adsPub,
-      amazon: {
-        enabled: amOn,
-        tag: amTag
-      },
-      instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS4 = window.MP_ADS) === null || _window$MP_ADS4 === void 0 ? void 0 : _window$MP_ADS4.instacart) || {}), {}, {
-        enabled: icOn,
-        affiliateId: icId
-      })
-    });
-    setAdsSvd(true);
-    setTimeout(function () {
-      return setAdsSvd(false);
-    }, 2000);
-  };
+  var saveAds = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+      var _window$MP_ADS5;
+      var monetizationData, ok;
+      return _regenerator().w(function (_context5) {
+        while (1) switch (_context5.n) {
+          case 0:
+            // Save to localStorage
+            localStorage.setItem("mp_ads_pubid", adsPub);
+            localStorage.setItem("mp_ads_on", adsOn ? "1" : "0");
+            localStorage.setItem("mp_amazon_tag", amTag);
+            localStorage.setItem("mp_amazon_on", amOn ? "1" : "0");
+            localStorage.setItem("mp_instacart_id", icId);
+            localStorage.setItem("mp_instacart_on", icOn ? "1" : "0");
+            // Apply live
+            window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
+              enabled: adsOn,
+              pubId: adsPub,
+              amazon: {
+                enabled: amOn,
+                tag: amTag
+              },
+              instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS5 = window.MP_ADS) === null || _window$MP_ADS5 === void 0 ? void 0 : _window$MP_ADS5.instacart) || {}), {}, {
+                enabled: icOn,
+                affiliateId: icId
+              })
+            });
+            // Sync to server so all visitors get affiliate/ad settings
+            setSyncStatus("saving");
+            monetizationData = {
+              adsOn: adsOn,
+              adsPub: adsPub,
+              amOn: amOn,
+              amTag: amTag,
+              icOn: icOn,
+              icId: icId
+            };
+            _context5.n = 1;
+            return serverPost("mp_monetization", monetizationData);
+          case 1:
+            ok = _context5.v;
+            if (ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+            setAdsSvd(true);
+            setTimeout(function () {
+              return setAdsSvd(false);
+            }, 2000);
+          case 2:
+            return _context5.a(2);
+        }
+      }, _callee5);
+    }));
+    return function saveAds() {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+
+  // ── Server sync helper ───────────────────────────────────────────────────────
+  var serverPost = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(key, value) {
+      var adminKey, res, _t10;
+      return _regenerator().w(function (_context6) {
+        while (1) switch (_context6.p = _context6.n) {
+          case 0:
+            adminKey = localStorage.getItem("mp_admin_api_key");
+            if (adminKey) {
+              _context6.n = 1;
+              break;
+            }
+            return _context6.a(2, false);
+          case 1:
+            _context6.p = 1;
+            _context6.n = 2;
+            return fetch("/api/data", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Admin-Key": adminKey
+              },
+              body: JSON.stringify({
+                key: key,
+                value: value
+              })
+            });
+          case 2:
+            res = _context6.v;
+            return _context6.a(2, res.ok);
+          case 3:
+            _context6.p = 3;
+            _t10 = _context6.v;
+            return _context6.a(2, false);
+        }
+      }, _callee6, null, [[1, 3]]);
+    }));
+    return function serverPost(_x6, _x7) {
+      return _ref8.apply(this, arguments);
+    };
+  }();
   var addSponsor = function addSponsor() {
     if (!nKw.trim() || !nBr.trim()) return;
     var price = Math.max(0, parseFloat(nPrc) || 0);
@@ -971,10 +1225,10 @@ function App() {
   // ── Generate ────────────────────────────────────────────────────────────────
   var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
   var generate = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-      var idx, iv, parts, si, prompt, res, data, block, raw, parsed, planId, charges, _t7;
-      return _regenerator().w(function (_context5) {
-        while (1) switch (_context5.p = _context5.n) {
+    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+      var idx, iv, parts, si, prompt, res, data, block, raw, parsed, planId, charges, _t11;
+      return _regenerator().w(function (_context7) {
+        while (1) switch (_context7.p = _context7.n) {
           case 0:
             setLoading(true);
             setError("");
@@ -984,7 +1238,7 @@ function App() {
               idx = (idx + 1) % MSGS.length;
               setLoadMsg(MSGS[idx]);
             }, 2500);
-            _context5.p = 1;
+            _context7.p = 1;
             parts = [diet !== "No Restrictions" ? diet : "", cuisines.length ? "Cuisines: ".concat(cuisines.join(", ")) : "", bfStyle.length ? "Breakfast: ".concat(bfStyle.join(", ")) : "", luStyle.length ? "Lunch: ".concat(luStyle.join(", ")) : "", dnStyle.length ? "Dinner: ".concat(dnStyle.join(", ")) : "", extra].filter(Boolean).join(". ");
             si = sponsors.length > 0 ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function (s) {
               var f = s.frequency || 5;
@@ -993,7 +1247,7 @@ function App() {
               return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
             }).join("\n") : "";
             prompt = "You are a professional chef. Search the web for real recipes for a ".concat(numDays, "-day meal plan").concat(parts ? " with: ".concat(parts) : "", ".").concat(si, "\n\nReturn ONLY valid JSON \u2014 no markdown, no backticks:\n{\"days\":[{\"dayLabel\":\"Day 1 \u2013 Monday\",\"meals\":{\"breakfast\":{\"name\":\"Recipe Name\",\"cuisine\":\"American\",\"description\":\"One sentence.\",\"prepTime\":\"10 mins\",\"cookTime\":\"15 mins\",\"servings\":2,\"calories\":\"~400 kcal\",\"ingredients\":[\"1 cup oats\",\"2 tbsp honey\"],\"instructions\":[\"Step one.\",\"Step two.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"how to make recipe name\"},\"lunch\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"},\"dinner\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"}}}],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"chicken\"],\"\uD83E\uDD66 Produce\":[\"peppers\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"yogurt\"],\"\uD83C\uDF3E Grains & Bread\":[\"bread\"],\"\uD83E\uDD6B Pantry\":[\"olive oil\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"garlic\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}");
-            _context5.n = 2;
+            _context7.n = 2;
             return fetch("/api/claude", {
               method: "POST",
               headers: {
@@ -1013,13 +1267,13 @@ function App() {
               })
             });
           case 2:
-            res = _context5.v;
-            _context5.n = 3;
+            res = _context7.v;
+            _context7.n = 3;
             return res.json();
           case 3:
-            data = _context5.v;
+            data = _context7.v;
             if (!data.error) {
-              _context5.n = 4;
+              _context7.n = 4;
               break;
             }
             throw new Error(data.error.message);
@@ -1028,7 +1282,7 @@ function App() {
               return b.type === "text";
             });
             if (block) {
-              _context5.n = 5;
+              _context7.n = 5;
               break;
             }
             throw new Error("No response from AI");
@@ -1080,25 +1334,25 @@ function App() {
               if (charges.length > 0) saveBilling([].concat(_toConsumableArray(billing), charges));
             }
             setView("plan");
-            _context5.n = 7;
+            _context7.n = 7;
             break;
           case 6:
-            _context5.p = 6;
-            _t7 = _context5.v;
-            console.error(_t7);
-            setError("Something went wrong — please try again. " + _t7.message);
+            _context7.p = 6;
+            _t11 = _context7.v;
+            console.error(_t11);
+            setError("Something went wrong — please try again. " + _t11.message);
           case 7:
-            _context5.p = 7;
+            _context7.p = 7;
             clearInterval(iv);
             setLoading(false);
-            return _context5.f(7);
+            return _context7.f(7);
           case 8:
-            return _context5.a(2);
+            return _context7.a(2);
         }
-      }, _callee5, null, [[1, 6, 7, 8]]);
+      }, _callee7, null, [[1, 6, 7, 8]]);
     }));
     return function generate() {
-      return _ref7.apply(this, arguments);
+      return _ref9.apply(this, arguments);
     };
   }();
   var openRecipe = function openRecipe(di, mt) {
@@ -1111,14 +1365,14 @@ function App() {
   };
   var copyGrocery = function copyGrocery() {
     if (!grocery) return;
-    var txt = Object.entries(grocery).filter(function (_ref8) {
-      var _ref9 = _slicedToArray(_ref8, 2),
-        v = _ref9[1];
-      return v === null || v === void 0 ? void 0 : v.length;
-    }).map(function (_ref0) {
+    var txt = Object.entries(grocery).filter(function (_ref0) {
       var _ref1 = _slicedToArray(_ref0, 2),
-        cat = _ref1[0],
-        items = _ref1[1];
+        v = _ref1[1];
+      return v === null || v === void 0 ? void 0 : v.length;
+    }).map(function (_ref10) {
+      var _ref11 = _slicedToArray(_ref10, 2),
+        cat = _ref11[0],
+        items = _ref11[1];
       return "".concat(cat, "\n").concat(items.map(function (i) {
         return "  \u2022 ".concat(i);
       }).join("\n"));
@@ -1210,7 +1464,7 @@ function App() {
     }, "\u2715"));
   }
   function Home() {
-    var _window$MP_ADS5;
+    var _window$MP_ADS6;
     return /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(255,255,255,0.04)",
@@ -1317,9 +1571,9 @@ function App() {
         flexWrap: "wrap",
         gap: 7
       }
-    }, CUISINE_OPTIONS.map(function (_ref10) {
-      var label = _ref10.label,
-        value = _ref10.value;
+    }, CUISINE_OPTIONS.map(function (_ref12) {
+      var label = _ref12.label,
+        value = _ref12.value;
       return /*#__PURE__*/React.createElement("button", {
         key: value,
         style: chip(cuisines.includes(value)),
@@ -1360,12 +1614,12 @@ function App() {
       label: "Dinner",
       arr: dnStyle,
       set: setDnStyle
-    }].map(function (_ref11) {
-      var key = _ref11.key,
-        emoji = _ref11.emoji,
-        label = _ref11.label,
-        arr = _ref11.arr,
-        set = _ref11.set;
+    }].map(function (_ref13) {
+      var key = _ref13.key,
+        emoji = _ref13.emoji,
+        label = _ref13.label,
+        arr = _ref13.arr,
+        set = _ref13.set;
       return /*#__PURE__*/React.createElement("div", {
         key: key,
         style: {
@@ -1404,9 +1658,9 @@ function App() {
           flexWrap: "wrap",
           gap: 7
         }
-      }, MEAL_STYLES[key].map(function (_ref12) {
-        var lb = _ref12.label,
-          value = _ref12.value;
+      }, MEAL_STYLES[key].map(function (_ref14) {
+        var lb = _ref14.label,
+          value = _ref14.value;
         return /*#__PURE__*/React.createElement("button", {
           key: value,
           style: chip(arr.includes(value)),
@@ -1437,7 +1691,7 @@ function App() {
       onClick: generate,
       disabled: loading
     }, loading ? "⏳ Generating…" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS5 = window.MP_ADS) === null || _window$MP_ADS5 === void 0 || (_window$MP_ADS5 = _window$MP_ADS5.slots) === null || _window$MP_ADS5 === void 0 ? void 0 : _window$MP_ADS5.banner
+      slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.banner
     }), mealPlan && /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
@@ -1497,7 +1751,7 @@ function App() {
     }, loadMsg));
   }
   function Plan() {
-    var _window$MP_ADS6;
+    var _window$MP_ADS7;
     var ratedCount = Object.values(ratings).filter(function (v) {
       return v > 0;
     }).length;
@@ -1555,9 +1809,9 @@ function App() {
         flexWrap: "wrap",
         gap: 6
       }
-    }, FILTER_OPTS.map(function (_ref13) {
-      var label = _ref13.label,
-        value = _ref13.value;
+    }, FILTER_OPTS.map(function (_ref15) {
+      var label = _ref15.label,
+        value = _ref15.value;
       return /*#__PURE__*/React.createElement("button", {
         key: value,
         style: fchip(rFilter === value),
@@ -1686,11 +1940,11 @@ function App() {
         marginBottom: 10
       }
     }, "\u2B50"), /*#__PURE__*/React.createElement("div", null, "No meals match this filter.")), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.inContent
+      slot: (_window$MP_ADS7 = window.MP_ADS) === null || _window$MP_ADS7 === void 0 || (_window$MP_ADS7 = _window$MP_ADS7.slots) === null || _window$MP_ADS7 === void 0 ? void 0 : _window$MP_ADS7.inContent
     }));
   }
   function Recipe() {
-    var _window$MP_ADS7;
+    var _window$MP_ADS8;
     if (!selMeal) return null;
     var m = selMeal;
     var r = getRating(m.name);
@@ -1928,7 +2182,7 @@ function App() {
         marginBottom: 16
       }
     }, "\uD83D\uDCA1 ", /*#__PURE__*/React.createElement("strong", null, "Chef's Tip:"), " ", m.tips), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS7 = window.MP_ADS) === null || _window$MP_ADS7 === void 0 || (_window$MP_ADS7 = _window$MP_ADS7.slots) === null || _window$MP_ADS7 === void 0 ? void 0 : _window$MP_ADS7.recipe
+      slot: (_window$MP_ADS8 = window.MP_ADS) === null || _window$MP_ADS8 === void 0 || (_window$MP_ADS8 = _window$MP_ADS8.slots) === null || _window$MP_ADS8 === void 0 ? void 0 : _window$MP_ADS8.recipe
     }));
   }
 
@@ -2297,9 +2551,9 @@ function App() {
   }
   function Grocery() {
     if (!grocery) return null;
-    var filled = Object.entries(grocery).filter(function (_ref14) {
-      var _ref15 = _slicedToArray(_ref14, 2),
-        v = _ref15[1];
+    var filled = Object.entries(grocery).filter(function (_ref16) {
+      var _ref17 = _slicedToArray(_ref16, 2),
+        v = _ref17[1];
       return (v === null || v === void 0 ? void 0 : v.length) > 0;
     });
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
@@ -2376,10 +2630,10 @@ function App() {
         gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))",
         gap: 14
       }
-    }, filled.map(function (_ref16) {
-      var _ref17 = _slicedToArray(_ref16, 2),
-        cat = _ref17[0],
-        items = _ref17[1];
+    }, filled.map(function (_ref18) {
+      var _ref19 = _slicedToArray(_ref18, 2),
+        cat = _ref19[0],
+        items = _ref19[1];
       return /*#__PURE__*/React.createElement("div", {
         key: cat,
         style: {
@@ -2450,30 +2704,30 @@ function App() {
         return setAPass(e.target.value);
       },
       onKeyDown: (/*#__PURE__*/function () {
-        var _ref18 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(e) {
+        var _ref20 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(e) {
           var h;
-          return _regenerator().w(function (_context6) {
-            while (1) switch (_context6.n) {
+          return _regenerator().w(function (_context8) {
+            while (1) switch (_context8.n) {
               case 0:
                 if (!(e.key === "Enter")) {
-                  _context6.n = 2;
+                  _context8.n = 2;
                   break;
                 }
-                _context6.n = 1;
+                _context8.n = 1;
                 return hashPassword(aPass);
               case 1:
-                h = _context6.v;
+                h = _context8.v;
                 if (h === ADMIN_PASS_HASH) {
                   setUnlocked(true);
                   setAErr("");
                 } else setAErr("Incorrect password");
               case 2:
-                return _context6.a(2);
+                return _context8.a(2);
             }
-          }, _callee6);
+          }, _callee8);
         }));
-        return function (_x6) {
-          return _ref18.apply(this, arguments);
+        return function (_x8) {
+          return _ref20.apply(this, arguments);
         };
       }())
     }), aErr && /*#__PURE__*/React.createElement("div", {
@@ -2484,23 +2738,23 @@ function App() {
       }
     }, "\u274C ", aErr), /*#__PURE__*/React.createElement("button", {
       style: genBtn(false),
-      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
         var h;
-        return _regenerator().w(function (_context7) {
-          while (1) switch (_context7.n) {
+        return _regenerator().w(function (_context9) {
+          while (1) switch (_context9.n) {
             case 0:
-              _context7.n = 1;
+              _context9.n = 1;
               return hashPassword(aPass);
             case 1:
-              h = _context7.v;
+              h = _context9.v;
               if (h === ADMIN_PASS_HASH) {
                 setUnlocked(true);
                 setAErr("");
               } else setAErr("Incorrect password");
             case 2:
-              return _context7.a(2);
+              return _context9.a(2);
           }
-        }, _callee7);
+        }, _callee9);
       }))
     }, "Unlock Admin Panel"));
   }
@@ -3037,11 +3291,11 @@ function App() {
         gap: 12,
         marginBottom: 22
       }
-    }, Object.entries(bySponsor).map(function (_ref20) {
+    }, Object.entries(bySponsor).map(function (_ref22) {
       var _sponsors$find;
-      var _ref21 = _slicedToArray(_ref20, 2),
-        sid = _ref21[0],
-        data = _ref21[1];
+      var _ref23 = _slicedToArray(_ref22, 2),
+        sid = _ref23[0],
+        data = _ref23[1];
       return /*#__PURE__*/React.createElement("div", {
         key: sid,
         style: {
@@ -3273,11 +3527,11 @@ function App() {
       }
     }, "\uD83D\uDDD1 Clear All")));
   }
-  function Toggle(_ref22) {
-    var on = _ref22.on,
-      onToggle = _ref22.onToggle,
-      _ref22$color = _ref22.color,
-      color = _ref22$color === void 0 ? "#22c55e" : _ref22$color;
+  function Toggle(_ref24) {
+    var on = _ref24.on,
+      onToggle = _ref24.onToggle,
+      _ref24$color = _ref24.color,
+      color = _ref24$color === void 0 ? "#22c55e" : _ref24$color;
     return /*#__PURE__*/React.createElement("div", {
       style: _objectSpread(_objectSpread({}, toggle2Sty(on)), {}, {
         background: on ? "linear-gradient(135deg,".concat(color, ",").concat(color, "cc)") : "rgba(255,255,255,0.1)"
@@ -3680,7 +3934,102 @@ function App() {
         setAPass("");
         setView("home");
       }
-    }, "\uD83D\uDD12 Lock & Exit")), /*#__PURE__*/React.createElement("div", {
+    }, "\uD83D\uDD12 Lock & Exit")), !apiKeySet ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,58,237,0.2),rgba(99,102,241,0.15))",
+        border: "1px solid rgba(124,58,237,0.5)",
+        borderRadius: 14,
+        padding: "18px 20px",
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22
+      }
+    }, "\uD83C\uDF10"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#c4b5fd"
+      }
+    }, "Connect to server \u2014 required for sponsors to show to all visitors"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "rgba(196,181,253,0.6)"
+      }
+    }, "Enter your ADMIN_API_KEY from Vercel environment variables"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        flex: 1
+      }),
+      type: "password",
+      placeholder: "Your ADMIN_API_KEY value from Vercel...",
+      value: apiKeyInput2,
+      onChange: function onChange(e) {
+        return setApiKeyInput2(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("button", {
+      style: {
+        padding: "10px 18px",
+        background: "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontSize: 13,
+        whiteSpace: "nowrap"
+      },
+      onClick: function onClick() {
+        if (!apiKeyInput2.trim()) return;
+        localStorage.setItem("mp_admin_api_key", apiKeyInput2.trim());
+        setAdminApiKey(apiKeyInput2.trim());
+        setApiKeySet(true);
+        setApiKeyInput2("");
+      }
+    }, "\uD83D\uDD17 Connect"))) : /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10,
+        marginBottom: 14,
+        padding: "9px 14px",
+        background: "rgba(34,197,94,0.08)",
+        border: "1px solid rgba(34,197,94,0.25)",
+        borderRadius: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 14,
+        color: "#4ade80"
+      }
+    }, syncStatus === "saving" ? "⏳ Syncing to server..." : syncStatus === "saved" ? "✅ Synced to server" : syncStatus === "error" ? "❌ Sync failed — check your ADMIN_API_KEY" : "🌐 Connected — sponsors sync to all visitors"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        marginLeft: "auto",
+        fontSize: 11,
+        color: "rgba(255,255,255,0.3)",
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        textDecoration: "underline"
+      },
+      onClick: function onClick() {
+        localStorage.removeItem("mp_admin_api_key");
+        setAdminApiKey("");
+        setApiKeySet(false);
+      }
+    }, "Disconnect")), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         gap: 0,
@@ -4174,7 +4523,7 @@ function App() {
       background: "rgba(0,0,0,0.3)"
     }
   }, /*#__PURE__*/React.createElement(AdUnit, {
-    slot: (_window$MP_ADS8 = window.MP_ADS) === null || _window$MP_ADS8 === void 0 || (_window$MP_ADS8 = _window$MP_ADS8.slots) === null || _window$MP_ADS8 === void 0 ? void 0 : _window$MP_ADS8.footer
+    slot: (_window$MP_ADS9 = window.MP_ADS) === null || _window$MP_ADS9 === void 0 || (_window$MP_ADS9 = _window$MP_ADS9.slots) === null || _window$MP_ADS9 === void 0 ? void 0 : _window$MP_ADS9.footer
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "12px 20px",
