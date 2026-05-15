@@ -1,14 +1,11 @@
 /**
- * Vercel Serverless Function — Sponsor CRUD via Vercel KV
+ * Vercel Serverless Function — Sponsor CRUD via Upstash Redis
+ * Supports both Vercel KV env vars and Upstash direct env vars
  *
- * Environment variables (set in Vercel dashboard):
- *   KV_REST_API_URL    — auto-added when you connect a KV store
- *   KV_REST_API_TOKEN  — auto-added when you connect a KV store
- *   ADMIN_API_KEY      — your secret admin key (you set this manually)
- *
- * Routes:
- *   GET  /api/sponsors         — returns all sponsors (public)
- *   POST /api/sponsors         — saves full sponsors array (admin only)
+ * Environment variables (auto-added when you connect Upstash):
+ *   KV_REST_API_URL / UPSTASH_REDIS_REST_URL
+ *   KV_REST_API_TOKEN / UPSTASH_REDIS_REST_TOKEN
+ *   ADMIN_API_KEY — your secret admin key
  */
 
 const CORS = {
@@ -18,13 +15,19 @@ const CORS = {
   "Content-Type": "application/json",
 };
 
-// ── Vercel KV helpers (uses Upstash Redis REST API) ──────────────────────────
+function getKvCreds() {
+  return {
+    url:   process.env.KV_REST_API_URL        || process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.KV_REST_API_TOKEN      || process.env.UPSTASH_REDIS_REST_TOKEN,
+  };
+}
+
 async function kvGet(key) {
-  const { KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
-  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) return null;
+  const { url, token } = getKvCreds();
+  if (!url || !token) return null;
   try {
-    const res = await fetch(`${KV_REST_API_URL}/get/${key}`, {
-      headers: { Authorization: `Bearer ${KV_REST_API_TOKEN}` },
+    const res = await fetch(`${url}/get/${encodeURIComponent(key)}`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     return data.result ? JSON.parse(data.result) : null;
@@ -32,48 +35,35 @@ async function kvGet(key) {
 }
 
 async function kvSet(key, value) {
-  const { KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
-  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) return false;
+  const { url, token } = getKvCreds();
+  if (!url || !token) return false;
   try {
-    const res = await fetch(`${KV_REST_API_URL}/set/${key}`, {
+    const res = await fetch(`${url}/set/${encodeURIComponent(key)}`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${KV_REST_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ value: JSON.stringify(value) }),
     });
     return res.ok;
   } catch (_) { return false; }
 }
 
-// ── Handler ───────────────────────────────────────────────────────────────────
 module.exports = async function handler(req, res) {
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v));
-
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  // ── GET — public, returns sponsors array ──────────────────────────────────
   if (req.method === "GET") {
     const sponsors = await kvGet("mp_sponsors") || [];
     return res.status(200).json({ sponsors });
   }
 
-  // ── POST — admin only, saves full sponsors array ──────────────────────────
   if (req.method === "POST") {
     const adminKey = req.headers["x-admin-key"];
-    if (!adminKey || adminKey !== process.env.ADMIN_API_KEY) {
+    if (!adminKey || adminKey !== process.env.ADMIN_API_KEY)
       return res.status(401).json({ error: "Unauthorized" });
-    }
     const { sponsors } = req.body;
-    if (!Array.isArray(sponsors)) {
+    if (!Array.isArray(sponsors))
       return res.status(400).json({ error: "sponsors must be an array" });
-    }
-    const ok = await kvSet("mp_sponsors", sponsors);
-    if (!ok) {
-      // KV not configured — return success anyway so app still works locally
-      console.warn("KV not configured — sponsors not persisted");
-    }
+    await kvSet("mp_sponsors", sponsors);
     return res.status(200).json({ ok: true, count: sponsors.length });
   }
 

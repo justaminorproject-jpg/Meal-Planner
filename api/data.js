@@ -1,11 +1,11 @@
 /**
- * Generic admin data store — Vercel KV
- * Handles sponsors, billing, and monetization settings
+ * Generic admin data store — Upstash Redis
+ * Supports both Vercel KV and Upstash direct env var names
  *
- * GET  /api/data?key=sponsors     — public (sponsors visible to all)
- * GET  /api/data?key=monetization — public (affiliate/ad config for all visitors)
- * GET  /api/data?key=billing      — admin only
- * POST /api/data                  — admin only { key, value }
+ * GET  /api/data?key=mp_sponsors     — public
+ * GET  /api/data?key=mp_monetization — public
+ * GET  /api/data?key=mp_billing      — admin only
+ * POST /api/data { key, value }      — admin only
  */
 
 const CORS = {
@@ -15,15 +15,21 @@ const CORS = {
   "Content-Type": "application/json",
 };
 
-// Public keys anyone can read — admin keys require X-Admin-Key header
 const PUBLIC_KEYS = ["mp_sponsors", "mp_monetization"];
 
+function getKvCreds() {
+  return {
+    url:   process.env.KV_REST_API_URL   || process.env.UPSTASH_REDIS_REST_URL,
+    token: process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN,
+  };
+}
+
 async function kvGet(key) {
-  const { KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
-  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) return null;
+  const { url, token } = getKvCreds();
+  if (!url || !token) return null;
   try {
-    const res = await fetch(`${KV_REST_API_URL}/get/${encodeURIComponent(key)}`, {
-      headers: { Authorization: `Bearer ${KV_REST_API_TOKEN}` },
+    const res = await fetch(`${url}/get/${encodeURIComponent(key)}`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
     return data.result ? JSON.parse(data.result) : null;
@@ -31,15 +37,12 @@ async function kvGet(key) {
 }
 
 async function kvSet(key, value) {
-  const { KV_REST_API_URL, KV_REST_API_TOKEN } = process.env;
-  if (!KV_REST_API_URL || !KV_REST_API_TOKEN) return false;
+  const { url, token } = getKvCreds();
+  if (!url || !token) return false;
   try {
-    const res = await fetch(`${KV_REST_API_URL}/set/${encodeURIComponent(key)}`, {
+    const res = await fetch(`${url}/set/${encodeURIComponent(key)}`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${KV_REST_API_TOKEN}`,
-        "Content-Type": "application/json",
-      },
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
       body: JSON.stringify({ value: JSON.stringify(value) }),
     });
     return res.ok;
@@ -55,27 +58,19 @@ module.exports = async function handler(req, res) {
   Object.entries(CORS).forEach(([k, v]) => res.setHeader(k, v));
   if (req.method === "OPTIONS") return res.status(200).end();
 
-  // ── GET ────────────────────────────────────────────────────────────────────
   if (req.method === "GET") {
     const key = req.query?.key;
     if (!key) return res.status(400).json({ error: "Missing key param" });
-
-    // Non-public keys require admin auth
-    if (!PUBLIC_KEYS.includes(key) && !isAdmin(req)) {
+    if (!PUBLIC_KEYS.includes(key) && !isAdmin(req))
       return res.status(401).json({ error: "Unauthorized" });
-    }
-
     const value = await kvGet(key);
     return res.status(200).json({ key, value: value ?? null });
   }
 
-  // ── POST ───────────────────────────────────────────────────────────────────
   if (req.method === "POST") {
     if (!isAdmin(req)) return res.status(401).json({ error: "Unauthorized" });
-
     const { key, value } = req.body || {};
     if (!key) return res.status(400).json({ error: "Missing key" });
-
     const ok = await kvSet(key, value);
     return res.status(200).json({ ok, key });
   }
