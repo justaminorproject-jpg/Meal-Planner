@@ -1,0 +1,4248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+<meta name="theme-color" content="#7c2d12"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+<meta name="apple-mobile-web-app-title" content="Meal Planner"/>
+<meta name="description" content="AI-powered meal planner with real recipes and grocery lists."/>
+<title>AI Meal Planner</title>
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%237c2d12'/%3E%3Ctext x='256' y='340' text-anchor='middle' font-size='280'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E"/>
+<!-- MONETIZATION: edit the values below before going live -->
+<script>
+window.MP_ADS={enabled:false,pubId:"ca-pub-XXXXXXXXXXXXXXXX",slots:{banner:"1234567890",inContent:"0987654321",recipe:"1122334455",footer:"5566778899"},autoAds:true,amazon:{enabled:false,tag:"yourtag-20"},instacart:{enabled:false,affiliateId:"your_instacart_id",baseUrl:"https://www.instacart.com/store"}};
+if(window.MP_ADS.enabled&&window.MP_ADS.autoAds){var _as=document.createElement("script");_as.async=true;_as.src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client="+window.MP_ADS.pubId;_as.crossOrigin="anonymous";document.head.appendChild(_as);}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1a0a00;font-family:'DM Sans','Segoe UI',sans-serif;color:#fff;overscroll-behavior:none}
+::placeholder{color:rgba(255,255,255,0.28)}
+select option{background:#1a0a00}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
+</style>
+</head>
+<body>
+<div id="install-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:8888;background:linear-gradient(to right,#7c2d12,#9a3412);border-top:2px solid #f97316;padding:14px 18px;align-items:center;gap:12px;flex-wrap:wrap;animation:slideUp 0.4s ease">
+  <span style="font-size:24px">&#127859;</span>
+  <div style="flex:1;min-width:180px"><div style="font-weight:700;color:#fed7aa;font-size:14px">Install AI Meal Planner</div><div style="color:#fb923c;font-size:12px">Add to your home screen for quick access</div></div>
+  <button onclick="installApp()" style="padding:9px 18px;background:linear-gradient(135deg,#f97316,#ea580c);border:none;border-radius:10px;color:#fff;font-weight:700;cursor:pointer;font-size:13px">&#128242; Install</button>
+  <button onclick="dismissInstall()" style="padding:9px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fed7aa;cursor:pointer;font-size:13px">&#x2715;</button>
+</div>
+<div id="root"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script>
+(function(){
+var _m={name:"AI Meal Planner",short_name:"Meal Planner",description:"AI-powered meal plans",start_url:"./",display:"standalone",background_color:"#1a0a00",theme_color:"#7c2d12",orientation:"portrait-primary",icons:[{src:"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='100' fill='%237c2d12'/%3E%3Ctext x='256' y='340' text-anchor='middle' font-size='280'%3E%F0%9F%8D%B3%3C/text%3E%3C/svg%3E",sizes:"512x512",type:"image/svg+xml",purpose:"any maskable"}]};
+var bl=new Blob([JSON.stringify(_m)],{type:"application/json"});
+var ml=document.createElement("link");ml.rel="manifest";ml.href=URL.createObjectURL(bl);document.head.appendChild(ml);
+if("serviceWorker" in navigator){var sw=`const CACHE="mp-v2";self.addEventListener("install",e=>e.waitUntil(caches.open(CACHE).then(c=>c.addAll(["./"])).then(()=>self.skipWaiting())));self.addEventListener("activate",e=>e.waitUntil(caches.keys().then(ks=>Promise.all(ks.filter(k=>k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));self.addEventListener("fetch",e=>{if(e.request.url.includes("api.anthropic.com")||e.request.url.includes("googleapis.com")||e.request.url.includes("cdnjs"))return;e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const cl=res.clone();caches.open(CACHE).then(c=>c.put(e.request,cl));return res;}).catch(()=>caches.match("./"))));});`;navigator.serviceWorker.register(URL.createObjectURL(new Blob([sw],{type:"application/javascript"}))).catch(()=>{});}
+var dp=null;
+window.addEventListener("beforeinstallprompt",function(e){e.preventDefault();dp=e;if(!localStorage.getItem("pwa-dismissed")){var b=document.getElementById("install-banner");if(b)b.style.display="flex";}});
+window.addEventListener("appinstalled",function(){var b=document.getElementById("install-banner");if(b)b.style.display="none";dp=null;});
+window.installApp=function(){if(!dp){alert("To install:\n\u2022 Chrome/Edge: menu \u2192 Install app\n\u2022 iPhone Safari: Share \u2192 Add to Home Screen\n\u2022 Android: menu \u2192 Add to Home screen");return;}dp.prompt();dp.userChoice.then(function(){dp=null;var b=document.getElementById("install-banner");if(b)b.style.display="none";});};
+window.dismissInstall=function(){localStorage.setItem("pwa-dismissed","1");var b=document.getElementById("install-banner");if(b)b.style.display="none";};
+window.storage={get:async function(k){var v=localStorage.getItem("mp_"+k);if(v===null)throw new Error("Not found");return{key:k,value:v};},set:async function(k,v){localStorage.setItem("mp_"+k,v);return{key:k,value:v};},delete:async function(k){localStorage.removeItem("mp_"+k);return{key:k,deleted:true};}};
+var fl=document.createElement("link");fl.rel="stylesheet";fl.href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap";document.head.appendChild(fl);
+})();
+</script>
+<script>
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
+function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+var _React = React,
+  useState = _React.useState,
+  useEffect = _React.useEffect,
+  useRef = _React.useRef;
+
+// ─── Constants ────────────────────────────────────────────────────────────────
+var DIET_OPTIONS = ["No Restrictions", "Vegetarian", "Vegan", "Gluten-Free", "Keto", "Paleo", "Dairy-Free", "Mediterranean"];
+var CUISINE_OPTIONS = [{
+  label: "🇺🇸 American",
+  value: "American"
+}, {
+  label: "🇮🇹 Italian",
+  value: "Italian"
+}, {
+  label: "🇲🇽 Mexican",
+  value: "Mexican"
+}, {
+  label: "🇯🇵 Japanese",
+  value: "Japanese"
+}, {
+  label: "🇨🇳 Chinese",
+  value: "Chinese"
+}, {
+  label: "🇮🇳 Indian",
+  value: "Indian"
+}, {
+  label: "🇹🇭 Thai",
+  value: "Thai"
+}, {
+  label: "🇬🇷 Greek",
+  value: "Greek"
+}, {
+  label: "🇫🇷 French",
+  value: "French"
+}, {
+  label: "🌍 Mediterranean",
+  value: "Mediterranean"
+}, {
+  label: "🇰🇷 Korean",
+  value: "Korean"
+}, {
+  label: "🕌 Middle Eastern",
+  value: "Middle Eastern"
+}, {
+  label: "🇪🇸 Spanish",
+  value: "Spanish"
+}, {
+  label: "🇻🇳 Vietnamese",
+  value: "Vietnamese"
+}];
+var MEAL_STYLES = {
+  breakfast: [{
+    label: "⚡ Quick & Easy",
+    value: "quick and easy"
+  }, {
+    label: "🍳 Eggs & Savory",
+    value: "eggs and savory"
+  }, {
+    label: "🥣 Bowls & Oats",
+    value: "bowls and oats"
+  }, {
+    label: "🥞 Pancakes & Waffles",
+    value: "pancakes and waffles"
+  }, {
+    label: "🍓 Smoothies & Light",
+    value: "smoothies and light"
+  }, {
+    label: "🥐 Bakery Style",
+    value: "bakery style pastries"
+  }],
+  lunch: [{
+    label: "🥗 Salads & Bowls",
+    value: "salads and bowls"
+  }, {
+    label: "🥪 Sandwiches & Wraps",
+    value: "sandwiches and wraps"
+  }, {
+    label: "🍲 Soups & Stews",
+    value: "soups and stews"
+  }, {
+    label: "🍝 Pasta & Grains",
+    value: "pasta and grains"
+  }, {
+    label: "🌮 Tacos & Street Food",
+    value: "tacos and street food"
+  }, {
+    label: "🥡 Stir-Fry",
+    value: "stir-fry"
+  }],
+  dinner: [{
+    label: "🥩 Grilled & BBQ",
+    value: "grilled and BBQ"
+  }, {
+    label: "🍝 Pasta & Italian",
+    value: "pasta and Italian"
+  }, {
+    label: "🫕 Comfort Food",
+    value: "comfort food"
+  }, {
+    label: "🐟 Seafood",
+    value: "seafood"
+  }, {
+    label: "🥘 One-Pot Meals",
+    value: "one-pot meals"
+  }, {
+    label: "🌱 Plant-Based",
+    value: "plant-based"
+  }, {
+    label: "🍛 Curry & Rice",
+    value: "curry and rice"
+  }, {
+    label: "🔥 Slow-Cooked",
+    value: "slow-cooked"
+  }]
+};
+var MEAL_EMOJI = {
+  breakfast: "🌅",
+  lunch: "☀️",
+  dinner: "🌙"
+};
+var MEAL_BADGE = {
+  breakfast: "#EA580C",
+  lunch: "#CA8A04",
+  dinner: "#16A34A"
+};
+var RATING_LABELS = ["", "Not for me 😕", "It's okay 🙂", "Pretty good! 😋", "Really good! 😍", "Absolutely love it! 🔥"];
+var FILTER_OPTS = [{
+  label: "All",
+  value: 0
+}, {
+  label: "⭐ 1+",
+  value: 1
+}, {
+  label: "⭐⭐ 2+",
+  value: 2
+}, {
+  label: "⭐⭐⭐ 3+",
+  value: 3
+}, {
+  label: "⭐⭐⭐⭐ 4+",
+  value: 4
+}, {
+  label: "5 ⭐ Only",
+  value: 5
+}, {
+  label: "🔲 Unrated",
+  value: -1
+}];
+var ADMIN_PASS_HASH = "b5d0b8ffab5a374c88ea07e70e17c32160847bf0061bed0dfda11ab4a35ec875"; // SHA-256 — actual password is not stored here
+
+var toggle = function toggle(arr, val) {
+  return arr.includes(val) ? arr.filter(function (x) {
+    return x !== val;
+  }) : [].concat(_toConsumableArray(arr), [val]);
+};
+var ytUrl = function ytUrl(q) {
+  return "https://www.youtube.com/results?search_query=".concat(encodeURIComponent(q));
+};
+var matchSponsors = function matchSponsors(text, sponsors) {
+  return sponsors.filter(function (s) {
+    return s.keyword && text.toLowerCase().includes(s.keyword.toLowerCase());
+  });
+};
+
+// ─── Admin password check (SHA-256, never stores plaintext) ──────────────────
+function hashPassword(_x) {
+  return _hashPassword.apply(this, arguments);
+} // ─── Ad Unit ──────────────────────────────────────────────────────────────────
+function _hashPassword() {
+  _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(pw) {
+    var buf;
+    return _regenerator().w(function (_context8) {
+      while (1) switch (_context8.n) {
+        case 0:
+          _context8.n = 1;
+          return crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
+        case 1:
+          buf = _context8.v;
+          return _context8.a(2, Array.from(new Uint8Array(buf)).map(function (b) {
+            return b.toString(16).padStart(2, "0");
+          }).join(""));
+      }
+    }, _callee8);
+  }));
+  return _hashPassword.apply(this, arguments);
+}
+function AdUnit(_ref) {
+  var slot = _ref.slot;
+  var ref = useRef(null);
+  var cfg = window.MP_ADS || {};
+  useEffect(function () {
+    if (!cfg.enabled || !cfg.pubId || cfg.pubId.includes("XXXX")) return;
+    try {
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    } catch (_) {}
+  }, []);
+  if (!cfg.enabled || !cfg.pubId || cfg.pubId.includes("XXXX")) {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(255,255,255,0.03)",
+        border: "1px dashed rgba(255,255,255,0.1)",
+        borderRadius: 8,
+        padding: "10px 16px",
+        textAlign: "center",
+        margin: "10px 0"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: "rgba(255,255,255,0.18)",
+        letterSpacing: 2,
+        textTransform: "uppercase"
+      }
+    }, "Ad slot \xB7 configure publisher ID to activate"));
+  }
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      margin: "10px 0"
+    }
+  }, /*#__PURE__*/React.createElement("ins", {
+    ref: ref,
+    className: "adsbygoogle",
+    style: {
+      display: "block"
+    },
+    "data-ad-client": cfg.pubId,
+    "data-ad-slot": slot || "0000000000",
+    "data-ad-format": "auto",
+    "data-full-width-responsive": "true"
+  }));
+}
+
+// ─── Affiliate helpers ────────────────────────────────────────────────────────
+function amazonLink(query) {
+  var _window$MP_ADS;
+  var cfg = (_window$MP_ADS = window.MP_ADS) === null || _window$MP_ADS === void 0 ? void 0 : _window$MP_ADS.amazon;
+  if (!(cfg !== null && cfg !== void 0 && cfg.enabled) || !cfg.tag || cfg.tag.includes("yourtag")) return null;
+  return "https://www.amazon.com/s?k=".concat(encodeURIComponent(query), "&tag=").concat(cfg.tag);
+}
+function instacartLink(query) {
+  var _window$MP_ADS2;
+  var cfg = (_window$MP_ADS2 = window.MP_ADS) === null || _window$MP_ADS2 === void 0 ? void 0 : _window$MP_ADS2.instacart;
+  if (!(cfg !== null && cfg !== void 0 && cfg.enabled) || !cfg.affiliateId || cfg.affiliateId.includes("your_")) return null;
+  return "".concat(cfg.baseUrl, "?utm_source=").concat(cfg.affiliateId, "&search=").concat(encodeURIComponent(query));
+}
+
+// ─── Ingredient Row ───────────────────────────────────────────────────────────
+function IngredientRow(_ref2) {
+  var text = _ref2.text,
+    sponsors = _ref2.sponsors;
+  var matched = matchSponsors(text, sponsors);
+  var amLink = amazonLink(text);
+  var icLink = instacartLink(text);
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "flex-start",
+      gap: 8,
+      padding: "6px 0",
+      borderBottom: "1px solid rgba(255,255,255,0.05)"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      width: 5,
+      height: 5,
+      borderRadius: "50%",
+      background: "#f97316",
+      flexShrink: 0,
+      marginTop: 6
+    }
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      fontSize: 13,
+      color: "#e5e7eb",
+      lineHeight: 1.4
+    }
+  }, text, matched.map(function (s) {
+    return /*#__PURE__*/React.createElement("span", {
+      key: s.id,
+      style: {
+        marginLeft: 7,
+        verticalAlign: "middle"
+      }
+    }, s.url ? /*#__PURE__*/React.createElement("a", {
+      href: s.url,
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 3,
+        padding: "2px 8px",
+        borderRadius: 10,
+        background: s.color || "#f97316",
+        color: "#fff",
+        fontSize: 11,
+        fontWeight: 700,
+        textDecoration: "none"
+      }
+    }, "\uD83C\uDFF7 ", s.brand, " \u2197") : /*#__PURE__*/React.createElement("span", {
+      style: {
+        display: "inline-flex",
+        padding: "2px 8px",
+        borderRadius: 10,
+        background: s.color || "#f97316",
+        color: "#fff",
+        fontSize: 11,
+        fontWeight: 700
+      }
+    }, "\uD83C\uDFF7 ", s.brand));
+  }), amLink && /*#__PURE__*/React.createElement("a", {
+    href: amLink,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      marginLeft: 6,
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 3,
+      padding: "2px 8px",
+      borderRadius: 10,
+      background: "rgba(255,153,0,0.14)",
+      border: "1px solid rgba(255,153,0,0.3)",
+      color: "#fbbf24",
+      fontSize: 10,
+      fontWeight: 700,
+      textDecoration: "none",
+      verticalAlign: "middle"
+    }
+  }, "\uD83D\uDCE6 Amazon"), icLink && /*#__PURE__*/React.createElement("a", {
+    href: icLink,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      marginLeft: 6,
+      display: "inline-flex",
+      alignItems: "center",
+      gap: 3,
+      padding: "2px 8px",
+      borderRadius: 10,
+      background: "rgba(34,197,94,0.1)",
+      border: "1px solid rgba(34,197,94,0.28)",
+      color: "#4ade80",
+      fontSize: 10,
+      fontWeight: 700,
+      textDecoration: "none",
+      verticalAlign: "middle"
+    }
+  }, "\uD83D\uDED2 Instacart")));
+}
+
+// ─── Shared style helpers ─────────────────────────────────────────────────────
+var OR = "#f97316",
+  OR2 = "#ea580c",
+  BRN = "#7c2d12",
+  BRN2 = "#9a3412";
+var W = "#fff",
+  SOFT = "#fed7aa",
+  MID = "#fb923c",
+  MUT = "rgba(255,255,255,0.32)";
+var CARD = "rgba(0,0,0,0.28)",
+  BDR = "rgba(249,115,22,0.2)";
+var chip = function chip(a) {
+  return {
+    padding: "6px 13px",
+    borderRadius: 20,
+    border: a ? "none" : "1px solid rgba(249,115,22,0.3)",
+    background: a ? "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")") : "rgba(0,0,0,0.3)",
+    color: a ? W : "#fdba74",
+    cursor: "pointer",
+    fontSize: 12,
+    fontWeight: a ? 700 : 400,
+    userSelect: "none",
+    whiteSpace: "nowrap"
+  };
+};
+var fchip = function fchip(a) {
+  return {
+    padding: "5px 11px",
+    borderRadius: 16,
+    border: a ? "none" : "1px solid rgba(245,158,11,0.3)",
+    background: a ? "linear-gradient(135deg,#f59e0b,#d97706)" : "rgba(0,0,0,0.3)",
+    color: a ? W : "#fbbf24",
+    cursor: "pointer",
+    fontSize: 11,
+    fontWeight: a ? 700 : 400,
+    userSelect: "none"
+  };
+};
+var navBtn = function navBtn(a) {
+  return {
+    padding: "6px 14px",
+    borderRadius: 20,
+    border: a ? "none" : "1px solid rgba(249,115,22,0.4)",
+    background: a ? "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")") : "transparent",
+    color: a ? W : MID,
+    cursor: "pointer",
+    fontSize: 12,
+    fontWeight: 600
+  };
+};
+var genBtn = function genBtn(dis) {
+  return {
+    width: "100%",
+    padding: 15,
+    background: dis ? "rgba(249,115,22,0.25)" : "linear-gradient(135deg,".concat(OR, ",#dc2626)"),
+    border: "none",
+    borderRadius: 12,
+    color: W,
+    fontSize: 15,
+    fontWeight: 700,
+    cursor: dis ? "not-allowed" : "pointer",
+    boxShadow: dis ? "none" : "0 4px 24px rgba(249,115,22,0.4)"
+  };
+};
+var inputSty = {
+  background: "rgba(0,0,0,0.4)",
+  border: "1px solid rgba(249,115,22,0.35)",
+  color: W,
+  padding: "10px 12px",
+  borderRadius: 10,
+  fontSize: 13,
+  outline: "none"
+};
+var labelSty = {
+  display: "block",
+  color: MID,
+  fontSize: 11,
+  fontWeight: 700,
+  textTransform: "uppercase",
+  letterSpacing: 1,
+  marginBottom: 6
+};
+var secTitle = {
+  fontFamily: "Georgia,serif",
+  fontSize: 24,
+  fontWeight: 700,
+  color: SOFT,
+  marginBottom: 4
+};
+var subCardSty = {
+  background: "rgba(0,0,0,0.22)",
+  borderRadius: 12,
+  padding: 16,
+  border: "1px solid rgba(249,115,22,0.12)"
+};
+var subTitleSty = {
+  fontFamily: "Georgia,serif",
+  fontSize: 15,
+  color: MID,
+  marginBottom: 10,
+  fontWeight: 700
+};
+var toggle2Sty = function toggle2Sty(on) {
+  return {
+    width: 44,
+    height: 24,
+    borderRadius: 12,
+    background: on ? "linear-gradient(135deg,#22c55e,#16a34a)" : "rgba(255,255,255,0.1)",
+    border: "1px solid rgba(255,255,255,0.2)",
+    position: "relative",
+    cursor: "pointer"
+  };
+};
+var toggleKnob = function toggleKnob(on) {
+  return {
+    width: 18,
+    height: 18,
+    borderRadius: "50%",
+    background: W,
+    position: "absolute",
+    top: 2,
+    left: on ? 22 : 2,
+    transition: "left 0.2s"
+  };
+};
+var divider = {
+  borderTop: "1px solid rgba(249,115,22,0.13)",
+  margin: "16px 0"
+};
+
+// ─── Main App ─────────────────────────────────────────────────────────────────
+function App() {
+  var _window$MP_ADS8;
+  // Settings
+  var _useState = useState(7),
+    _useState2 = _slicedToArray(_useState, 2),
+    numDays = _useState2[0],
+    setNumDays = _useState2[1];
+  var _useState3 = useState("No Restrictions"),
+    _useState4 = _slicedToArray(_useState3, 2),
+    diet = _useState4[0],
+    setDiet = _useState4[1];
+  var _useState5 = useState([]),
+    _useState6 = _slicedToArray(_useState5, 2),
+    cuisines = _useState6[0],
+    setCuisines = _useState6[1];
+  var _useState7 = useState([]),
+    _useState8 = _slicedToArray(_useState7, 2),
+    bfStyle = _useState8[0],
+    setBfStyle = _useState8[1];
+  var _useState9 = useState([]),
+    _useState0 = _slicedToArray(_useState9, 2),
+    luStyle = _useState0[0],
+    setLuStyle = _useState0[1];
+  var _useState1 = useState([]),
+    _useState10 = _slicedToArray(_useState1, 2),
+    dnStyle = _useState10[0],
+    setDnStyle = _useState10[1];
+  var _useState11 = useState(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    extra = _useState12[0],
+    setExtra = _useState12[1];
+  // Plan
+  var _useState13 = useState(null),
+    _useState14 = _slicedToArray(_useState13, 2),
+    mealPlan = _useState14[0],
+    setMealPlan = _useState14[1];
+  var _useState15 = useState(null),
+    _useState16 = _slicedToArray(_useState15, 2),
+    grocery = _useState16[0],
+    setGrocery = _useState16[1];
+  var _useState17 = useState(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    loading = _useState18[0],
+    setLoading = _useState18[1];
+  var _useState19 = useState(""),
+    _useState20 = _slicedToArray(_useState19, 2),
+    loadMsg = _useState20[0],
+    setLoadMsg = _useState20[1];
+  var _useState21 = useState(""),
+    _useState22 = _slicedToArray(_useState21, 2),
+    error = _useState22[0],
+    setError = _useState22[1];
+  var _useState23 = useState("home"),
+    _useState24 = _slicedToArray(_useState23, 2),
+    view = _useState24[0],
+    setView = _useState24[1];
+  var _useState25 = useState(null),
+    _useState26 = _slicedToArray(_useState25, 2),
+    selMeal = _useState26[0],
+    setSelMeal = _useState26[1];
+  var _useState27 = useState(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    copied = _useState28[0],
+    setCopied = _useState28[1];
+  var _useState29 = useState(false),
+    _useState30 = _slicedToArray(_useState29, 2),
+    fallback = _useState30[0],
+    setFallback = _useState30[1];
+  var _useState31 = useState(false),
+    _useState32 = _slicedToArray(_useState31, 2),
+    alexaOpen = _useState32[0],
+    setAlexaOpen = _useState32[1];
+  var _useState33 = useState(false),
+    _useState34 = _slicedToArray(_useState33, 2),
+    alexaCopied = _useState34[0],
+    setAlexaCopied = _useState34[1];
+  // Ratings
+  var _useState35 = useState({}),
+    _useState36 = _slicedToArray(_useState35, 2),
+    ratings = _useState36[0],
+    setRatings = _useState36[1];
+  var _useState37 = useState(0),
+    _useState38 = _slicedToArray(_useState37, 2),
+    rFilter = _useState38[0],
+    setRFilter = _useState38[1];
+  var _useState39 = useState(0),
+    _useState40 = _slicedToArray(_useState39, 2),
+    hStar = _useState40[0],
+    setHStar = _useState40[1];
+  // Sponsors
+  var _useState41 = useState([]),
+    _useState42 = _slicedToArray(_useState41, 2),
+    sponsors = _useState42[0],
+    setSponsors = _useState42[1];
+  var _useState43 = useState([]),
+    _useState44 = _slicedToArray(_useState43, 2),
+    billing = _useState44[0],
+    setBilling = _useState44[1];
+  // Admin
+  var _useState45 = useState(false),
+    _useState46 = _slicedToArray(_useState45, 2),
+    unlocked = _useState46[0],
+    setUnlocked = _useState46[1];
+  var _useState47 = useState(""),
+    _useState48 = _slicedToArray(_useState47, 2),
+    aPass = _useState48[0],
+    setAPass = _useState48[1];
+  var _useState49 = useState(""),
+    _useState50 = _slicedToArray(_useState49, 2),
+    aErr = _useState50[0],
+    setAErr = _useState50[1];
+  var _useState51 = useState("sponsors"),
+    _useState52 = _slicedToArray(_useState51, 2),
+    aTab = _useState52[0],
+    setATab = _useState52[1];
+  var _useState53 = useState(null),
+    _useState54 = _slicedToArray(_useState53, 2),
+    settle = _useState54[0],
+    setSettle = _useState54[1];
+  // Sponsor form
+  var _useState55 = useState(""),
+    _useState56 = _slicedToArray(_useState55, 2),
+    nKw = _useState56[0],
+    setNKw = _useState56[1];
+  var _useState57 = useState(""),
+    _useState58 = _slicedToArray(_useState57, 2),
+    nBr = _useState58[0],
+    setNBr = _useState58[1];
+  var _useState59 = useState(""),
+    _useState60 = _slicedToArray(_useState59, 2),
+    nUrl = _useState60[0],
+    setNUrl = _useState60[1];
+  var _useState61 = useState("#f97316"),
+    _useState62 = _slicedToArray(_useState61, 2),
+    nClr = _useState62[0],
+    setNClr = _useState62[1];
+  var _useState63 = useState(5),
+    _useState64 = _slicedToArray(_useState63, 2),
+    nFrq = _useState64[0],
+    setNFrq = _useState64[1];
+  var _useState65 = useState("0.50"),
+    _useState66 = _slicedToArray(_useState65, 2),
+    nPrc = _useState66[0],
+    setNPrc = _useState66[1];
+  var _useState67 = useState(null),
+    _useState68 = _slicedToArray(_useState67, 2),
+    eId = _useState68[0],
+    setEId = _useState68[1];
+  var _useState69 = useState(false),
+    _useState70 = _slicedToArray(_useState69, 2),
+    sSvd = _useState70[0],
+    setSSvd = _useState70[1];
+  // Monetization
+  var _useState71 = useState(function () {
+      return localStorage.getItem("mp_ads_pubid") || "";
+    }),
+    _useState72 = _slicedToArray(_useState71, 2),
+    adsPub = _useState72[0],
+    setAdsPub = _useState72[1];
+  var _useState73 = useState(function () {
+      return localStorage.getItem("mp_ads_on") === "1";
+    }),
+    _useState74 = _slicedToArray(_useState73, 2),
+    adsOn = _useState74[0],
+    setAdsOn = _useState74[1];
+  var _useState75 = useState(function () {
+      return localStorage.getItem("mp_amazon_tag") || "";
+    }),
+    _useState76 = _slicedToArray(_useState75, 2),
+    amTag = _useState76[0],
+    setAmTag = _useState76[1];
+  var _useState77 = useState(function () {
+      return localStorage.getItem("mp_amazon_on") === "1";
+    }),
+    _useState78 = _slicedToArray(_useState77, 2),
+    amOn = _useState78[0],
+    setAmOn = _useState78[1];
+  var _useState79 = useState(function () {
+      return localStorage.getItem("mp_instacart_id") || "";
+    }),
+    _useState80 = _slicedToArray(_useState79, 2),
+    icId = _useState80[0],
+    setIcId = _useState80[1];
+  var _useState81 = useState(function () {
+      return localStorage.getItem("mp_instacart_on") === "1";
+    }),
+    _useState82 = _slicedToArray(_useState81, 2),
+    icOn = _useState82[0],
+    setIcOn = _useState82[1];
+  var _useState83 = useState(false),
+    _useState84 = _slicedToArray(_useState83, 2),
+    adsSvd = _useState84[0],
+    setAdsSvd = _useState84[1];
+
+  // Load persisted data
+  useEffect(function () {
+    _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+      var r, s, b, _t, _t2, _t3;
+      return _regenerator().w(function (_context) {
+        while (1) switch (_context.p = _context.n) {
+          case 0:
+            _context.p = 0;
+            _context.n = 1;
+            return window.storage.get("meal-ratings");
+          case 1:
+            r = _context.v;
+            if (r !== null && r !== void 0 && r.value) setRatings(JSON.parse(r.value));
+            _context.n = 3;
+            break;
+          case 2:
+            _context.p = 2;
+            _t = _context.v;
+          case 3:
+            _context.p = 3;
+            _context.n = 4;
+            return window.storage.get("meal-sponsors");
+          case 4:
+            s = _context.v;
+            if (s !== null && s !== void 0 && s.value) setSponsors(JSON.parse(s.value));
+            _context.n = 6;
+            break;
+          case 5:
+            _context.p = 5;
+            _t2 = _context.v;
+          case 6:
+            _context.p = 6;
+            _context.n = 7;
+            return window.storage.get("meal-billing");
+          case 7:
+            b = _context.v;
+            if (b !== null && b !== void 0 && b.value) setBilling(JSON.parse(b.value));
+            _context.n = 9;
+            break;
+          case 8:
+            _context.p = 8;
+            _t3 = _context.v;
+          case 9:
+            return _context.a(2);
+        }
+      }, _callee, null, [[6, 8], [3, 5], [0, 2]]);
+    }))();
+    // Apply saved ad config
+    var p = localStorage.getItem("mp_ads_pubid");
+    if (p) {
+      var _window$MP_ADS3;
+      window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
+        enabled: localStorage.getItem("mp_ads_on") === "1",
+        pubId: p,
+        amazon: {
+          enabled: localStorage.getItem("mp_amazon_on") === "1",
+          tag: localStorage.getItem("mp_amazon_tag") || ""
+        },
+        instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS3 = window.MP_ADS) === null || _window$MP_ADS3 === void 0 ? void 0 : _window$MP_ADS3.instacart) || {}), {}, {
+          enabled: localStorage.getItem("mp_instacart_on") === "1",
+          affiliateId: localStorage.getItem("mp_instacart_id") || ""
+        })
+      });
+    }
+  }, []);
+  var saveRating = /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(name, stars) {
+      var next, _t4;
+      return _regenerator().w(function (_context2) {
+        while (1) switch (_context2.p = _context2.n) {
+          case 0:
+            next = _objectSpread(_objectSpread({}, ratings), {}, _defineProperty({}, name, stars));
+            setRatings(next);
+            _context2.p = 1;
+            _context2.n = 2;
+            return window.storage.set("meal-ratings", JSON.stringify(next));
+          case 2:
+            _context2.n = 4;
+            break;
+          case 3:
+            _context2.p = 3;
+            _t4 = _context2.v;
+          case 4:
+            return _context2.a(2);
+        }
+      }, _callee2, null, [[1, 3]]);
+    }));
+    return function saveRating(_x2, _x3) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+  var getRating = function getRating(name) {
+    return ratings[name] || 0;
+  };
+  var saveSponsors = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(list) {
+      var _t5;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.p = _context3.n) {
+          case 0:
+            setSponsors(list);
+            _context3.p = 1;
+            _context3.n = 2;
+            return window.storage.set("meal-sponsors", JSON.stringify(list));
+          case 2:
+            _context3.n = 4;
+            break;
+          case 3:
+            _context3.p = 3;
+            _t5 = _context3.v;
+          case 4:
+            return _context3.a(2);
+        }
+      }, _callee3, null, [[1, 3]]);
+    }));
+    return function saveSponsors(_x4) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  var saveBilling = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(list) {
+      var _t6;
+      return _regenerator().w(function (_context4) {
+        while (1) switch (_context4.p = _context4.n) {
+          case 0:
+            setBilling(list);
+            _context4.p = 1;
+            _context4.n = 2;
+            return window.storage.set("meal-billing", JSON.stringify(list));
+          case 2:
+            _context4.n = 4;
+            break;
+          case 3:
+            _context4.p = 3;
+            _t6 = _context4.v;
+          case 4:
+            return _context4.a(2);
+        }
+      }, _callee4, null, [[1, 3]]);
+    }));
+    return function saveBilling(_x5) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  var saveAds = function saveAds() {
+    var _window$MP_ADS4;
+    localStorage.setItem("mp_ads_pubid", adsPub);
+    localStorage.setItem("mp_ads_on", adsOn ? "1" : "0");
+    localStorage.setItem("mp_amazon_tag", amTag);
+    localStorage.setItem("mp_amazon_on", amOn ? "1" : "0");
+    localStorage.setItem("mp_instacart_id", icId);
+    localStorage.setItem("mp_instacart_on", icOn ? "1" : "0");
+    window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
+      enabled: adsOn,
+      pubId: adsPub,
+      amazon: {
+        enabled: amOn,
+        tag: amTag
+      },
+      instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS4 = window.MP_ADS) === null || _window$MP_ADS4 === void 0 ? void 0 : _window$MP_ADS4.instacart) || {}), {}, {
+        enabled: icOn,
+        affiliateId: icId
+      })
+    });
+    setAdsSvd(true);
+    setTimeout(function () {
+      return setAdsSvd(false);
+    }, 2000);
+  };
+  var addSponsor = function addSponsor() {
+    if (!nKw.trim() || !nBr.trim()) return;
+    var price = Math.max(0, parseFloat(nPrc) || 0);
+    var entry = {
+      id: eId || Date.now().toString(),
+      keyword: nKw.trim(),
+      brand: nBr.trim(),
+      url: nUrl.trim(),
+      color: nClr,
+      frequency: nFrq,
+      pricePerPull: price
+    };
+    saveSponsors(eId ? sponsors.map(function (s) {
+      return s.id === eId ? entry : s;
+    }) : [].concat(_toConsumableArray(sponsors), [entry]));
+    setNKw("");
+    setNBr("");
+    setNUrl("");
+    setNClr("#f97316");
+    setNFrq(5);
+    setNPrc("0.50");
+    setEId(null);
+    setSSvd(true);
+    setTimeout(function () {
+      return setSSvd(false);
+    }, 2000);
+  };
+  var startEdit = function startEdit(s) {
+    var _s$pricePerPull;
+    setEId(s.id);
+    setNKw(s.keyword);
+    setNBr(s.brand);
+    setNUrl(s.url || "");
+    setNClr(s.color || "#f97316");
+    setNFrq(s.frequency || 5);
+    setNPrc(String((_s$pricePerPull = s.pricePerPull) !== null && _s$pricePerPull !== void 0 ? _s$pricePerPull : 0.50));
+  };
+  var delSponsor = function delSponsor(id) {
+    return saveSponsors(sponsors.filter(function (s) {
+      return s.id !== id;
+    }));
+  };
+  var cancelEdit = function cancelEdit() {
+    setEId(null);
+    setNKw("");
+    setNBr("");
+    setNUrl("");
+    setNClr("#f97316");
+    setNFrq(5);
+    setNPrc("0.50");
+  };
+
+  // ── Generate ────────────────────────────────────────────────────────────────
+  var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
+  var generate = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
+      var idx, iv, parts, si, prompt, res, data, block, raw, parsed, planId, charges, _t7;
+      return _regenerator().w(function (_context5) {
+        while (1) switch (_context5.p = _context5.n) {
+          case 0:
+            setLoading(true);
+            setError("");
+            idx = 0;
+            setLoadMsg(MSGS[0]);
+            iv = setInterval(function () {
+              idx = (idx + 1) % MSGS.length;
+              setLoadMsg(MSGS[idx]);
+            }, 2500);
+            _context5.p = 1;
+            parts = [diet !== "No Restrictions" ? diet : "", cuisines.length ? "Cuisines: ".concat(cuisines.join(", ")) : "", bfStyle.length ? "Breakfast: ".concat(bfStyle.join(", ")) : "", luStyle.length ? "Lunch: ".concat(luStyle.join(", ")) : "", dnStyle.length ? "Dinner: ".concat(dnStyle.join(", ")) : "", extra].filter(Boolean).join(". ");
+            si = sponsors.length > 0 ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function (s) {
+              var f = s.frequency || 5;
+              var t = Math.round(f / 10 * numDays * 3);
+              var p = f <= 2 ? "rarely" : f <= 4 ? "occasionally" : f <= 6 ? "about half" : f <= 8 ? "often" : "nearly always";
+              return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
+            }).join("\n") : "";
+            prompt = "You are a professional chef. Search the web for real recipes for a ".concat(numDays, "-day meal plan").concat(parts ? " with: ".concat(parts) : "", ".").concat(si, "\n\nReturn ONLY valid JSON \u2014 no markdown, no backticks:\n{\"days\":[{\"dayLabel\":\"Day 1 \u2013 Monday\",\"meals\":{\"breakfast\":{\"name\":\"Recipe Name\",\"cuisine\":\"American\",\"description\":\"One sentence.\",\"prepTime\":\"10 mins\",\"cookTime\":\"15 mins\",\"servings\":2,\"calories\":\"~400 kcal\",\"ingredients\":[\"1 cup oats\",\"2 tbsp honey\"],\"instructions\":[\"Step one.\",\"Step two.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"how to make recipe name\"},\"lunch\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"},\"dinner\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"}}}],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"chicken\"],\"\uD83E\uDD66 Produce\":[\"peppers\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"yogurt\"],\"\uD83C\uDF3E Grains & Bread\":[\"bread\"],\"\uD83E\uDD6B Pantry\":[\"olive oil\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"garlic\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}");
+            _context5.n = 2;
+            return fetch("/api/claude", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                model: "claude-sonnet-4-20250514",
+                max_tokens: 12000,
+                tools: [{
+                  type: "web_search_20250305",
+                  name: "web_search"
+                }],
+                messages: [{
+                  role: "user",
+                  content: prompt
+                }]
+              })
+            });
+          case 2:
+            res = _context5.v;
+            _context5.n = 3;
+            return res.json();
+          case 3:
+            data = _context5.v;
+            if (!data.error) {
+              _context5.n = 4;
+              break;
+            }
+            throw new Error(data.error.message);
+          case 4:
+            block = data.content.find(function (b) {
+              return b.type === "text";
+            });
+            if (block) {
+              _context5.n = 5;
+              break;
+            }
+            throw new Error("No response from AI");
+          case 5:
+            raw = block.text.trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
+            raw = raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
+            parsed = JSON.parse(raw);
+            setMealPlan(parsed.days);
+            setGrocery(parsed.groceryList);
+            if (data._fallback) {
+              setFallback(true);
+              setTimeout(function () {
+                return setFallback(false);
+              }, 6000);
+            } else {
+              setFallback(false);
+            }
+
+            // Log billing charges
+            if (sponsors.length > 0) {
+              planId = Date.now().toString();
+              charges = [];
+              parsed.days.forEach(function (day) {
+                ["breakfast", "lunch", "dinner"].forEach(function (mt) {
+                  var meal = day.meals[mt];
+                  if (!meal) return;
+                  (meal.ingredients || []).forEach(function (ing) {
+                    sponsors.forEach(function (sp) {
+                      if (sp.keyword && ing.toLowerCase().includes(sp.keyword.toLowerCase())) {
+                        charges.push({
+                          id: "".concat(planId, "-").concat(charges.length),
+                          planId: planId,
+                          sponsorId: sp.id,
+                          brand: sp.brand,
+                          keyword: sp.keyword,
+                          color: sp.color || OR,
+                          recipeName: meal.name,
+                          mealType: mt,
+                          dayLabel: day.dayLabel,
+                          date: new Date().toISOString(),
+                          charge: sp.pricePerPull || 0,
+                          settled: false
+                        });
+                      }
+                    });
+                  });
+                });
+              });
+              if (charges.length > 0) saveBilling([].concat(_toConsumableArray(billing), charges));
+            }
+            setView("plan");
+            _context5.n = 7;
+            break;
+          case 6:
+            _context5.p = 6;
+            _t7 = _context5.v;
+            console.error(_t7);
+            setError("Something went wrong — please try again. " + _t7.message);
+          case 7:
+            _context5.p = 7;
+            clearInterval(iv);
+            setLoading(false);
+            return _context5.f(7);
+          case 8:
+            return _context5.a(2);
+        }
+      }, _callee5, null, [[1, 6, 7, 8]]);
+    }));
+    return function generate() {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+  var openRecipe = function openRecipe(di, mt) {
+    setSelMeal(_objectSpread(_objectSpread({}, mealPlan[di].meals[mt]), {}, {
+      mealType: mt,
+      dayLabel: mealPlan[di].dayLabel
+    }));
+    setHStar(0);
+    setView("recipe");
+  };
+  var copyGrocery = function copyGrocery() {
+    if (!grocery) return;
+    var txt = Object.entries(grocery).filter(function (_ref8) {
+      var _ref9 = _slicedToArray(_ref8, 2),
+        v = _ref9[1];
+      return v === null || v === void 0 ? void 0 : v.length;
+    }).map(function (_ref0) {
+      var _ref1 = _slicedToArray(_ref0, 2),
+        cat = _ref1[0],
+        items = _ref1[1];
+      return "".concat(cat, "\n").concat(items.map(function (i) {
+        return "  \u2022 ".concat(i);
+      }).join("\n"));
+    }).join("\n\n");
+    navigator.clipboard.writeText(txt).then(function () {
+      setCopied(true);
+      setTimeout(function () {
+        return setCopied(false);
+      }, 2000);
+    });
+  };
+  var mealPasses = function mealPasses(name) {
+    if (rFilter === 0) return true;
+    var r = getRating(name);
+    if (rFilter === -1) return r === 0;
+    if (rFilter === 5) return r === 5;
+    return r >= rFilter;
+  };
+  var dayPasses = function dayPasses(day) {
+    return ["breakfast", "lunch", "dinner"].some(function (mt) {
+      return day.meals[mt] && mealPasses(day.meals[mt].name);
+    });
+  };
+
+  // ─── Views ──────────────────────────────────────────────────────────────────
+
+  function InstallBtn() {
+    return /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return window.installApp && window.installApp();
+      },
+      style: {
+        padding: "8px 16px",
+        background: "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        fontWeight: 700,
+        cursor: "pointer",
+        fontSize: 13,
+        marginBottom: 14,
+        display: "block"
+      }
+    }, "\uD83D\uDCF2 Install App on This Device");
+  }
+  function FallbackBanner() {
+    if (!fallback) return null;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,58,237,0.22),rgba(99,102,241,0.18))",
+        border: "1px solid rgba(124,58,237,0.4)",
+        borderRadius: 10,
+        padding: "10px 14px",
+        marginBottom: 14,
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 18
+      }
+    }, "\u26A1"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#c4b5fd"
+      }
+    }, "Generated with Groq AI (fallback)"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(196,181,253,0.6)"
+      }
+    }, "Claude was unavailable \u2014 your plan was created using Groq Llama 3.3 instead")), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setFallback(false);
+      },
+      style: {
+        background: "none",
+        border: "none",
+        color: "rgba(196,181,253,0.5)",
+        cursor: "pointer",
+        fontSize: 16
+      }
+    }, "\u2715"));
+  }
+  function Home() {
+    var _window$MP_ADS5;
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(255,255,255,0.04)",
+        borderRadius: 16,
+        border: "1px solid ".concat(BDR),
+        padding: 22,
+        backdropFilter: "blur(10px)"
+      }
+    }, /*#__PURE__*/React.createElement(InstallBtn, null), /*#__PURE__*/React.createElement(FallbackBanner, null), /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        marginBottom: 22
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 54,
+        marginBottom: 8
+      }
+    }, "\uD83C\uDF7D\uFE0F"), /*#__PURE__*/React.createElement("div", {
+      style: secTitle
+    }, "Build Your Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13
+      }
+    }, "AI-powered recipes pulled fresh from the web")), error && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(220,38,38,0.14)",
+        border: "1px solid rgba(220,38,38,0.4)",
+        borderRadius: 10,
+        padding: 13,
+        color: "#fca5a5",
+        marginBottom: 14,
+        fontSize: 13
+      }
+    }, "\u26A0\uFE0F ", error), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 14,
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Number of Days"), /*#__PURE__*/React.createElement("select", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%",
+        cursor: "pointer"
+      }),
+      value: numDays,
+      onChange: function onChange(e) {
+        return setNumDays(+e.target.value);
+      }
+    }, [1, 2, 3, 4, 5, 6, 7].map(function (d) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: d,
+        value: d,
+        style: {
+          background: "#1a0a00"
+        }
+      }, d, " ", d === 1 ? "day" : "days");
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Dietary Preference"), /*#__PURE__*/React.createElement("select", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%",
+        cursor: "pointer"
+      }),
+      value: diet,
+      onChange: function onChange(e) {
+        return setDiet(e.target.value);
+      }
+    }, DIET_OPTIONS.map(function (d) {
+      return /*#__PURE__*/React.createElement("option", {
+        key: d,
+        value: d,
+        style: {
+          background: "#1a0a00"
+        }
+      }, d);
+    })))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        color: MID,
+        marginBottom: 8
+      }
+    }, "\uD83C\uDF0D Cuisine Types", " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontWeight: 400,
+        textTransform: "none",
+        letterSpacing: 0,
+        color: MUT
+      }
+    }, "\u2014 leave blank for variety")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 7
+      }
+    }, CUISINE_OPTIONS.map(function (_ref10) {
+      var label = _ref10.label,
+        value = _ref10.value;
+      return /*#__PURE__*/React.createElement("button", {
+        key: value,
+        style: chip(cuisines.includes(value)),
+        onClick: function onClick() {
+          return setCuisines(toggle(cuisines, value));
+        }
+      }, label);
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: divider
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 16
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        color: MID,
+        marginBottom: 10
+      }
+    }, "\uD83C\uDF74 Meal Styles"), [{
+      key: "breakfast",
+      emoji: "🌅",
+      label: "Breakfast",
+      arr: bfStyle,
+      set: setBfStyle
+    }, {
+      key: "lunch",
+      emoji: "☀️",
+      label: "Lunch",
+      arr: luStyle,
+      set: setLuStyle
+    }, {
+      key: "dinner",
+      emoji: "🌙",
+      label: "Dinner",
+      arr: dnStyle,
+      set: setDnStyle
+    }].map(function (_ref11) {
+      var key = _ref11.key,
+        emoji = _ref11.emoji,
+        label = _ref11.label,
+        arr = _ref11.arr,
+        set = _ref11.set;
+      return /*#__PURE__*/React.createElement("div", {
+        key: key,
+        style: {
+          marginBottom: 10,
+          borderRadius: 12,
+          border: "1px solid rgba(249,115,22,0.14)",
+          overflow: "hidden",
+          background: "rgba(0,0,0,0.18)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "9px 13px",
+          background: "rgba(124,45,18,0.35)",
+          fontSize: 11,
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: 1,
+          color: MID,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between"
+        }
+      }, /*#__PURE__*/React.createElement("span", null, emoji, " ", label), arr.length > 0 && /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: OR,
+          color: W,
+          borderRadius: 10,
+          padding: "1px 7px",
+          fontSize: 10,
+          fontWeight: 700
+        }
+      }, arr.length, " selected")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "10px 12px",
+          display: "flex",
+          flexWrap: "wrap",
+          gap: 7
+        }
+      }, MEAL_STYLES[key].map(function (_ref12) {
+        var lb = _ref12.label,
+          value = _ref12.value;
+        return /*#__PURE__*/React.createElement("button", {
+          key: value,
+          style: chip(arr.includes(value)),
+          onClick: function onClick() {
+            return set(toggle(arr, value));
+          }
+        }, lb);
+      })));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: divider
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "\u270F\uFE0F Extra Notes (optional)"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "e.g. quick meals, no shellfish, kid-friendly...",
+      value: extra,
+      onChange: function onChange(e) {
+        return setExtra(e.target.value);
+      }
+    })), /*#__PURE__*/React.createElement("button", {
+      style: genBtn(loading),
+      onClick: generate,
+      disabled: loading
+    }, loading ? "⏳ Generating…" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
+      slot: (_window$MP_ADS5 = window.MP_ADS) === null || _window$MP_ADS5 === void 0 || (_window$MP_ADS5 = _window$MP_ADS5.slots) === null || _window$MP_ADS5 === void 0 ? void 0 : _window$MP_ADS5.banner
+    }), mealPlan && /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10,
+        marginTop: 12
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      style: _objectSpread(_objectSpread({}, genBtn(false)), {}, {
+        background: "rgba(249,115,22,0.18)",
+        flex: 1,
+        fontSize: 12,
+        padding: 10
+      }),
+      onClick: function onClick() {
+        return setView("plan");
+      }
+    }, "\uD83D\uDCCB View Plan"), /*#__PURE__*/React.createElement("button", {
+      style: _objectSpread(_objectSpread({}, genBtn(false)), {}, {
+        background: "rgba(34,197,94,0.18)",
+        flex: 1,
+        fontSize: 12,
+        padding: 10
+      }),
+      onClick: function onClick() {
+        return setView("grocery");
+      }
+    }, "\uD83D\uDED2 Grocery")));
+  }
+  function LoadingView() {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "60px 20px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 52,
+        height: 52,
+        borderRadius: "50%",
+        border: "4px solid rgba(249,115,22,0.2)",
+        borderTop: "4px solid ".concat(OR),
+        animation: "spin 1s linear infinite",
+        margin: "0 auto 18px"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 17,
+        color: SOFT,
+        fontWeight: 600,
+        marginBottom: 7
+      }
+    }, "Creating Your Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13
+      }
+    }, loadMsg));
+  }
+  function Plan() {
+    var _window$MP_ADS6;
+    var ratedCount = Object.values(ratings).filter(function (v) {
+      return v > 0;
+    }).length;
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 14,
+        flexWrap: "wrap",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: secTitle
+    }, "Your ", mealPlan.length, "-Day Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13
+      }
+    }, "Tap any meal for the full recipe", ratedCount > 0 ? " \xB7 ".concat(ratedCount, " rated") : "")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      style: navBtn(false),
+      onClick: function onClick() {
+        return setView("grocery");
+      }
+    }, "\uD83D\uDED2 Grocery"), /*#__PURE__*/React.createElement("button", {
+      style: navBtn(false),
+      onClick: function onClick() {
+        return setView("home");
+      }
+    }, "\u2699\uFE0F Settings"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,0,0,0.22)",
+        borderRadius: 12,
+        padding: "11px 14px",
+        marginBottom: 14,
+        border: "1px solid rgba(245,158,11,0.15)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: MID,
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        marginBottom: 8
+      }
+    }, "\u2B50 Filter by Rating"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexWrap: "wrap",
+        gap: 6
+      }
+    }, FILTER_OPTS.map(function (_ref13) {
+      var label = _ref13.label,
+        value = _ref13.value;
+      return /*#__PURE__*/React.createElement("button", {
+        key: value,
+        style: fchip(rFilter === value),
+        onClick: function onClick() {
+          return setRFilter(value);
+        }
+      }, label);
+    })), rFilter !== 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: MUT,
+        marginTop: 7
+      }
+    }, "Showing: ", rFilter === -1 ? "unrated" : rFilter === 5 ? "5-star only" : "".concat(rFilter, "+ stars"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(255px,1fr))",
+        gap: 14
+      }
+    }, mealPlan.map(function (day, di) {
+      if (!dayPasses(day)) return null;
+      return /*#__PURE__*/React.createElement("div", {
+        key: di,
+        style: {
+          background: CARD,
+          borderRadius: 14,
+          border: "1px solid rgba(249,115,22,0.12)",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "linear-gradient(135deg,".concat(BRN, ",").concat(BRN2, ")"),
+          padding: "9px 14px",
+          fontSize: 12,
+          fontWeight: 700,
+          color: SOFT,
+          letterSpacing: 0.5,
+          textTransform: "uppercase"
+        }
+      }, day.dayLabel || "Day ".concat(di + 1)), ["breakfast", "lunch", "dinner"].map(function (mt) {
+        var meal = day.meals[mt];
+        if (!meal || !mealPasses(meal.name)) return null;
+        var r = getRating(meal.name);
+        return /*#__PURE__*/React.createElement("div", {
+          key: mt,
+          style: {
+            padding: "10px 14px",
+            borderBottom: "1px solid rgba(255,255,255,0.05)",
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "flex-start",
+            gap: 9
+          },
+          onClick: function onClick() {
+            return openRecipe(di, mt);
+          },
+          onMouseEnter: function onMouseEnter(e) {
+            return e.currentTarget.style.background = "rgba(249,115,22,0.08)";
+          },
+          onMouseLeave: function onMouseLeave(e) {
+            return e.currentTarget.style.background = "transparent";
+          }
+        }, /*#__PURE__*/React.createElement("span", {
+          style: {
+            fontSize: 17,
+            flexShrink: 0,
+            marginTop: 1
+          }
+        }, MEAL_EMOJI[mt]), /*#__PURE__*/React.createElement("div", {
+          style: {
+            flex: 1,
+            minWidth: 0
+          }
+        }, /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 9,
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+            color: MEAL_BADGE[mt],
+            marginBottom: 2
+          }
+        }, mt), /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 13,
+            fontWeight: 600,
+            color: W,
+            lineHeight: 1.3
+          }
+        }, meal.name), /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 11,
+            color: MUT,
+            marginTop: 1
+          }
+        }, meal.prepTime && "\u23F1 ".concat(meal.prepTime), meal.calories && " \xB7 ".concat(meal.calories)), r > 0 && /*#__PURE__*/React.createElement("div", {
+          style: {
+            fontSize: 12,
+            color: "#f59e0b",
+            marginTop: 3
+          }
+        }, "★".repeat(r), "☆".repeat(5 - r), " ", /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: MUT,
+            fontSize: 10
+          }
+        }, r, "/5"))), /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: OR,
+            fontSize: 15,
+            flexShrink: 0
+          }
+        }, "\u203A"));
+      }));
+    })), rFilter !== 0 && mealPlan.every(function (d) {
+      return !dayPasses(d);
+    }) && /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "40px 20px",
+        color: MUT
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 38,
+        marginBottom: 10
+      }
+    }, "\u2B50"), /*#__PURE__*/React.createElement("div", null, "No meals match this filter.")), /*#__PURE__*/React.createElement(AdUnit, {
+      slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.inContent
+    }));
+  }
+  function Recipe() {
+    var _window$MP_ADS7;
+    if (!selMeal) return null;
+    var m = selMeal;
+    var r = getRating(m.name);
+    var disp = hStar || r;
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        padding: "7px 14px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 20,
+        color: SOFT,
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600,
+        marginBottom: 18
+      },
+      onClick: function onClick() {
+        return setView("plan");
+      }
+    }, "\u2190 Back to Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,45,18,0.5),rgba(154,52,18,0.3))",
+        borderRadius: 14,
+        padding: 22,
+        marginBottom: 18,
+        border: "1px solid rgba(249,115,22,0.3)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "inline-block",
+        padding: "3px 11px",
+        borderRadius: 20,
+        background: MEAL_BADGE[m.mealType] || OR2,
+        color: W,
+        fontSize: 10,
+        fontWeight: 700,
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        marginBottom: 10
+      }
+    }, MEAL_EMOJI[m.mealType], " ", m.mealType, " \xB7 ", m.dayLabel), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 26,
+        fontWeight: 700,
+        color: SOFT,
+        lineHeight: 1.2,
+        marginBottom: 7
+      }
+    }, m.name), m.description && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#fdba74",
+        fontSize: 14,
+        marginBottom: 14,
+        lineHeight: 1.5
+      }
+    }, m.description), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10,
+        flexWrap: "wrap"
+      }
+    }, [m.cuisine && "\uD83C\uDF0D ".concat(m.cuisine), m.prepTime && "\u23F1 Prep: ".concat(m.prepTime), m.cookTime && "\uD83D\uDD25 Cook: ".concat(m.cookTime), m.servings && "\uD83C\uDF7D Serves: ".concat(m.servings), m.calories && "\u26A1 ".concat(m.calories)].filter(Boolean).map(function (t, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: "rgba(0,0,0,0.3)",
+          borderRadius: 8,
+          padding: "5px 11px",
+          fontSize: 11,
+          color: SOFT,
+          border: "1px solid ".concat(BDR)
+        }
+      }, t);
+    }))), m.youtubeQuery && /*#__PURE__*/React.createElement("a", {
+      href: ytUrl(m.youtubeQuery),
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 18px",
+        background: "linear-gradient(135deg,#dc2626,#b91c1c)",
+        borderRadius: 10,
+        color: W,
+        textDecoration: "none",
+        fontWeight: 700,
+        fontSize: 13,
+        marginBottom: 18
+      }
+    }, "\u25B6 Watch How-To Video on YouTube"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(245,158,11,0.08)",
+        border: "1px solid rgba(245,158,11,0.28)",
+        borderRadius: 12,
+        padding: "15px 18px",
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 13,
+        fontWeight: 700,
+        color: "#fbbf24",
+        marginBottom: 10
+      }
+    }, "\u2B50 Rate This Recipe"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 14,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 5
+      }
+    }, [1, 2, 3, 4, 5].map(function (s) {
+      return /*#__PURE__*/React.createElement("span", {
+        key: s,
+        style: {
+          fontSize: 30,
+          cursor: "pointer",
+          color: s <= disp ? "#f59e0b" : "rgba(255,255,255,0.18)",
+          userSelect: "none",
+          display: "inline-block",
+          transform: s <= disp ? "scale(1.2)" : "scale(1)"
+        },
+        onClick: function onClick() {
+          return saveRating(m.name, s);
+        },
+        onMouseEnter: function onMouseEnter() {
+          return setHStar(s);
+        },
+        onMouseLeave: function onMouseLeave() {
+          return setHStar(0);
+        }
+      }, "\u2605");
+    })), disp > 0 ? /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 13,
+        color: "#fbbf24",
+        fontWeight: 600
+      }
+    }, RATING_LABELS[disp]) : /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: MUT
+      }
+    }, "Tap a star to rate"), r > 0 && /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return saveRating(m.name, 0);
+      },
+      style: {
+        marginLeft: "auto",
+        fontSize: 11,
+        color: MUT,
+        background: "none",
+        border: "none",
+        cursor: "pointer",
+        textDecoration: "underline"
+      }
+    }, "Clear"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 16,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: subCardSty
+    }, /*#__PURE__*/React.createElement("div", {
+      style: subTitleSty
+    }, "\uD83D\uDCCB Ingredients"), (m.ingredients || []).map(function (ing, i) {
+      return /*#__PURE__*/React.createElement(IngredientRow, {
+        key: i,
+        text: ing,
+        sponsors: sponsors
+      });
+    }), sponsors.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 8,
+        fontStyle: "italic"
+      }
+    }, "\uD83C\uDFF7 Sponsored brands shown where available")), /*#__PURE__*/React.createElement("div", {
+      style: subCardSty
+    }, /*#__PURE__*/React.createElement("div", {
+      style: subTitleSty
+    }, "\uD83D\uDC68\u200D\uD83C\uDF73 Instructions"), (m.instructions || []).map(function (step, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          display: "flex",
+          gap: 12,
+          padding: "9px 0",
+          borderBottom: "1px solid rgba(255,255,255,0.05)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          width: 24,
+          height: 24,
+          borderRadius: "50%",
+          background: "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          fontSize: 11,
+          fontWeight: 700,
+          flexShrink: 0,
+          marginTop: 1
+        }
+      }, i + 1), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          fontSize: 13,
+          lineHeight: 1.5,
+          color: "#e5e7eb"
+        }
+      }, step.replace(/^Step\s*\d+:\s*/i, "")));
+    }))), m.tips && /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(249,115,22,0.08)",
+        border: "1px solid rgba(249,115,22,0.25)",
+        borderRadius: 10,
+        padding: 14,
+        fontSize: 13,
+        color: "#fdba74",
+        lineHeight: 1.5,
+        marginBottom: 16
+      }
+    }, "\uD83D\uDCA1 ", /*#__PURE__*/React.createElement("strong", null, "Chef's Tip:"), " ", m.tips), /*#__PURE__*/React.createElement(AdUnit, {
+      slot: (_window$MP_ADS7 = window.MP_ADS) === null || _window$MP_ADS7 === void 0 || (_window$MP_ADS7 = _window$MP_ADS7.slots) === null || _window$MP_ADS7 === void 0 ? void 0 : _window$MP_ADS7.recipe
+    }));
+  }
+
+  // ─── Alexa Shopping List Modal ──────────────────────────────────────────────
+  function AlexaModal() {
+    if (!alexaOpen || !grocery) return null;
+
+    // Build flat item list from all grocery categories
+    var allItems = Object.values(grocery).flat().filter(Boolean);
+
+    // Generate Alexa voice commands
+    var commands = allItems.map(function (item) {
+      // Strip leading quantities/measures for cleaner Alexa commands
+      // e.g. "2 lbs chicken breast" → "chicken breast"
+      var clean = item.replace(/^[\d\/\s]+(cup|cups|lb|lbs|oz|tbsp|tsp|kg|g|ml|l|bunch|clove|cloves|slice|slices|can|cans|pkg|package|loaf|bag|jar|bottle|head|piece|pieces|handful|pinch|dash)s?\s+/i, '').trim();
+      return clean || item;
+    });
+
+    // Amazon shopping list URL (adds items via URL)
+    var amzTag = "justaminor04a-20";
+    var amzListUrl = "https://www.amazon.com/gp/registry/wishlist?tag=".concat(amzTag);
+    var copyCommands = function copyCommands() {
+      var text = commands.map(function (c) {
+        return "Alexa, add ".concat(c, " to my shopping list");
+      }).join("\n");
+      navigator.clipboard.writeText(text).then(function () {
+        setAlexaCopied(true);
+        setTimeout(function () {
+          return setAlexaCopied(false);
+        }, 2500);
+      });
+    };
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "fixed",
+        inset: 0,
+        background: "rgba(0,0,0,0.85)",
+        zIndex: 9999,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 16
+      },
+      onClick: function onClick(e) {
+        if (e.target === e.currentTarget) setAlexaOpen(false);
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,#1a0a00,#2d1200)",
+        border: "1px solid rgba(0,153,204,0.45)",
+        borderRadius: 18,
+        width: "100%",
+        maxWidth: 520,
+        maxHeight: "85vh",
+        display: "flex",
+        flexDirection: "column",
+        boxShadow: "0 24px 80px rgba(0,0,0,0.7)"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(0,100,160,0.6),rgba(0,153,204,0.4))",
+        padding: "18px 22px",
+        borderRadius: "18px 18px 0 0",
+        borderBottom: "1px solid rgba(0,153,204,0.3)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        width: 42,
+        height: 42,
+        borderRadius: "50%",
+        background: "linear-gradient(135deg,#009bde,#0066aa)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: 22,
+        boxShadow: "0 0 16px rgba(0,153,220,0.5)"
+      }
+    }, "\uD83D\uDD35"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 17,
+        fontWeight: 700,
+        color: "#e0f4ff"
+      }
+    }, "Add to Alexa Shopping List"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(224,244,255,0.55)",
+        marginTop: 2
+      }
+    }, allItems.length, " items from your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"))), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setAlexaOpen(false);
+      },
+      style: {
+        background: "none",
+        border: "none",
+        color: "rgba(224,244,255,0.5)",
+        cursor: "pointer",
+        fontSize: 22,
+        lineHeight: 1,
+        padding: 4
+      }
+    }, "\u2715")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "18px 22px",
+        overflowY: "auto",
+        flex: 1
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,100,160,0.15)",
+        border: "1px solid rgba(0,153,204,0.3)",
+        borderRadius: 12,
+        padding: "16px 18px",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 20
+      }
+    }, "\uD83C\uDF99\uFE0F"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#e0f4ff"
+      }
+    }, "Say it to Alexa"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(224,244,255,0.5)"
+      }
+    }, "Copy commands & read them to your Echo device"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,0,0,0.3)",
+        borderRadius: 8,
+        padding: 12,
+        maxHeight: 160,
+        overflowY: "auto",
+        marginBottom: 12,
+        fontFamily: "monospace",
+        fontSize: 12,
+        color: "#93c5fd",
+        lineHeight: 1.7
+      }
+    }, commands.slice(0, 8).map(function (c, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "rgba(147,197,253,0.4)"
+        }
+      }, "\u275D"), " Alexa, add ", /*#__PURE__*/React.createElement("strong", {
+        style: {
+          color: "#fff"
+        }
+      }, c), " to my shopping list");
+    }), commands.length > 8 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "rgba(147,197,253,0.4)",
+        marginTop: 4
+      }
+    }, "+ ", commands.length - 8, " more items...")), /*#__PURE__*/React.createElement("button", {
+      onClick: copyCommands,
+      style: {
+        width: "100%",
+        padding: "10px 0",
+        background: alexaCopied ? "linear-gradient(135deg,#16a34a,#15803d)" : "linear-gradient(135deg,#0077c8,#005fa3)",
+        border: "none",
+        borderRadius: 9,
+        color: "#fff",
+        fontSize: 13,
+        fontWeight: 700,
+        cursor: "pointer"
+      }
+    }, alexaCopied ? "✅ All Commands Copied!" : "\uD83D\uDCCB Copy All ".concat(commands.length, " Voice Commands"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(255,153,0,0.08)",
+        border: "1px solid rgba(255,153,0,0.3)",
+        borderRadius: 12,
+        padding: "16px 18px",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 20
+      }
+    }, "\uD83D\uDCE6"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 14,
+        fontWeight: 700,
+        color: "#fed7aa"
+      }
+    }, "Shop on Amazon"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(253,215,170,0.55)"
+      }
+    }, "Open Amazon \u2014 your Alexa list syncs automatically"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 8
+      }
+    }, allItems.slice(0, 6).map(function (item, i) {
+      var clean = item.replace(/^[\d\/\s]+(cup|cups|lb|lbs|oz|tbsp|tsp|kg|g|ml|l|bunch|clove|cloves|can|cans|pkg|loaf|bag|jar|bottle|head|piece|pieces|handful|pinch|dash)s?\s+/i, '').trim();
+      var searchQ = clean || item;
+      return /*#__PURE__*/React.createElement("a", {
+        key: i,
+        href: "https://www.amazon.com/s?k=".concat(encodeURIComponent(searchQ), "&tag=justaminor04a-20&linkCode=ll2&language=en_US"),
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+          padding: "7px 10px",
+          borderRadius: 8,
+          background: "rgba(255,153,0,0.12)",
+          border: "1px solid rgba(255,153,0,0.25)",
+          color: "#fbbf24",
+          fontSize: 11,
+          fontWeight: 600,
+          textDecoration: "none",
+          overflow: "hidden",
+          whiteSpace: "nowrap",
+          textOverflow: "ellipsis"
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          flexShrink: 0
+        }
+      }, "\uD83D\uDD0D"), /*#__PURE__*/React.createElement("span", {
+        style: {
+          overflow: "hidden",
+          textOverflow: "ellipsis"
+        }
+      }, searchQ));
+    })), allItems.length > 6 && /*#__PURE__*/React.createElement("a", {
+      href: "https://www.amazon.com/s?k=grocery+pantry+essentials&tag=justaminor04a-20",
+      target: "_blank",
+      rel: "noopener noreferrer",
+      style: {
+        display: "block",
+        textAlign: "center",
+        marginTop: 10,
+        fontSize: 12,
+        color: "rgba(251,191,36,0.6)",
+        textDecoration: "none"
+      }
+    }, "+ ", allItems.length - 6, " more items \u2014 search on Amazon \u2192")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,0,0,0.2)",
+        border: "1px solid rgba(255,255,255,0.08)",
+        borderRadius: 12,
+        padding: "14px 18px"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        fontWeight: 700,
+        color: "rgba(255,255,255,0.5)",
+        textTransform: "uppercase",
+        letterSpacing: 1,
+        marginBottom: 10
+      }
+    }, "\uD83D\uDCA1 Pro Tips"), /*#__PURE__*/React.createElement("ul", {
+      style: {
+        listStyle: "none",
+        padding: 0,
+        display: "flex",
+        flexDirection: "column",
+        gap: 7
+      }
+    }, /*#__PURE__*/React.createElement("li", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,255,255,0.55)",
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDD35"), /*#__PURE__*/React.createElement("span", null, "Your Alexa shopping list syncs to the ", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "rgba(255,255,255,0.75)"
+      }
+    }, "Amazon Shopping app"), " automatically")), /*#__PURE__*/React.createElement("li", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,255,255,0.55)",
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDED2"), /*#__PURE__*/React.createElement("span", null, "Say ", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "rgba(255,255,255,0.75)"
+      }
+    }, "\"Alexa, open my shopping list\""), " to review all items on any Echo device")), /*#__PURE__*/React.createElement("li", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,255,255,0.55)",
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCF1"), /*#__PURE__*/React.createElement("span", null, "Open the ", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: "rgba(255,255,255,0.75)"
+      }
+    }, "Amazon Alexa app"), " on your phone to manage the list anytime")), /*#__PURE__*/React.createElement("li", {
+      style: {
+        fontSize: 12,
+        color: "rgba(255,255,255,0.55)",
+        display: "flex",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement("span", null, "\uD83C\uDF99\uFE0F"), /*#__PURE__*/React.createElement("span", null, "Adding via voice? Say each item one at a time for best accuracy"))))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "14px 22px",
+        borderTop: "1px solid rgba(0,153,204,0.15)",
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(255,255,255,0.25)"
+      }
+    }, "Amazon links use affiliate tag justaminor04a-20"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setAlexaOpen(false);
+      },
+      style: {
+        padding: "8px 18px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 10,
+        color: "#fed7aa",
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600
+      }
+    }, "Close"))));
+  }
+  function Grocery() {
+    if (!grocery) return null;
+    var filled = Object.entries(grocery).filter(function (_ref14) {
+      var _ref15 = _slicedToArray(_ref14, 2),
+        v = _ref15[1];
+      return (v === null || v === void 0 ? void 0 : v.length) > 0;
+    });
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        padding: "7px 14px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 20,
+        color: SOFT,
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600,
+        marginBottom: 18
+      },
+      onClick: function onClick() {
+        return setView("plan");
+      }
+    }, "\u2190 Back to Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: _objectSpread(_objectSpread({}, secTitle), {}, {
+        marginBottom: 4
+      })
+    }, "\uD83D\uDED2 Grocery List"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13,
+        marginBottom: 16
+      }
+    }, "Everything for your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10,
+        marginBottom: 20,
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: copied ? "linear-gradient(135deg,#16a34a,#15803d)" : "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        cursor: "pointer",
+        fontSize: 13,
+        fontWeight: 700
+      },
+      onClick: copyGrocery
+    }, copied ? "✅ Copied!" : "📋 Copy Full List"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: "linear-gradient(135deg,#0077c8,#005fa3)",
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        cursor: "pointer",
+        fontSize: 13,
+        fontWeight: 700,
+        boxShadow: "0 4px 16px rgba(0,119,200,0.35)"
+      },
+      onClick: function onClick() {
+        return setAlexaOpen(true);
+      }
+    }, "\uD83D\uDD35 Add to Alexa List")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))",
+        gap: 14
+      }
+    }, filled.map(function (_ref16) {
+      var _ref17 = _slicedToArray(_ref16, 2),
+        cat = _ref17[0],
+        items = _ref17[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: cat,
+        style: {
+          background: CARD,
+          borderRadius: 12,
+          border: "1px solid rgba(249,115,22,0.12)",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "linear-gradient(135deg,".concat(BRN, ",").concat(BRN2, ")"),
+          padding: "9px 14px",
+          fontSize: 12,
+          fontWeight: 700,
+          color: SOFT
+        }
+      }, cat), items.map(function (item, i) {
+        return /*#__PURE__*/React.createElement(IngredientRow, {
+          key: i,
+          text: item,
+          sponsors: sponsors
+        });
+      }));
+    })));
+  }
+
+  // ─── Admin ───────────────────────────────────────────────────────────────────
+  function AdminLogin() {
+    return /*#__PURE__*/React.createElement("div", {
+      style: {
+        maxWidth: 400,
+        margin: "60px auto",
+        background: "rgba(0,0,0,0.4)",
+        borderRadius: 16,
+        border: "1px solid rgba(249,115,22,0.3)",
+        padding: 32,
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 48,
+        marginBottom: 14
+      }
+    }, "\uD83D\uDD10"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 22,
+        color: SOFT,
+        marginBottom: 6
+      }
+    }, "Admin Access"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MUT,
+        fontSize: 13,
+        marginBottom: 24
+      }
+    }, "Enter the admin password"), /*#__PURE__*/React.createElement("input", {
+      type: "password",
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%",
+        marginBottom: 12,
+        textAlign: "center",
+        fontSize: 15
+      }),
+      placeholder: "Password",
+      value: aPass,
+      onChange: function onChange(e) {
+        return setAPass(e.target.value);
+      },
+      onKeyDown: (/*#__PURE__*/function () {
+        var _ref18 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(e) {
+          var h;
+          return _regenerator().w(function (_context6) {
+            while (1) switch (_context6.n) {
+              case 0:
+                if (!(e.key === "Enter")) {
+                  _context6.n = 2;
+                  break;
+                }
+                _context6.n = 1;
+                return hashPassword(aPass);
+              case 1:
+                h = _context6.v;
+                if (h === ADMIN_PASS_HASH) {
+                  setUnlocked(true);
+                  setAErr("");
+                } else setAErr("Incorrect password");
+              case 2:
+                return _context6.a(2);
+            }
+          }, _callee6);
+        }));
+        return function (_x6) {
+          return _ref18.apply(this, arguments);
+        };
+      }())
+    }), aErr && /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#fca5a5",
+        fontSize: 12,
+        marginBottom: 10
+      }
+    }, "\u274C ", aErr), /*#__PURE__*/React.createElement("button", {
+      style: genBtn(false),
+      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
+        var h;
+        return _regenerator().w(function (_context7) {
+          while (1) switch (_context7.n) {
+            case 0:
+              _context7.n = 1;
+              return hashPassword(aPass);
+            case 1:
+              h = _context7.v;
+              if (h === ADMIN_PASS_HASH) {
+                setUnlocked(true);
+                setAErr("");
+              } else setAErr("Incorrect password");
+            case 2:
+              return _context7.a(2);
+          }
+        }, _callee7);
+      }))
+    }, "Unlock Admin Panel"));
+  }
+  function SponsorTab() {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(124,45,18,0.15)",
+        border: "1px solid rgba(249,115,22,0.3)",
+        borderRadius: 14,
+        padding: 20,
+        marginBottom: 24
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 17,
+        color: SOFT,
+        marginBottom: 16,
+        fontWeight: 700
+      }
+    }, eId ? "✏️ Edit Sponsor" : "➕ Add New Sponsor"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 14,
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Ingredient Keyword *"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "e.g. olive oil",
+      value: nKw,
+      onChange: function onChange(e) {
+        return setNKw(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 4
+      }
+    }, "Matches ingredients containing this word")), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Brand Name *"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "e.g. California Olive Ranch",
+      value: nBr,
+      onChange: function onChange(e) {
+        return setNBr(e.target.value);
+      }
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Link URL (optional)"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "https://brand.com",
+      value: nUrl,
+      onChange: function onChange(e) {
+        return setNUrl(e.target.value);
+      }
+    })), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "\uD83D\uDCB5 Price Per Pull (USD)"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        position: "relative"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        position: "absolute",
+        left: 12,
+        top: "50%",
+        transform: "translateY(-50%)",
+        color: MID,
+        fontSize: 14,
+        fontWeight: 700
+      }
+    }, "$"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%",
+        paddingLeft: 26
+      }),
+      type: "number",
+      min: "0",
+      step: "0.01",
+      placeholder: "0.50",
+      value: nPrc,
+      onChange: function onChange(e) {
+        return setNPrc(e.target.value);
+      }
+    }))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Badge Color"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "color",
+      value: nClr,
+      onChange: function onChange(e) {
+        return setNClr(e.target.value);
+      },
+      style: {
+        width: 44,
+        height: 36,
+        borderRadius: 8,
+        border: "none",
+        cursor: "pointer"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        padding: "6px 14px",
+        borderRadius: 10,
+        background: nClr,
+        color: W,
+        fontSize: 12,
+        fontWeight: 700
+      }
+    }, "\uD83C\uDFF7 ", nBr || "Brand")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,0,0,0.25)",
+        borderRadius: 12,
+        padding: "14px 16px",
+        marginBottom: 14,
+        border: "1px solid rgba(249,115,22,0.15)"
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: _objectSpread(_objectSpread({}, labelSty), {}, {
+        marginBottom: 10
+      })
+    }, "\uD83C\uDFB2 Recipe Pull Frequency"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 14
+      }
+    }, /*#__PURE__*/React.createElement("input", {
+      type: "range",
+      min: 1,
+      max: 10,
+      value: nFrq,
+      onChange: function onChange(e) {
+        return setNFrq(+e.target.value);
+      },
+      style: {
+        flex: 1,
+        accentColor: nClr,
+        cursor: "pointer"
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        minWidth: 100,
+        textAlign: "right"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 22,
+        fontWeight: 800,
+        color: nClr,
+        lineHeight: 1
+      }
+    }, nFrq, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: MUT,
+        fontWeight: 400
+      }
+    }, "/10")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: MUT,
+        marginTop: 2
+      }
+    }, nFrq <= 2 ? "🟢 Rarely" : nFrq <= 4 ? "🟡 Occasional" : nFrq <= 6 ? "🟠 Moderate" : nFrq <= 8 ? "🔴 Often" : "🔥 Always"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: "rgba(251,146,60,0.7)",
+        marginTop: 8
+      }
+    }, "~", /*#__PURE__*/React.createElement("strong", {
+      style: {
+        color: OR
+      }
+    }, Math.round(nFrq / 10 * numDays * 3), " of ", numDays * 3, " meals"), " will include \"", nKw || "this ingredient", "\"")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("button", {
+      style: _objectSpread(_objectSpread({}, genBtn(!nKw.trim() || !nBr.trim())), {}, {
+        flex: 1
+      }),
+      onClick: addSponsor,
+      disabled: !nKw.trim() || !nBr.trim()
+    }, sSvd ? "✅ Saved!" : eId ? "💾 Update" : "➕ Add Sponsor"), eId && /*#__PURE__*/React.createElement("button", {
+      style: {
+        padding: "12px 20px",
+        background: "rgba(255,255,255,0.08)",
+        border: "1px solid rgba(255,255,255,0.15)",
+        borderRadius: 12,
+        color: SOFT,
+        cursor: "pointer",
+        fontWeight: 600,
+        fontSize: 13
+      },
+      onClick: cancelEdit
+    }, "Cancel"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 17,
+        color: SOFT,
+        marginBottom: 14,
+        fontWeight: 700
+      }
+    }, "Active Sponsors (", sponsors.length, ")"), sponsors.length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "40px 20px",
+        color: MUT,
+        border: "1px dashed rgba(249,115,22,0.2)",
+        borderRadius: 12
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 36,
+        marginBottom: 10
+      }
+    }, "\uD83C\uDFF7"), /*#__PURE__*/React.createElement("div", null, "No sponsors yet. Add one above!")) : /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 10
+      }
+    }, sponsors.map(function (s) {
+      var f = s.frequency || 5;
+      var fl = f <= 2 ? "Rarely" : f <= 4 ? "Occasionally" : f <= 6 ? "Moderately" : f <= 8 ? "Often" : "Almost Always";
+      var fe = f <= 2 ? "🟢" : f <= 4 ? "🟡" : f <= 6 ? "🟠" : f <= 8 ? "🔴" : "🔥";
+      var owed = billing.filter(function (b) {
+        return b.sponsorId === s.id && !b.settled;
+      }).reduce(function (a, b) {
+        return a + b.charge;
+      }, 0);
+      return /*#__PURE__*/React.createElement("div", {
+        key: s.id,
+        style: {
+          background: CARD,
+          borderRadius: 12,
+          padding: "14px 16px",
+          border: "1px solid rgba(249,115,22,0.1)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 14,
+          marginBottom: 10
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "4px 14px",
+          borderRadius: 12,
+          background: s.color || OR,
+          color: W,
+          fontSize: 12,
+          fontWeight: 700,
+          flexShrink: 0
+        }
+      }, "\uD83C\uDFF7 ", s.brand), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          minWidth: 0
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          color: W,
+          fontWeight: 600
+        }
+      }, "Keyword: ", /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: OR
+        }
+      }, s.keyword)), s.url ? /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: MUT,
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          whiteSpace: "nowrap"
+        }
+      }, "\uD83D\uDD17 ", s.url) : /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: MUT
+        }
+      }, "No link")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 8,
+          flexShrink: 0
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        style: {
+          padding: "6px 12px",
+          borderRadius: 8,
+          background: "rgba(124,45,18,0.4)",
+          border: "1px solid rgba(249,115,22,0.3)",
+          color: OR,
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 600
+        },
+        onClick: function onClick() {
+          return startEdit(s);
+        }
+      }, "\u270F\uFE0F"), /*#__PURE__*/React.createElement("button", {
+        style: {
+          padding: "6px 12px",
+          borderRadius: 8,
+          background: "rgba(220,38,38,0.2)",
+          border: "1px solid rgba(220,38,38,0.4)",
+          color: "#fca5a5",
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 600
+        },
+        onClick: function onClick() {
+          return delSponsor(s.id);
+        }
+      }, "\uD83D\uDDD1"))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          marginBottom: 6
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 10,
+          color: MUT,
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: 1,
+          whiteSpace: "nowrap"
+        }
+      }, "\uD83C\uDFB2 Freq"), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1,
+          height: 6,
+          borderRadius: 4,
+          background: "rgba(255,255,255,0.08)",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          width: "".concat(f * 10, "%"),
+          height: "100%",
+          borderRadius: 4,
+          background: "linear-gradient(to right,".concat(s.color || OR, ",").concat(s.color || OR, "aa)")
+        }
+      })), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          fontWeight: 700,
+          color: s.color || OR,
+          whiteSpace: "nowrap"
+        }
+      }, fe, " ", fl, " (", f, "/10)")), /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 8
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 10,
+          color: MUT,
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: 1
+        }
+      }, "\uD83D\uDCB5"), /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: "rgba(34,197,94,0.15)",
+          border: "1px solid rgba(34,197,94,0.3)",
+          borderRadius: 8,
+          padding: "2px 10px",
+          fontSize: 12,
+          fontWeight: 700,
+          color: "#4ade80"
+        }
+      }, "$", (s.pricePerPull || 0).toFixed(2), "/pull"), owed > 0 && /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: "rgba(220,38,38,0.2)",
+          border: "1px solid rgba(220,38,38,0.35)",
+          borderRadius: 8,
+          padding: "2px 10px",
+          fontSize: 12,
+          fontWeight: 700,
+          color: "#fca5a5"
+        }
+      }, "$", owed.toFixed(2), " owed")));
+    })));
+  }
+  function BillingTab() {
+    var unsettled = billing.filter(function (b) {
+      return !b.settled;
+    });
+    var settled = billing.filter(function (b) {
+      return b.settled;
+    });
+    var totalOwed = unsettled.reduce(function (a, b) {
+      return a + b.charge;
+    }, 0);
+    var totalPaid = settled.reduce(function (a, b) {
+      return a + b.charge;
+    }, 0);
+    var bySponsor = {};
+    unsettled.forEach(function (b) {
+      if (!bySponsor[b.sponsorId]) bySponsor[b.sponsorId] = {
+        brand: b.brand,
+        color: b.color,
+        charges: [],
+        total: 0
+      };
+      bySponsor[b.sponsorId].charges.push(b);
+      bySponsor[b.sponsorId].total += b.charge;
+    });
+    var markSettled = function markSettled(sid) {
+      saveBilling(billing.map(function (b) {
+        return b.sponsorId === sid ? _objectSpread(_objectSpread({}, b), {}, {
+          settled: true,
+          settledAt: new Date().toISOString()
+        }) : b;
+      }));
+      setSettle(null);
+    };
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr 1fr",
+        gap: 14,
+        marginBottom: 22
+      }
+    }, [{
+      label: "Outstanding",
+      val: "$".concat(totalOwed.toFixed(2)),
+      sub: "".concat(unsettled.length, " pulls"),
+      color: "#f59e0b",
+      bg: "rgba(245,158,11,0.1)",
+      bdr: "rgba(245,158,11,0.3)"
+    }, {
+      label: "Collected",
+      val: "$".concat(totalPaid.toFixed(2)),
+      sub: "".concat(settled.length, " settled"),
+      color: "#4ade80",
+      bg: "rgba(34,197,94,0.1)",
+      bdr: "rgba(34,197,94,0.3)"
+    }, {
+      label: "Sponsors",
+      val: sponsors.length,
+      sub: "".concat(sponsors.filter(function (s) {
+        return s.pricePerPull > 0;
+      }).length, " with pricing"),
+      color: OR,
+      bg: "rgba(249,115,22,0.1)",
+      bdr: BDR
+    }].map(function (c, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: c.bg,
+          border: "1px solid ".concat(c.bdr),
+          borderRadius: 12,
+          padding: "14px 16px",
+          textAlign: "center"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: MUT,
+          fontWeight: 700,
+          textTransform: "uppercase",
+          letterSpacing: 1,
+          marginBottom: 6
+        }
+      }, c.label), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 26,
+          fontWeight: 800,
+          color: c.color,
+          lineHeight: 1
+        }
+      }, c.val), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: MUT,
+          marginTop: 4
+        }
+      }, c.sub));
+    })), Object.keys(bySponsor).length === 0 ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "center",
+        padding: "40px 20px",
+        color: MUT,
+        border: "1px dashed rgba(249,115,22,0.2)",
+        borderRadius: 12,
+        marginBottom: 20
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 36,
+        marginBottom: 10
+      }
+    }, "\uD83D\uDCB0"), /*#__PURE__*/React.createElement("div", null, "No outstanding charges.")) : /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 17,
+        color: SOFT,
+        marginBottom: 12,
+        fontWeight: 700
+      }
+    }, "Outstanding Charges"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: 12,
+        marginBottom: 22
+      }
+    }, Object.entries(bySponsor).map(function (_ref20) {
+      var _sponsors$find;
+      var _ref21 = _slicedToArray(_ref20, 2),
+        sid = _ref21[0],
+        data = _ref21[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: sid,
+        style: {
+          background: CARD,
+          borderRadius: 12,
+          border: "1px solid rgba(249,115,22,0.1)",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          padding: "12px 16px",
+          background: "rgba(0,0,0,0.2)",
+          borderBottom: "1px solid rgba(255,255,255,0.05)"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          padding: "3px 12px",
+          borderRadius: 10,
+          background: data.color || OR,
+          color: W,
+          fontSize: 12,
+          fontWeight: 700,
+          flexShrink: 0
+        }
+      }, "\uD83C\uDFF7 ", data.brand), /*#__PURE__*/React.createElement("div", {
+        style: {
+          flex: 1
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 13,
+          color: W,
+          fontWeight: 600
+        }
+      }, data.charges.length, " pull", data.charges.length !== 1 ? "s" : ""), /*#__PURE__*/React.createElement("span", {
+        style: {
+          fontSize: 12,
+          color: MUT,
+          marginLeft: 8
+        }
+      }, "\xD7 $", (((_sponsors$find = sponsors.find(function (s) {
+        return s.id === sid;
+      })) === null || _sponsors$find === void 0 ? void 0 : _sponsors$find.pricePerPull) || 0).toFixed(2))), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 20,
+          fontWeight: 800,
+          color: "#4ade80"
+        }
+      }, "$", data.total.toFixed(2)), settle === sid ? /*#__PURE__*/React.createElement("div", {
+        style: {
+          display: "flex",
+          gap: 6
+        }
+      }, /*#__PURE__*/React.createElement("button", {
+        style: {
+          padding: "6px 12px",
+          borderRadius: 8,
+          background: "linear-gradient(135deg,#16a34a,#15803d)",
+          border: "none",
+          color: W,
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 700
+        },
+        onClick: function onClick() {
+          return markSettled(sid);
+        }
+      }, "\u2705 Confirm"), /*#__PURE__*/React.createElement("button", {
+        style: {
+          padding: "6px 10px",
+          borderRadius: 8,
+          background: "rgba(255,255,255,0.08)",
+          border: "1px solid rgba(255,255,255,0.15)",
+          color: SOFT,
+          cursor: "pointer",
+          fontSize: 12
+        },
+        onClick: function onClick() {
+          return setSettle(null);
+        }
+      }, "Cancel")) : /*#__PURE__*/React.createElement("button", {
+        style: {
+          padding: "6px 14px",
+          borderRadius: 8,
+          background: "linear-gradient(135deg,#16a34a,#15803d)",
+          border: "none",
+          color: W,
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 700
+        },
+        onClick: function onClick() {
+          return setSettle(sid);
+        }
+      }, "\uD83D\uDCB3 Mark Paid")), data.charges.map(function (c) {
+        return /*#__PURE__*/React.createElement("div", {
+          key: c.id,
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+            padding: "8px 16px",
+            borderBottom: "1px solid rgba(255,255,255,0.04)",
+            fontSize: 12
+          }
+        }, /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: MUT,
+            whiteSpace: "nowrap"
+          }
+        }, new Date(c.date).toLocaleDateString()), /*#__PURE__*/React.createElement("span", {
+          style: {
+            flex: 1,
+            color: "#e5e7eb"
+          }
+        }, c.recipeName), /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: "#4ade80",
+            fontWeight: 700
+          }
+        }, "$", c.charge.toFixed(2)));
+      }));
+    }))), settled.length > 0 && /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 17,
+        color: SOFT,
+        marginBottom: 12,
+        fontWeight: 700
+      }
+    }, "Payment History"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: CARD,
+        borderRadius: 12,
+        border: "1px solid rgba(34,197,94,0.15)",
+        overflow: "hidden",
+        marginBottom: 20
+      }
+    }, settled.slice().reverse().map(function (c) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: c.id,
+        style: {
+          display: "flex",
+          alignItems: "center",
+          gap: 10,
+          padding: "8px 14px",
+          borderBottom: "1px solid rgba(255,255,255,0.04)",
+          fontSize: 12
+        }
+      }, /*#__PURE__*/React.createElement("span", {
+        style: {
+          background: c.color || OR,
+          borderRadius: 6,
+          padding: "1px 8px",
+          color: W,
+          fontSize: 10,
+          fontWeight: 700
+        }
+      }, c.brand), /*#__PURE__*/React.createElement("span", {
+        style: {
+          flex: 1,
+          color: "#e5e7eb"
+        }
+      }, c.recipeName), /*#__PURE__*/React.createElement("span", {
+        style: {
+          color: "#4ade80",
+          fontWeight: 700
+        }
+      }, "\u2705 $", c.charge.toFixed(2)));
+    }))), billing.length > 0 && /*#__PURE__*/React.createElement("div", {
+      style: {
+        textAlign: "right"
+      }
+    }, settle === "all" ? /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "inline-flex",
+        gap: 8,
+        alignItems: "center"
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: "#fca5a5"
+      }
+    }, "Delete all records?"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        padding: "6px 12px",
+        borderRadius: 8,
+        background: "rgba(220,38,38,0.3)",
+        border: "1px solid rgba(220,38,38,0.5)",
+        color: "#fca5a5",
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 700
+      },
+      onClick: function onClick() {
+        saveBilling([]);
+        setSettle(null);
+      }
+    }, "Yes"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        padding: "6px 10px",
+        borderRadius: 8,
+        background: "rgba(255,255,255,0.08)",
+        border: "1px solid rgba(255,255,255,0.15)",
+        color: SOFT,
+        cursor: "pointer",
+        fontSize: 12
+      },
+      onClick: function onClick() {
+        return setSettle(null);
+      }
+    }, "Cancel")) : /*#__PURE__*/React.createElement("button", {
+      style: {
+        padding: "8px 16px",
+        borderRadius: 8,
+        background: "rgba(220,38,38,0.15)",
+        border: "1px solid rgba(220,38,38,0.3)",
+        color: "#fca5a5",
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600
+      },
+      onClick: function onClick() {
+        return setSettle("all");
+      }
+    }, "\uD83D\uDDD1 Clear All")));
+  }
+  function Toggle(_ref22) {
+    var on = _ref22.on,
+      onToggle = _ref22.onToggle,
+      _ref22$color = _ref22.color,
+      color = _ref22$color === void 0 ? "#22c55e" : _ref22$color;
+    return /*#__PURE__*/React.createElement("div", {
+      style: _objectSpread(_objectSpread({}, toggle2Sty(on)), {}, {
+        background: on ? "linear-gradient(135deg,".concat(color, ",").concat(color, "cc)") : "rgba(255,255,255,0.1)"
+      }),
+      onClick: onToggle
+    }, /*#__PURE__*/React.createElement("div", {
+      style: toggleKnob(on)
+    }));
+  }
+  function MonetizeTab() {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 20,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 6
+      }
+    }, "\uD83D\uDCC8 Monetization Settings"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13,
+        marginBottom: 20
+      }
+    }, "Configure ads and affiliate links."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(66,133,244,0.08)",
+        border: "1px solid rgba(66,133,244,0.25)",
+        borderRadius: 14,
+        padding: 20,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22
+      }
+    }, "\uD83D\uDCB2"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 16,
+        fontWeight: 700,
+        color: SOFT
+      }
+    }, "Google AdSense"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MUT
+      }
+    }, "Display ads from Google's ad network"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement(Toggle, {
+      on: adsOn,
+      onToggle: function onToggle() {
+        return setAdsOn(!adsOn);
+      },
+      color: "#22c55e"
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: adsOn ? "#4ade80" : MUT,
+        fontWeight: 700
+      }
+    }, adsOn ? "ON" : "OFF"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        marginBottom: 12
+      }
+    }, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Publisher ID"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "ca-pub-XXXXXXXXXXXXXXXX",
+      value: adsPub,
+      onChange: function onChange(e) {
+        return setAdsPub(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 4
+      }
+    }, "Find in AdSense \u2192 Account \u2192 Account information")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(255,200,0,0.06)",
+        border: "1px solid rgba(255,200,0,0.2)",
+        borderRadius: 8,
+        padding: 10,
+        fontSize: 11,
+        color: "rgba(255,220,50,0.8)",
+        lineHeight: 1.6
+      }
+    }, "\u26A0\uFE0F AdSense requires your site to be hosted on a domain with HTTPS and approved by Google before ads show.")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(255,153,0,0.07)",
+        border: "1px solid rgba(255,153,0,0.22)",
+        borderRadius: 14,
+        padding: 20,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22
+      }
+    }, "\uD83D\uDCE6"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 16,
+        fontWeight: 700,
+        color: SOFT
+      }
+    }, "Amazon Associates"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MUT
+      }
+    }, "Earn commission on ingredient purchases"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement(Toggle, {
+      on: amOn,
+      onToggle: function onToggle() {
+        return setAmOn(!amOn);
+      },
+      color: "#f59e0b"
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: amOn ? "#fbbf24" : MUT,
+        fontWeight: 700
+      }
+    }, amOn ? "ON" : "OFF"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Amazon Associates Tracking Tag"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "yourtag-20",
+      value: amTag,
+      onChange: function onChange(e) {
+        return setAmTag(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 4
+      }
+    }, "Each ingredient shows a \uD83D\uDCE6 Amazon link. Sign up at", " ", /*#__PURE__*/React.createElement("a", {
+      href: "https://affiliate-program.amazon.com",
+      target: "_blank",
+      rel: "noreferrer",
+      style: {
+        color: "#fbbf24"
+      }
+    }, "affiliate-program.amazon.com")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(34,197,94,0.07)",
+        border: "1px solid rgba(34,197,94,0.2)",
+        borderRadius: 14,
+        padding: 20,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 14
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 22
+      }
+    }, "\uD83D\uDED2"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 16,
+        fontWeight: 700,
+        color: SOFT
+      }
+    }, "Instacart Affiliate"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MUT
+      }
+    }, "Let users shop the grocery list for delivery"))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8
+      }
+    }, /*#__PURE__*/React.createElement(Toggle, {
+      on: icOn,
+      onToggle: function onToggle() {
+        return setIcOn(!icOn);
+      },
+      color: "#22c55e"
+    }), /*#__PURE__*/React.createElement("span", {
+      style: {
+        fontSize: 12,
+        color: icOn ? "#4ade80" : MUT,
+        fontWeight: 700
+      }
+    }, icOn ? "ON" : "OFF"))), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("label", {
+      style: labelSty
+    }, "Instacart Affiliate ID"), /*#__PURE__*/React.createElement("input", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%"
+      }),
+      placeholder: "your_instacart_affiliate_id",
+      value: icId,
+      onChange: function onChange(e) {
+        return setIcId(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 4
+      }
+    }, "Apply at", " ", /*#__PURE__*/React.createElement("a", {
+      href: "https://www.instacart.com/affiliates",
+      target: "_blank",
+      rel: "noreferrer",
+      style: {
+        color: "#4ade80"
+      }
+    }, "instacart.com/affiliates")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(0,0,0,0.25)",
+        border: "1px solid ".concat(BDR),
+        borderRadius: 14,
+        padding: 18,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 15,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 12
+      }
+    }, "\uD83D\uDCA1 Revenue Potential"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        gap: 10
+      }
+    }, [{
+      icon: "💲",
+      name: "AdSense",
+      est: "$2–$8 CPM",
+      note: "per 1,000 page views"
+    }, {
+      icon: "📦",
+      name: "Amazon",
+      est: "1–3% commission",
+      note: "on ingredient purchases"
+    }, {
+      icon: "🛒",
+      name: "Instacart",
+      est: "$5–$15 per order",
+      note: "on completed deliveries"
+    }, {
+      icon: "🏷",
+      name: "Sponsors",
+      est: "Custom rate",
+      note: "set per keyword"
+    }].map(function (r, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: "rgba(249,115,22,0.06)",
+          borderRadius: 10,
+          padding: "10px 12px",
+          border: "1px solid ".concat(BDR)
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 18,
+          marginBottom: 4
+        }
+      }, r.icon), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 700,
+          color: SOFT
+        }
+      }, r.name), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          color: OR,
+          fontWeight: 700
+        }
+      }, r.est), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 11,
+          color: MUT
+        }
+      }, r.note));
+    }))), /*#__PURE__*/React.createElement("button", {
+      style: _objectSpread(_objectSpread({}, genBtn(false)), {}, {
+        background: "linear-gradient(135deg,#22c55e,#16a34a)",
+        boxShadow: "0 4px 20px rgba(34,197,94,0.3)"
+      }),
+      onClick: saveAds
+    }, adsSvd ? "✅ Settings Saved!" : "💾 Save Monetization Settings"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 11,
+        color: MUT,
+        marginTop: 8,
+        textAlign: "center"
+      }
+    }, "Changes apply after saving and refreshing"));
+  }
+  function Admin() {
+    if (!unlocked) return /*#__PURE__*/React.createElement(AdminLogin, null);
+    var pendingBilling = billing.filter(function (b) {
+      return !b.settled;
+    }).length;
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 20,
+        flexWrap: "wrap",
+        gap: 10
+      }
+    }, /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: _objectSpread(_objectSpread({}, secTitle), {}, {
+        display: "flex",
+        alignItems: "center",
+        gap: 10
+      })
+    }, "\uD83C\uDFF7 Sponsor Manager", " ", /*#__PURE__*/React.createElement("span", {
+      style: {
+        background: "linear-gradient(135deg,#7c3aed,#6d28d9)",
+        fontSize: 11,
+        padding: "3px 10px",
+        borderRadius: 20,
+        color: W,
+        fontWeight: 700
+      }
+    }, "ADMIN")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13
+      }
+    }, "Manage sponsors, billing & monetization")), /*#__PURE__*/React.createElement("button", {
+      style: _objectSpread(_objectSpread({}, navBtn(false)), {}, {
+        background: "rgba(220,38,38,0.2)",
+        border: "1px solid rgba(220,38,38,0.4)",
+        color: "#fca5a5"
+      }),
+      onClick: function onClick() {
+        setUnlocked(false);
+        setAPass("");
+        setView("home");
+      }
+    }, "\uD83D\uDD12 Lock & Exit")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 0,
+        marginBottom: 22,
+        borderRadius: 12,
+        overflow: "hidden",
+        border: "1px solid rgba(249,115,22,0.2)"
+      }
+    }, [{
+      id: "sponsors",
+      icon: "🏷",
+      label: "Sponsors"
+    }, {
+      id: "billing",
+      icon: "💰",
+      label: "Billing",
+      badge: pendingBilling > 0 ? pendingBilling : null
+    }, {
+      id: "monetize",
+      icon: "📈",
+      label: "Monetization"
+    }].map(function (t) {
+      return /*#__PURE__*/React.createElement("button", {
+        key: t.id,
+        style: {
+          flex: 1,
+          padding: "11px 0",
+          background: aTab === t.id ? "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")") : "rgba(0,0,0,0.3)",
+          border: "none",
+          color: aTab === t.id ? W : MID,
+          cursor: "pointer",
+          fontSize: 12,
+          fontWeight: 700
+        },
+        onClick: function onClick() {
+          return setATab(t.id);
+        }
+      }, t.icon, " ", t.label, t.badge && /*#__PURE__*/React.createElement("span", {
+        style: {
+          marginLeft: 6,
+          background: aTab === t.id ? "rgba(255,255,255,0.3)" : "#dc2626",
+          borderRadius: 10,
+          padding: "1px 6px",
+          fontSize: 10
+        }
+      }, t.badge));
+    })), aTab === "sponsors" && /*#__PURE__*/React.createElement(SponsorTab, null), aTab === "billing" && /*#__PURE__*/React.createElement(BillingTab, null), aTab === "monetize" && /*#__PURE__*/React.createElement(MonetizeTab, null));
+  }
+
+  // ─── Public pages ─────────────────────────────────────────────────────────────
+  function SponsorPage() {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,45,18,0.6),rgba(154,52,18,0.3))",
+        borderRadius: 16,
+        border: "1px solid rgba(249,115,22,0.35)",
+        padding: "40px 32px",
+        textAlign: "center",
+        marginBottom: 24
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 60,
+        marginBottom: 14
+      }
+    }, "\uD83C\uDFF7\uFE0F"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 32,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 10
+      }
+    }, "Become a Sponsor"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#fdba74",
+        fontSize: 15,
+        maxWidth: 520,
+        margin: "0 auto 24px",
+        lineHeight: 1.6
+      }
+    }, "Put your brand in front of home cooks at the exact moment they decide what ingredients to buy."), /*#__PURE__*/React.createElement("a", {
+      href: "mailto:sponsors@aimeaplanner.com",
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 10,
+        padding: "14px 28px",
+        background: "linear-gradient(135deg,".concat(OR, ",#dc2626)"),
+        borderRadius: 12,
+        color: W,
+        textDecoration: "none",
+        fontWeight: 700,
+        fontSize: 15
+      }
+    }, "\uD83D\uDCE9 Contact Us to Get Started")), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 22,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 16
+      }
+    }, "How It Works"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(200px,1fr))",
+        gap: 14,
+        marginBottom: 28
+      }
+    }, [{
+      icon: "🎯",
+      title: "Keyword Targeting",
+      body: "Match your brand to specific ingredients — oil, spices, flour, broth, and more."
+    }, {
+      icon: "🔗",
+      title: "Direct Links",
+      body: "Your badge links to your product page for purchase-intent traffic."
+    }, {
+      icon: "🎲",
+      title: "Frequency Control",
+      body: "Set how often your ingredient appears — from occasional to always."
+    }, {
+      icon: "💵",
+      title: "Pay Per Pull",
+      body: "Only charged when your ingredient appears in a generated recipe."
+    }, {
+      icon: "📊",
+      title: "Transparent Billing",
+      body: "Full itemized log with one-click payment marking."
+    }, {
+      icon: "🍳",
+      title: "Best Placement",
+      body: "Inline in ingredient lists — the highest-intent moment possible."
+    }].map(function (c, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: CARD,
+          borderRadius: 14,
+          border: "1px solid ".concat(BDR),
+          padding: "18px 16px"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 30,
+          marginBottom: 9
+        }
+      }, c.icon), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontFamily: "Georgia,serif",
+          fontSize: 14,
+          fontWeight: 700,
+          color: SOFT,
+          marginBottom: 6
+        }
+      }, c.title), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          color: "#e5e7eb",
+          lineHeight: 1.6
+        }
+      }, c.body));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 22,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 16
+      }
+    }, "Sponsorship Tiers"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))",
+        gap: 14,
+        marginBottom: 28
+      }
+    }, [{
+      name: "Starter",
+      price: "$0.10",
+      color: "#6366f1",
+      features: ["1 keyword", "Badge + link", "Monthly billing"]
+    }, {
+      name: "Growth",
+      price: "$0.35",
+      color: OR,
+      badge: "Popular",
+      features: ["3 keywords", "Frequency control", "Full billing log"]
+    }, {
+      name: "Premium",
+      price: "$0.75",
+      color: "#f59e0b",
+      features: ["Unlimited keywords", "Max priority", "Dedicated support"]
+    }].map(function (t, i) {
+      return /*#__PURE__*/React.createElement("div", {
+        key: i,
+        style: {
+          background: CARD,
+          borderRadius: 14,
+          border: "2px solid ".concat(t.color, "33"),
+          padding: "20px 16px",
+          position: "relative"
+        }
+      }, t.badge && /*#__PURE__*/React.createElement("div", {
+        style: {
+          position: "absolute",
+          top: 10,
+          right: 10,
+          background: t.color,
+          color: W,
+          fontSize: 10,
+          fontWeight: 700,
+          padding: "2px 9px",
+          borderRadius: 10
+        }
+      }, t.badge), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          fontWeight: 700,
+          color: t.color,
+          marginBottom: 5,
+          textTransform: "uppercase",
+          letterSpacing: 1
+        }
+      }, t.name), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 30,
+          fontWeight: 800,
+          color: W,
+          lineHeight: 1
+        }
+      }, t.price), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 12,
+          color: MUT,
+          marginBottom: 12
+        }
+      }, "per pull"), t.features.map(function (f, j) {
+        return /*#__PURE__*/React.createElement("div", {
+          key: j,
+          style: {
+            display: "flex",
+            alignItems: "center",
+            gap: 7,
+            fontSize: 12,
+            color: "#e5e7eb",
+            marginBottom: 5
+          }
+        }, /*#__PURE__*/React.createElement("span", {
+          style: {
+            color: t.color,
+            fontWeight: 700
+          }
+        }, "\u2713"), f);
+      }));
+    })), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,45,18,0.5),rgba(154,52,18,0.25))",
+        borderRadius: 14,
+        border: "1px solid rgba(249,115,22,0.3)",
+        padding: "26px 22px",
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 20,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 7
+      }
+    }, "Ready to reach home cooks?"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: "#fdba74",
+        fontSize: 13,
+        marginBottom: 18,
+        lineHeight: 1.5
+      }
+    }, "We'll get your brand live within 24 hours. Pay only when it works."), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "flex",
+        gap: 12,
+        justifyContent: "center",
+        flexWrap: "wrap"
+      }
+    }, /*#__PURE__*/React.createElement("a", {
+      href: "mailto:sponsors@aimeaplanner.com",
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: "linear-gradient(135deg,".concat(OR, ",#dc2626)"),
+        borderRadius: 12,
+        color: W,
+        textDecoration: "none",
+        fontWeight: 700,
+        fontSize: 13
+      }
+    }, "\uD83D\uDCE9 Email Us"), /*#__PURE__*/React.createElement("button", {
+      onClick: function onClick() {
+        return setView("tos");
+      },
+      style: {
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.15)",
+        borderRadius: 12,
+        color: SOFT,
+        cursor: "pointer",
+        fontWeight: 600,
+        fontSize: 13
+      }
+    }, "\uD83D\uDCC4 View Terms"))));
+  }
+  function ToSPage() {
+    var S = function S(title, children) {
+      return /*#__PURE__*/React.createElement("div", {
+        style: {
+          marginBottom: 22
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontFamily: "Georgia,serif",
+          fontSize: 16,
+          fontWeight: 700,
+          color: SOFT,
+          marginBottom: 9,
+          paddingBottom: 7,
+          borderBottom: "1px solid rgba(249,115,22,0.15)"
+        }
+      }, title), /*#__PURE__*/React.createElement("div", {
+        style: {
+          fontSize: 13,
+          color: "#d1d5db",
+          lineHeight: 1.8
+        }
+      }, children));
+    };
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "linear-gradient(135deg,rgba(124,45,18,0.5),rgba(154,52,18,0.25))",
+        borderRadius: 14,
+        border: "1px solid rgba(249,115,22,0.3)",
+        padding: "26px 22px",
+        marginBottom: 22,
+        textAlign: "center"
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 44,
+        marginBottom: 9
+      }
+    }, "\uD83D\uDCC4"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 26,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 5
+      }
+    }, "Terms of Service"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MUT,
+        fontSize: 12
+      }
+    }, "Last updated: ", new Date().toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    }))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: CARD,
+        borderRadius: 14,
+        border: "1px solid ".concat(BDR),
+        padding: "22px 24px"
+      }
+    }, S("1. Acceptance of Terms", /*#__PURE__*/React.createElement("p", null, "By using AI Meal Planner (\"Service\") you agree to these Terms. We may update them; continued use constitutes acceptance.")), S("2. Description of Service", /*#__PURE__*/React.createElement("p", null, "AI Meal Planner generates AI-powered meal plans using publicly available recipe data. The Service may include sponsored ingredient badges from third-party brands, clearly labeled with a \uD83C\uDFF7 badge.")), S("3. User Responsibilities", /*#__PURE__*/React.createElement("ul", {
+      style: {
+        paddingLeft: 18,
+        display: "flex",
+        flexDirection: "column",
+        gap: 5
+      }
+    }, /*#__PURE__*/React.createElement("li", null, "You must be at least 13 years of age."), /*#__PURE__*/React.createElement("li", null, "You are responsible for use under your account or device."), /*#__PURE__*/React.createElement("li", null, "Do not reverse-engineer or misuse the Service."), /*#__PURE__*/React.createElement("li", null, "Recipes are for informational purposes only. Consult a physician before major dietary changes."), /*#__PURE__*/React.createElement("li", null, "Confirm ingredient safety based on your own allergies and health needs."))), S("4. Sponsored Content", /*#__PURE__*/React.createElement("p", null, "Sponsored badges are paid placements that do not affect recipe quality. Clicking sponsor links may take you to third-party sites we are not responsible for.")), S("5. Sponsor Agreement", /*#__PURE__*/React.createElement("p", null, "Sponsors agree to: pay-per-pull billing; no promotion of illegal or harmful products; accept removal at our discretion; understand pricing may be adjusted by the platform admin.")), S("6. Intellectual Property", /*#__PURE__*/React.createElement("p", null, "All platform branding and technology belong to AI Meal Planner. Recipe content is sourced from public data via AI search.")), S("7. Disclaimer of Warranties", /*#__PURE__*/React.createElement("p", null, "The Service is provided \"as is.\" We do not warrant uninterrupted or error-free operation. Use at your own risk.")), S("8. Limitation of Liability", /*#__PURE__*/React.createElement("p", null, "AI Meal Planner is not liable for indirect damages including dietary harm, allergic reactions, or reliance on sponsored product recommendations.")), S("9. Privacy", /*#__PURE__*/React.createElement("p", null, "Preferences, ratings, and billing records are stored locally on your device. We do not sell personal data.")), S("10. Governing Law", /*#__PURE__*/React.createElement("p", null, "These Terms are governed by US law. Disputes resolved through binding arbitration or a court of competent jurisdiction.")), S("11. Contact", /*#__PURE__*/React.createElement("p", null, "Questions: ", /*#__PURE__*/React.createElement("a", {
+      href: "mailto:legal@aimeaplanner.com",
+      style: {
+        color: OR,
+        textDecoration: "none",
+        fontWeight: 600
+      }
+    }, "legal@aimeaplanner.com")))));
+  }
+
+  // ─── Root render ──────────────────────────────────────────────────────────────
+  return /*#__PURE__*/React.createElement("div", {
+    style: {
+      minHeight: "100vh",
+      background: "linear-gradient(135deg,#1a0a00 0%,#2d1200 40%,#1a0a00 100%)",
+      fontFamily: "'DM Sans','Segoe UI',sans-serif",
+      color: W,
+      display: "flex",
+      flexDirection: "column"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      background: "linear-gradient(to right,".concat(BRN, ",").concat(BRN2, ",").concat(BRN, ")"),
+      padding: "17px 20px 13px",
+      borderBottom: "2px solid ".concat(OR),
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      gap: 10,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      cursor: "pointer"
+    },
+    onClick: function onClick() {
+      return setView(mealPlan ? "plan" : "home");
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 28,
+      filter: "drop-shadow(0 0 8px rgba(249,115,22,0.8))"
+    }
+  }, "\uD83C\uDF73"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontFamily: "Georgia,serif",
+      fontSize: 19,
+      fontWeight: 700,
+      color: SOFT,
+      letterSpacing: "-0.5px",
+      lineHeight: 1.1
+    }
+  }, "AI Meal Planner"), /*#__PURE__*/React.createElement("div", {
+    style: {
+      fontSize: 10,
+      color: MID,
+      letterSpacing: 2,
+      textTransform: "uppercase"
+    }
+  }, "Powered by Claude"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 6,
+      flexWrap: "wrap"
+    }
+  }, mealPlan && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+    style: navBtn(view === "plan"),
+    onClick: function onClick() {
+      return setView("plan");
+    }
+  }, "\uD83D\uDCCB Plan"), /*#__PURE__*/React.createElement("button", {
+    style: navBtn(view === "grocery"),
+    onClick: function onClick() {
+      return setView("grocery");
+    }
+  }, "\uD83D\uDED2 Grocery"), /*#__PURE__*/React.createElement("button", {
+    style: navBtn(view === "home"),
+    onClick: function onClick() {
+      return setView("home");
+    }
+  }, "\u2699\uFE0F Settings")), /*#__PURE__*/React.createElement("button", {
+    style: _objectSpread(_objectSpread({}, navBtn(view === "admin")), {}, {
+      background: view === "admin" ? "linear-gradient(135deg,#7c3aed,#6d28d9)" : unlocked ? "rgba(124,58,237,0.25)" : "transparent",
+      border: unlocked && view !== "admin" ? "1px solid rgba(124,58,237,0.4)" : view === "admin" ? "none" : "1px solid rgba(249,115,22,0.4)"
+    }),
+    onClick: function onClick() {
+      return setView("admin");
+    }
+  }, unlocked ? "🔓 Admin" : "🔐 Admin"))), /*#__PURE__*/React.createElement("div", {
+    style: {
+      flex: 1,
+      maxWidth: 900,
+      width: "100%",
+      margin: "0 auto",
+      padding: "20px 14px"
+    }
+  }, loading ? /*#__PURE__*/React.createElement(LoadingView, null) : view === "admin" ? /*#__PURE__*/React.createElement(Admin, null) : view === "home" ? /*#__PURE__*/React.createElement(Home, null) : view === "plan" && mealPlan ? /*#__PURE__*/React.createElement(Plan, null) : view === "recipe" && selMeal ? /*#__PURE__*/React.createElement(Recipe, null) : view === "grocery" && grocery ? /*#__PURE__*/React.createElement(Grocery, null) : view === "sponsor" ? /*#__PURE__*/React.createElement(SponsorPage, null) : view === "tos" ? /*#__PURE__*/React.createElement(ToSPage, null) : /*#__PURE__*/React.createElement(Home, null)), /*#__PURE__*/React.createElement(AlexaModal, null), /*#__PURE__*/React.createElement("div", {
+    style: {
+      borderTop: "1px solid rgba(249,115,22,0.15)",
+      background: "rgba(0,0,0,0.3)"
+    }
+  }, /*#__PURE__*/React.createElement(AdUnit, {
+    slot: (_window$MP_ADS8 = window.MP_ADS) === null || _window$MP_ADS8 === void 0 || (_window$MP_ADS8 = _window$MP_ADS8.slots) === null || _window$MP_ADS8 === void 0 ? void 0 : _window$MP_ADS8.footer
+  }), /*#__PURE__*/React.createElement("div", {
+    style: {
+      padding: "12px 20px",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "space-between",
+      flexWrap: "wrap",
+      gap: 10
+    }
+  }, /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 10,
+      flexWrap: "wrap"
+    }
+  }, /*#__PURE__*/React.createElement("span", {
+    style: {
+      fontSize: 12,
+      color: MUT
+    }
+  }, "\xA9 ", new Date().getFullYear(), " AI Meal Planner"), /*#__PURE__*/React.createElement("button", {
+    onClick: function onClick() {
+      return window.installApp && window.installApp();
+    },
+    style: {
+      padding: "4px 12px",
+      background: "rgba(249,115,22,0.15)",
+      border: "1px solid rgba(249,115,22,0.3)",
+      borderRadius: 10,
+      color: OR,
+      cursor: "pointer",
+      fontSize: 11,
+      fontWeight: 700
+    }
+  }, "\uD83D\uDCF2 Install App")), /*#__PURE__*/React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 16,
+      flexWrap: "wrap"
+    }
+  }, [{
+    label: "🏷 Become a Sponsor",
+    v: "sponsor"
+  }, {
+    label: "📄 Terms of Service",
+    v: "tos"
+  }].map(function (l) {
+    return /*#__PURE__*/React.createElement("button", {
+      key: l.v,
+      onClick: function onClick() {
+        return setView(l.v);
+      },
+      style: {
+        background: "none",
+        border: "none",
+        color: view === l.v ? OR : MUT,
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600,
+        textDecoration: view === l.v ? "underline" : "none",
+        padding: 0
+      }
+    }, l.label);
+  })))));
+}
+ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App));
+
+</script>
+</body>
+</html>
