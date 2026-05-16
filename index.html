@@ -1226,7 +1226,7 @@ function App() {
   var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
   var generate = /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-      var idx, iv, parts, si, prompt, res, data, block, raw, parsed, planId, charges, _t11;
+      var idx, iv, parts, si, prompt, res, data, block, raw, attempt, parsed, daysMatch, grocMatch, planId, charges, _t11, _t12, _t13;
       return _regenerator().w(function (_context7) {
         while (1) switch (_context7.p = _context7.n) {
           case 0:
@@ -1246,8 +1246,14 @@ function App() {
               var p = f <= 2 ? "rarely" : f <= 4 ? "occasionally" : f <= 6 ? "about half" : f <= 8 ? "often" : "nearly always";
               return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
             }).join("\n") : "";
-            prompt = "You are a professional chef. Search the web for real recipes for a ".concat(numDays, "-day meal plan").concat(parts ? " with: ".concat(parts) : "", ".").concat(si, "\n\nReturn ONLY valid JSON \u2014 no markdown, no backticks:\n{\"days\":[{\"dayLabel\":\"Day 1 \u2013 Monday\",\"meals\":{\"breakfast\":{\"name\":\"Recipe Name\",\"cuisine\":\"American\",\"description\":\"One sentence.\",\"prepTime\":\"10 mins\",\"cookTime\":\"15 mins\",\"servings\":2,\"calories\":\"~400 kcal\",\"ingredients\":[\"1 cup oats\",\"2 tbsp honey\"],\"instructions\":[\"Step one.\",\"Step two.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"how to make recipe name\"},\"lunch\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"},\"dinner\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"}}}],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"chicken\"],\"\uD83E\uDD66 Produce\":[\"peppers\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"yogurt\"],\"\uD83C\uDF3E Grains & Bread\":[\"bread\"],\"\uD83E\uDD6B Pantry\":[\"olive oil\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"garlic\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}");
-            _context7.n = 2;
+            prompt = "You are a professional chef. Search the web for real recipes for a ".concat(numDays, "-day meal plan").concat(parts ? " with: ".concat(parts) : "", ".").concat(si, "\n\nReturn ONLY valid JSON \u2014 no markdown, no backticks:\n{\"days\":[{\"dayLabel\":\"Day 1 \u2013 Monday\",\"meals\":{\"breakfast\":{\"name\":\"Recipe Name\",\"cuisine\":\"American\",\"description\":\"One sentence.\",\"prepTime\":\"10 mins\",\"cookTime\":\"15 mins\",\"servings\":2,\"calories\":\"~400 kcal\",\"ingredients\":[\"1 cup oats\",\"2 tbsp honey\"],\"instructions\":[\"Step one.\",\"Step two.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"how to make recipe name\"},\"lunch\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"},\"dinner\":{\"name\":\"...\",\"cuisine\":\"...\",\"description\":\"...\",\"prepTime\":\"...\",\"cookTime\":\"...\",\"servings\":2,\"calories\":\"...\",\"ingredients\":[],\"instructions\":[],\"tips\":\"...\",\"youtubeQuery\":\"...\"}}}],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"chicken\"],\"\uD83E\uDD66 Produce\":[\"peppers\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"yogurt\"],\"\uD83C\uDF3E Grains & Bread\":[\"bread\"],\"\uD83E\uDD6B Pantry\":[\"olive oil\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"garlic\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}"); // Try up to 2 times in case of JSON parse issues
+            attempt = 1;
+          case 2:
+            if (!(attempt <= 2)) {
+              _context7.n = 8;
+              break;
+            }
+            _context7.n = 3;
             return fetch("/api/claude", {
               method: "POST",
               headers: {
@@ -1255,7 +1261,7 @@ function App() {
               },
               body: JSON.stringify({
                 model: "claude-sonnet-4-20250514",
-                max_tokens: 12000,
+                max_tokens: 10000,
                 tools: [{
                   type: "web_search_20250305",
                   name: "web_search"
@@ -1266,30 +1272,88 @@ function App() {
                 }]
               })
             });
-          case 2:
-            res = _context7.v;
-            _context7.n = 3;
-            return res.json();
           case 3:
+            res = _context7.v;
+            _context7.n = 4;
+            return res.json();
+          case 4:
             data = _context7.v;
             if (!data.error) {
-              _context7.n = 4;
-              break;
-            }
-            throw new Error(data.error.message);
-          case 4:
-            block = data.content.find(function (b) {
-              return b.type === "text";
-            });
-            if (block) {
               _context7.n = 5;
               break;
             }
-            throw new Error("No response from AI");
+            throw new Error(data.error.message);
           case 5:
+            block = data.content.find(function (b) {
+              return b.type === "text";
+            });
+            if (!block) {
+              _context7.n = 6;
+              break;
+            }
+            return _context7.a(3, 8);
+          case 6:
+            if (!(attempt === 2)) {
+              _context7.n = 7;
+              break;
+            }
+            throw new Error("No response from AI after 2 attempts");
+          case 7:
+            attempt++;
+            _context7.n = 2;
+            break;
+          case 8:
+            if (block) {
+              _context7.n = 9;
+              break;
+            }
+            throw new Error("No response from AI");
+          case 9:
             raw = block.text.trim().replace(/^```json\s*/i, "").replace(/^```\s*/i, "").replace(/```\s*$/i, "").trim();
             raw = raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
+
+            // ── Robust JSON cleaning ────────────────────────────────────────────────
+            // Fix trailing commas before ] or } (common AI mistake)
+            raw = raw.replace(/,\s*([}\]])/g, "$1");
+            // Fix unescaped newlines inside strings
+            raw = raw.replace(/"([^"]*?)\n([^"]*?)"/g, function (m, a, b) {
+              return "\"".concat(a, " ").concat(b, "\"");
+            });
+            // Remove any control characters
+            raw = raw.replace(/[\x00-\x1F\x7F]/g, " ");
+            _context7.p = 10;
             parsed = JSON.parse(raw);
+            _context7.n = 16;
+            break;
+          case 11:
+            _context7.p = 11;
+            _t11 = _context7.v;
+            // If still failing, try to extract just the days and groceryList
+            console.error("JSON parse failed, attempting repair...", _t11.message);
+            // Find days array and groceryList separately
+            daysMatch = raw.match(/"days"\s*:\s*(\[[^]*?\])(?=\s*,\s*"groceryList")/);
+            grocMatch = raw.match(/"groceryList"\s*:\s*(\{[^]*?\})(?=\s*\}\s*$)/);
+            if (!(daysMatch && grocMatch)) {
+              _context7.n = 15;
+              break;
+            }
+            _context7.p = 12;
+            parsed = {
+              days: JSON.parse(daysMatch[1].replace(/,\s*([}\]])/g, "$1")),
+              groceryList: JSON.parse(grocMatch[1].replace(/,\s*([}\]])/g, "$1"))
+            };
+            _context7.n = 14;
+            break;
+          case 13:
+            _context7.p = 13;
+            _t12 = _context7.v;
+            throw new Error("AI returned malformed JSON. Please try again — this sometimes happens with longer plans. Try a shorter plan (3-4 days) if the problem persists.");
+          case 14:
+            _context7.n = 16;
+            break;
+          case 15:
+            throw new Error("AI returned malformed JSON. Please try again — this sometimes happens with longer plans.");
+          case 16:
             setMealPlan(parsed.days);
             setGrocery(parsed.groceryList);
             if (data._fallback) {
@@ -1334,22 +1398,22 @@ function App() {
               if (charges.length > 0) saveBilling([].concat(_toConsumableArray(billing), charges));
             }
             setView("plan");
-            _context7.n = 7;
+            _context7.n = 18;
             break;
-          case 6:
-            _context7.p = 6;
-            _t11 = _context7.v;
-            console.error(_t11);
-            setError("Something went wrong — please try again. " + _t11.message);
-          case 7:
-            _context7.p = 7;
+          case 17:
+            _context7.p = 17;
+            _t13 = _context7.v;
+            console.error(_t13);
+            setError("Something went wrong — please try again. " + _t13.message);
+          case 18:
+            _context7.p = 18;
             clearInterval(iv);
             setLoading(false);
-            return _context7.f(7);
-          case 8:
+            return _context7.f(18);
+          case 19:
             return _context7.a(2);
         }
-      }, _callee7, null, [[1, 6, 7, 8]]);
+      }, _callee7, null, [[12, 13], [10, 11], [1, 17, 18, 19]]);
     }));
     return function generate() {
       return _ref9.apply(this, arguments);
