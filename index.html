@@ -1226,7 +1226,7 @@ function App() {
   var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
   var generate = /*#__PURE__*/function () {
     var _ref9 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-      var idx, iv, parts, si, promptParts, prompt, res, data, block, raw, attempt, bt, parsed, daysMatch, grocMatch, planId, charges, _t11, _t12, _t13;
+      var idx, iv, parts, si, prefNote, siNote, prompt, res, data, block, raw, attempt, bt, parsed, daysMatch, grocMatch, planId, charges, _t11, _t12, _t13;
       return _regenerator().w(function (_context7) {
         while (1) switch (_context7.p = _context7.n) {
           case 0:
@@ -1246,8 +1246,9 @@ function App() {
               var p = f <= 2 ? "rarely" : f <= 4 ? "occasionally" : f <= 6 ? "about half" : f <= 8 ? "often" : "nearly always";
               return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
             }).join("\n") : "";
-            promptParts = ["You are a professional chef. Create a real " + numDays + "-day meal plan", parts ? " with: " + parts : "", ".", si, "\n\nRULES - follow exactly:", "\n- Max 6 ingredients per meal. Max 4 instruction steps.", "\n- descriptions under 8 words. No trailing commas. Straight quotes only.", "\n- ingredients and instructions must be arrays of plain strings only.", "\n\nReturn ONLY valid JSON:", "\n{\"days\":[{\"dayLabel\":\"Day 1\",\"meals\":{\"breakfast\":{\"name\":\"Scrambled Eggs\",\"cuisine\":\"American\",\"description\":\"Fluffy eggs with toast.\",\"prepTime\":\"5 mins\",\"cookTime\":\"5 mins\",\"servings\":2,\"calories\":\"~320 kcal\",\"ingredients\":[\"3 eggs\",\"2 tbsp butter\",\"salt\",\"pepper\"],\"instructions\":[\"Whisk eggs with salt.\",\"Melt butter in pan.\",\"Add eggs, stir until set.\",\"Serve hot.\"],\"tips\":\"Remove from heat while slightly wet.\",\"youtubeQuery\":\"how to make scrambled eggs\"},\"lunch\":{\"name\":\"NAME\",\"cuisine\":\"TYPE\",\"description\":\"SHORT DESC.\",\"prepTime\":\"X mins\",\"cookTime\":\"X mins\",\"servings\":2,\"calories\":\"~X kcal\",\"ingredients\":[\"item1\",\"item2\",\"item3\"],\"instructions\":[\"Step 1.\",\"Step 2.\",\"Step 3.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"search terms\"},\"dinner\":{\"name\":\"NAME\",\"cuisine\":\"TYPE\",\"description\":\"SHORT DESC.\",\"prepTime\":\"X mins\",\"cookTime\":\"X mins\",\"servings\":2,\"calories\":\"~X kcal\",\"ingredients\":[\"item1\",\"item2\",\"item3\"],\"instructions\":[\"Step 1.\",\"Step 2.\",\"Step 3.\"],\"tips\":\"One tip.\",\"youtubeQuery\":\"search terms\"}}}],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"chicken\"],\"\uD83E\uDD66 Produce\":[\"spinach\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"eggs\"],\"\uD83C\uDF3E Grains & Bread\":[\"bread\"],\"\uD83E\uDD2B Pantry\":[\"olive oil\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"garlic\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}"];
-            prompt = promptParts.join(""); // Try up to 2 times in case of JSON parse issues
+            prefNote = parts ? " Preferences: " + parts + "." : "";
+            siNote = si || "";
+            prompt = ["Create a " + numDays + "-day meal plan with breakfast, lunch, dinner." + prefNote + siNote, "Use real well-known recipes. Vary cuisines each day.", "Return ONLY this JSON, no extra text, no markdown:", '{"days":[', '{"dayLabel":"Day 1","meals":{', '"breakfast":{"name":"Oatmeal with Berries","cuisine":"American","description":"Warm oats with fresh berries.","prepTime":"2 mins","cookTime":"5 mins","servings":2,"calories":"~310 kcal","ingredients":["1 cup rolled oats","2 cups water","1 cup mixed berries","2 tbsp honey","pinch of salt"],"instructions":["Boil water with salt.","Stir in oats, cook 5 min.","Top with berries and honey."],"tips":"Use steel-cut oats for extra texture.","youtubeQuery":"how to make oatmeal with berries"},', '"lunch":{"name":"REAL RECIPE NAME","cuisine":"CUISINE","description":"SHORT.","prepTime":"X min","cookTime":"X min","servings":2,"calories":"~X kcal","ingredients":["item1","item2","item3","item4","item5"],"instructions":["Step 1.","Step 2.","Step 3."],"tips":"One tip.","youtubeQuery":"how to make RECIPE NAME"},', '"dinner":{"name":"REAL RECIPE NAME","cuisine":"CUISINE","description":"SHORT.","prepTime":"X min","cookTime":"X min","servings":2,"calories":"~X kcal","ingredients":["item1","item2","item3","item4","item5"],"instructions":["Step 1.","Step 2.","Step 3."],"tips":"One tip.","youtubeQuery":"how to make RECIPE NAME"}', '}},... repeat for all ' + numDays + ' days ...', "],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"item\"],\"\uD83E\uDD66 Produce\":[\"item\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"item\"],\"\uD83C\uDF3E Grains & Bread\":[\"item\"],\"\uD83E\uDD2B Pantry\":[\"item\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"item\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}", "\n\nCRITICAL: valid JSON only. No trailing commas. All strings in straight double quotes. ingredients and instructions must be arrays of strings."].join("\n"); // Try up to 2 times in case of JSON parse issues
             attempt = 1;
           case 2:
             if (!(attempt <= 2)) {
@@ -1262,11 +1263,7 @@ function App() {
               },
               body: JSON.stringify({
                 model: "claude-sonnet-4-20250514",
-                max_tokens: 10000,
-                tools: [{
-                  type: "web_search_20250305",
-                  name: "web_search"
-                }],
+                max_tokens: 8000,
                 messages: [{
                   role: "user",
                   content: prompt
