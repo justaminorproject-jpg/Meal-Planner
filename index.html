@@ -51,6 +51,7 @@ var fl=document.createElement("link");fl.rel="stylesheet";fl.href="https://fonts
 </script>
 <script>
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regeneratorValues(e) { if (null != e) { var t = e["function" == typeof Symbol && Symbol.iterator || "@@iterator"], r = 0; if (t) return t.call(e); if ("function" == typeof e.next) return e; if (!isNaN(e.length)) return { next: function next() { return e && r >= e.length && (e = void 0), { value: e && e[r++], done: !e }; } }; } throw new TypeError(_typeof(e) + " is not iterable"); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i.return) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
@@ -75,151 +76,150 @@ var _React = React,
   useEffect = _React.useEffect,
   useRef = _React.useRef;
 
-// &#9472;&#9472;&#9472; Constants &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ─── Constants ────────────────────────────────────────────────────────────────
 var DIET_OPTIONS = ["No Restrictions", "Vegetarian", "Vegan", "Gluten-Free", "Keto", "Paleo", "Dairy-Free", "Mediterranean"];
 var CUISINE_OPTIONS = [{
-  label: "&#127482;&#127480; American",
+  label: "🇺🇸 American",
   value: "American"
 }, {
-  label: "&#127470;&#127481; Italian",
+  label: "🇮🇹 Italian",
   value: "Italian"
 }, {
-  label: "&#127474;&#127485; Mexican",
+  label: "🇲🇽 Mexican",
   value: "Mexican"
 }, {
-  label: "&#127471;&#127477; Japanese",
+  label: "🇯🇵 Japanese",
   value: "Japanese"
 }, {
-  label: "&#127464;&#127475; Chinese",
+  label: "🇨🇳 Chinese",
   value: "Chinese"
 }, {
-  label: "&#127470;&#127475; Indian",
+  label: "🇮🇳 Indian",
   value: "Indian"
 }, {
-  label: "&#127481;&#127469; Thai",
+  label: "🇹🇭 Thai",
   value: "Thai"
 }, {
-  label: "&#127468;&#127479; Greek",
+  label: "🇬🇷 Greek",
   value: "Greek"
 }, {
-  label: "&#127467;&#127479; French",
+  label: "🇫🇷 French",
   value: "French"
 }, {
-  label: "&#127757; Mediterranean",
+  label: "🌍 Mediterranean",
   value: "Mediterranean"
 }, {
-  label: "&#127472;&#127479; Korean",
+  label: "🇰🇷 Korean",
   value: "Korean"
 }, {
-  label: "&#128332; Middle Eastern",
+  label: "🕌 Middle Eastern",
   value: "Middle Eastern"
 }, {
-  label: "&#127466;&#127480; Spanish",
+  label: "🇪🇸 Spanish",
   value: "Spanish"
 }, {
-  label: "&#127483;&#127475; Vietnamese",
+  label: "🇻🇳 Vietnamese",
   value: "Vietnamese"
 }];
 var MEAL_STYLES = {
   breakfast: [{
-    label: "&#9889; Quick & Easy",
+    label: "⚡ Quick & Easy",
     value: "quick and easy"
   }, {
-    label: "&#127859; Eggs & Savory",
+    label: "🍳 Eggs & Savory",
     value: "eggs and savory"
   }, {
-    label: "&#129379; Bowls & Oats",
+    label: "🥣 Bowls & Oats",
     value: "bowls and oats"
   }, {
-    label: "&#129374; Pancakes & Waffles",
+    label: "🥞 Pancakes & Waffles",
     value: "pancakes and waffles"
   }, {
-    label: "&#127827; Smoothies & Light",
+    label: "🍓 Smoothies & Light",
     value: "smoothies and light"
   }, {
-    label: "&#129360; Bakery Style",
+    label: "🥐 Bakery Style",
     value: "bakery style pastries"
   }],
   lunch: [{
-    label: "&#129367; Salads & Bowls",
+    label: "🥗 Salads & Bowls",
     value: "salads and bowls"
   }, {
-    label: "&#129386; Sandwiches & Wraps",
+    label: "🥪 Sandwiches & Wraps",
     value: "sandwiches and wraps"
   }, {
-    label: "&#127858; Soups & Stews",
+    label: "🍲 Soups & Stews",
     value: "soups and stews"
   }, {
-    label: "&#127837; Pasta & Grains",
+    label: "🍝 Pasta & Grains",
     value: "pasta and grains"
   }, {
-    label: "&#127790; Tacos & Street Food",
+    label: "🌮 Tacos & Street Food",
     value: "tacos and street food"
   }, {
-    label: "&#129377; Stir-Fry",
+    label: "🥡 Stir-Fry",
     value: "stir-fry"
   }],
   dinner: [{
-    label: "&#129385; Grilled & BBQ",
+    label: "🥩 Grilled & BBQ",
     value: "grilled and BBQ"
   }, {
-    label: "&#127837; Pasta & Italian",
+    label: "🍝 Pasta & Italian",
     value: "pasta and Italian"
   }, {
-    label: "&#129749; Comfort Food",
+    label: "🫕 Comfort Food",
     value: "comfort food"
   }, {
-    label: "&#128031; Seafood",
+    label: "🐟 Seafood",
     value: "seafood"
   }, {
-    label: "&#129368; One-Pot Meals",
+    label: "🥘 One-Pot Meals",
     value: "one-pot meals"
   }, {
-    label: "&#127793; Plant-Based",
+    label: "🌱 Plant-Based",
     value: "plant-based"
   }, {
-    label: "&#127835; Curry & Rice",
+    label: "🍛 Curry & Rice",
     value: "curry and rice"
   }, {
-    label: "&#128293; Slow-Cooked",
+    label: "🔥 Slow-Cooked",
     value: "slow-cooked"
   }]
 };
 var MEAL_EMOJI = {
-  breakfast: "&#127749;",
-  lunch: "&#9728;&#65039;",
-  dinner: "&#127769;"
+  breakfast: "🌅",
+  lunch: "☀️",
+  dinner: "🌙"
 };
 var MEAL_BADGE = {
   breakfast: "#EA580C",
   lunch: "#CA8A04",
   dinner: "#16A34A"
 };
-var RATING_LABELS = ["", "Not for me &#128533;", "It's okay &#128578;", "Pretty good! &#128523;", "Really good! &#128525;", "Absolutely love it! &#128293;"];
+var RATING_LABELS = ["", "Not for me 😕", "It's okay 🙂", "Pretty good! 😋", "Really good! 😍", "Absolutely love it! 🔥"];
 var FILTER_OPTS = [{
   label: "All",
   value: 0
 }, {
-  label: "&#11088; 1+",
+  label: "⭐ 1+",
   value: 1
 }, {
-  label: "&#11088;&#11088; 2+",
+  label: "⭐⭐ 2+",
   value: 2
 }, {
-  label: "&#11088;&#11088;&#11088; 3+",
+  label: "⭐⭐⭐ 3+",
   value: 3
 }, {
-  label: "&#11088;&#11088;&#11088;&#11088; 4+",
+  label: "⭐⭐⭐⭐ 4+",
   value: 4
 }, {
-  label: "5 &#11088; Only",
+  label: "5 ⭐ Only",
   value: 5
 }, {
-  label: "&#128306; Unrated",
+  label: "🔲 Unrated",
   value: -1
 }];
-var ADMIN_PASS_HASH = "b5d0b8ffab5a374c88ea07e70e17c32160847bf0061bed0dfda11ab4a35ec875"; // SHA-256 &#8212; actual password is not stored here
-
+var ADMIN_PASS_HASH = "b5d0b8ffab5a374c88ea07e70e17c32160847bf0061bed0dfda11ab4a35ec875";
 var toggle = function toggle(arr, val) {
   return arr.includes(val) ? arr.filter(function (x) {
     return x !== val;
@@ -233,26 +233,24 @@ var matchSponsors = function matchSponsors(text, sponsors) {
     return s.keyword && text.toLowerCase().includes(s.keyword.toLowerCase());
   });
 };
-
-// &#9472;&#9472;&#9472; Admin password check (SHA-256, never stores plaintext) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function hashPassword(_x) {
   return _hashPassword.apply(this, arguments);
-} // &#9472;&#9472;&#9472; Ad Unit &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+}
 function _hashPassword() {
-  _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(pw) {
+  _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee1(pw) {
     var buf;
-    return _regenerator().w(function (_context0) {
-      while (1) switch (_context0.n) {
+    return _regenerator().w(function (_context10) {
+      while (1) switch (_context10.n) {
         case 0:
-          _context0.n = 1;
+          _context10.n = 1;
           return crypto.subtle.digest("SHA-256", new TextEncoder().encode(pw));
         case 1:
-          buf = _context0.v;
-          return _context0.a(2, Array.from(new Uint8Array(buf)).map(function (b) {
+          buf = _context10.v;
+          return _context10.a(2, Array.from(new Uint8Array(buf)).map(function (b) {
             return b.toString(16).padStart(2, "0");
           }).join(""));
       }
-    }, _callee0);
+    }, _callee1);
   }));
   return _hashPassword.apply(this, arguments);
 }
@@ -301,22 +299,18 @@ function AdUnit(_ref) {
     "data-full-width-responsive": "true"
   }));
 }
-
-// &#9472;&#9472;&#9472; Affiliate helpers &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-function amazonLink(query) {
+function amazonLink(q) {
   var _window$MP_ADS;
   var cfg = (_window$MP_ADS = window.MP_ADS) === null || _window$MP_ADS === void 0 ? void 0 : _window$MP_ADS.amazon;
   if (!(cfg !== null && cfg !== void 0 && cfg.enabled) || !cfg.tag || cfg.tag.includes("yourtag")) return null;
-  return "https://www.amazon.com/s?k=".concat(encodeURIComponent(query), "&tag=").concat(cfg.tag);
+  return "https://www.amazon.com/s?k=".concat(encodeURIComponent(q), "&tag=").concat(cfg.tag, "&linkCode=ll2&language=en_US");
 }
-function instacartLink(query) {
+function instacartLink(q) {
   var _window$MP_ADS2;
   var cfg = (_window$MP_ADS2 = window.MP_ADS) === null || _window$MP_ADS2 === void 0 ? void 0 : _window$MP_ADS2.instacart;
   if (!(cfg !== null && cfg !== void 0 && cfg.enabled) || !cfg.affiliateId || cfg.affiliateId.includes("your_")) return null;
-  return "".concat(cfg.baseUrl, "?utm_source=").concat(cfg.affiliateId, "&search=").concat(encodeURIComponent(query));
+  return "".concat(cfg.baseUrl, "?utm_source=").concat(cfg.affiliateId, "&search=").concat(encodeURIComponent(q));
 }
-
-// &#9472;&#9472;&#9472; Ingredient Row &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function IngredientRow(_ref2) {
   var text = _ref2.text,
     sponsors = _ref2.sponsors;
@@ -422,7 +416,7 @@ function IngredientRow(_ref2) {
   }, "\uD83D\uDED2 Instacart")));
 }
 
-// &#9472;&#9472;&#9472; Shared style helpers &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ─── Colours ─────────────────────────────────────────────────────────────────
 var OR = "#f97316",
   OR2 = "#ea580c",
   BRN = "#7c2d12",
@@ -511,51 +505,20 @@ var secTitle = {
   color: SOFT,
   marginBottom: 4
 };
-var subCardSty = {
+var subCard = {
   background: "rgba(0,0,0,0.22)",
   borderRadius: 12,
   padding: 16,
   border: "1px solid rgba(249,115,22,0.12)"
-};
-var subTitleSty = {
-  fontFamily: "Georgia,serif",
-  fontSize: 15,
-  color: MID,
-  marginBottom: 10,
-  fontWeight: 700
-};
-var toggle2Sty = function toggle2Sty(on) {
-  return {
-    width: 44,
-    height: 24,
-    borderRadius: 12,
-    background: on ? "linear-gradient(135deg,#22c55e,#16a34a)" : "rgba(255,255,255,0.1)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    position: "relative",
-    cursor: "pointer"
-  };
-};
-var toggleKnob = function toggleKnob(on) {
-  return {
-    width: 18,
-    height: 18,
-    borderRadius: "50%",
-    background: W,
-    position: "absolute",
-    top: 2,
-    left: on ? 22 : 2,
-    transition: "left 0.2s"
-  };
 };
 var divider = {
   borderTop: "1px solid rgba(249,115,22,0.13)",
   margin: "16px 0"
 };
 
-// &#9472;&#9472;&#9472; Main App &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+// ─── Main App ─────────────────────────────────────────────────────────────────
 function App() {
-  var _window$MP_ADS9;
-  // Settings
+  var _window$MP_ADS8;
   var _useState = useState(7),
     _useState2 = _slicedToArray(_useState, 2),
     numDays = _useState2[0],
@@ -584,7 +547,6 @@ function App() {
     _useState12 = _slicedToArray(_useState11, 2),
     extra = _useState12[0],
     setExtra = _useState12[1];
-  // Plan
   var _useState13 = useState(null),
     _useState14 = _slicedToArray(_useState13, 2),
     mealPlan = _useState14[0],
@@ -621,164 +583,170 @@ function App() {
     _useState30 = _slicedToArray(_useState29, 2),
     fallback = _useState30[0],
     setFallback = _useState30[1];
-  var _useState31 = useState(false),
+  var _useState31 = useState({}),
     _useState32 = _slicedToArray(_useState31, 2),
-    alexaOpen = _useState32[0],
-    setAlexaOpen = _useState32[1];
-  var _useState33 = useState(false),
+    ratings = _useState32[0],
+    setRatings = _useState32[1];
+  var _useState33 = useState(0),
     _useState34 = _slicedToArray(_useState33, 2),
-    alexaCopied = _useState34[0],
-    setAlexaCopied = _useState34[1];
-  // Ratings
-  var _useState35 = useState({}),
+    rFilter = _useState34[0],
+    setRFilter = _useState34[1];
+  var _useState35 = useState(0),
     _useState36 = _slicedToArray(_useState35, 2),
-    ratings = _useState36[0],
-    setRatings = _useState36[1];
-  var _useState37 = useState(0),
+    hStar = _useState36[0],
+    setHStar = _useState36[1];
+  var _useState37 = useState([]),
     _useState38 = _slicedToArray(_useState37, 2),
-    rFilter = _useState38[0],
-    setRFilter = _useState38[1];
-  var _useState39 = useState(0),
+    sponsors = _useState38[0],
+    setSponsors = _useState38[1];
+  var _useState39 = useState([]),
     _useState40 = _slicedToArray(_useState39, 2),
-    hStar = _useState40[0],
-    setHStar = _useState40[1];
-  // Sponsors
-  var _useState41 = useState([]),
+    billing = _useState40[0],
+    setBilling = _useState40[1];
+  var _useState41 = useState(false),
     _useState42 = _slicedToArray(_useState41, 2),
-    sponsors = _useState42[0],
-    setSponsors = _useState42[1];
-  var _useState43 = useState([]),
+    unlocked = _useState42[0],
+    setUnlocked = _useState42[1];
+  var _useState43 = useState(""),
     _useState44 = _slicedToArray(_useState43, 2),
-    billing = _useState44[0],
-    setBilling = _useState44[1];
-  // Admin
-  var _useState45 = useState(false),
+    aPass = _useState44[0],
+    setAPass = _useState44[1];
+  var _useState45 = useState(""),
     _useState46 = _slicedToArray(_useState45, 2),
-    unlocked = _useState46[0],
-    setUnlocked = _useState46[1];
-  var _useState47 = useState(""),
+    aErr = _useState46[0],
+    setAErr = _useState46[1];
+  var _useState47 = useState("sponsors"),
     _useState48 = _slicedToArray(_useState47, 2),
-    aPass = _useState48[0],
-    setAPass = _useState48[1];
-  var _useState49 = useState(""),
+    aTab = _useState48[0],
+    setATab = _useState48[1];
+  var _useState49 = useState(null),
     _useState50 = _slicedToArray(_useState49, 2),
-    aErr = _useState50[0],
-    setAErr = _useState50[1];
-  var _useState51 = useState("sponsors"),
+    settle = _useState50[0],
+    setSettle = _useState50[1];
+  var _useState51 = useState(""),
     _useState52 = _slicedToArray(_useState51, 2),
-    aTab = _useState52[0],
-    setATab = _useState52[1];
-  var _useState53 = useState(null),
+    nKw = _useState52[0],
+    setNKw = _useState52[1];
+  var _useState53 = useState(""),
     _useState54 = _slicedToArray(_useState53, 2),
-    settle = _useState54[0],
-    setSettle = _useState54[1];
-  // Sponsor form
+    nBr = _useState54[0],
+    setNBr = _useState54[1];
   var _useState55 = useState(""),
     _useState56 = _slicedToArray(_useState55, 2),
-    nKw = _useState56[0],
-    setNKw = _useState56[1];
-  var _useState57 = useState(""),
+    nUrl = _useState56[0],
+    setNUrl = _useState56[1];
+  var _useState57 = useState("#f97316"),
     _useState58 = _slicedToArray(_useState57, 2),
-    nBr = _useState58[0],
-    setNBr = _useState58[1];
-  var _useState59 = useState(""),
+    nClr = _useState58[0],
+    setNClr = _useState58[1];
+  var _useState59 = useState(5),
     _useState60 = _slicedToArray(_useState59, 2),
-    nUrl = _useState60[0],
-    setNUrl = _useState60[1];
-  var _useState61 = useState("#f97316"),
+    nFrq = _useState60[0],
+    setNFrq = _useState60[1];
+  var _useState61 = useState("0.50"),
     _useState62 = _slicedToArray(_useState61, 2),
-    nClr = _useState62[0],
-    setNClr = _useState62[1];
-  var _useState63 = useState(5),
+    nPrc = _useState62[0],
+    setNPrc = _useState62[1];
+  var _useState63 = useState(null),
     _useState64 = _slicedToArray(_useState63, 2),
-    nFrq = _useState64[0],
-    setNFrq = _useState64[1];
-  var _useState65 = useState("0.50"),
+    eId = _useState64[0],
+    setEId = _useState64[1];
+  var _useState65 = useState(false),
     _useState66 = _slicedToArray(_useState65, 2),
-    nPrc = _useState66[0],
-    setNPrc = _useState66[1];
-  var _useState67 = useState(null),
+    sSvd = _useState66[0],
+    setSSvd = _useState66[1];
+  var _useState67 = useState("idle"),
     _useState68 = _slicedToArray(_useState67, 2),
-    eId = _useState68[0],
-    setEId = _useState68[1];
-  var _useState69 = useState(false),
-    _useState70 = _slicedToArray(_useState69, 2),
-    sSvd = _useState70[0],
-    setSSvd = _useState70[1];
-  var _useState71 = useState("idle"),
-    _useState72 = _slicedToArray(_useState71, 2),
-    syncStatus = _useState72[0],
-    setSyncStatus = _useState72[1]; // idle|saving|saved|error
-  var _useState73 = useState(function () {
+    syncStatus = _useState68[0],
+    setSyncStatus = _useState68[1];
+  var _useState69 = useState(function () {
       return localStorage.getItem("mp_admin_api_key") || "";
     }),
-    _useState74 = _slicedToArray(_useState73, 2),
-    adminApiKey = _useState74[0],
-    setAdminApiKey = _useState74[1];
-  var _useState75 = useState(""),
-    _useState76 = _slicedToArray(_useState75, 2),
-    apiKeyInput2 = _useState76[0],
-    setApiKeyInput2 = _useState76[1];
-  var _useState77 = useState(function () {
+    _useState70 = _slicedToArray(_useState69, 2),
+    adminApiKey = _useState70[0],
+    setAdminApiKey = _useState70[1];
+  var _useState71 = useState(""),
+    _useState72 = _slicedToArray(_useState71, 2),
+    apiKeyInput2 = _useState72[0],
+    setApiKeyInput2 = _useState72[1];
+  var _useState73 = useState(function () {
       return !!localStorage.getItem("mp_admin_api_key");
     }),
-    _useState78 = _slicedToArray(_useState77, 2),
-    apiKeySet = _useState78[0],
-    setApiKeySet = _useState78[1];
-  // Monetization
-  var _useState79 = useState(function () {
+    _useState74 = _slicedToArray(_useState73, 2),
+    apiKeySet = _useState74[0],
+    setApiKeySet = _useState74[1];
+  var _useState75 = useState(function () {
       return localStorage.getItem("mp_ads_pubid") || "";
     }),
-    _useState80 = _slicedToArray(_useState79, 2),
-    adsPub = _useState80[0],
-    setAdsPub = _useState80[1];
-  var _useState81 = useState(function () {
+    _useState76 = _slicedToArray(_useState75, 2),
+    adsPub = _useState76[0],
+    setAdsPub = _useState76[1];
+  var _useState77 = useState(function () {
       return localStorage.getItem("mp_ads_on") === "1";
     }),
-    _useState82 = _slicedToArray(_useState81, 2),
-    adsOn = _useState82[0],
-    setAdsOn = _useState82[1];
-  var _useState83 = useState(function () {
+    _useState78 = _slicedToArray(_useState77, 2),
+    adsOn = _useState78[0],
+    setAdsOn = _useState78[1];
+  var _useState79 = useState(function () {
       return localStorage.getItem("mp_amazon_tag") || "";
     }),
-    _useState84 = _slicedToArray(_useState83, 2),
-    amTag = _useState84[0],
-    setAmTag = _useState84[1];
-  var _useState85 = useState(function () {
+    _useState80 = _slicedToArray(_useState79, 2),
+    amTag = _useState80[0],
+    setAmTag = _useState80[1];
+  var _useState81 = useState(function () {
       return localStorage.getItem("mp_amazon_on") === "1";
     }),
-    _useState86 = _slicedToArray(_useState85, 2),
-    amOn = _useState86[0],
-    setAmOn = _useState86[1];
-  var _useState87 = useState(function () {
+    _useState82 = _slicedToArray(_useState81, 2),
+    amOn = _useState82[0],
+    setAmOn = _useState82[1];
+  var _useState83 = useState(function () {
       return localStorage.getItem("mp_instacart_id") || "";
     }),
-    _useState88 = _slicedToArray(_useState87, 2),
-    icId = _useState88[0],
-    setIcId = _useState88[1];
-  var _useState89 = useState(function () {
+    _useState84 = _slicedToArray(_useState83, 2),
+    icId = _useState84[0],
+    setIcId = _useState84[1];
+  var _useState85 = useState(function () {
       return localStorage.getItem("mp_instacart_on") === "1";
     }),
+    _useState86 = _slicedToArray(_useState85, 2),
+    icOn = _useState86[0],
+    setIcOn = _useState86[1];
+  var _useState87 = useState(false),
+    _useState88 = _slicedToArray(_useState87, 2),
+    adsSvd = _useState88[0],
+    setAdsSvd = _useState88[1];
+  var _useState89 = useState(function () {
+      return localStorage.getItem("mp_meta_tags") || "";
+    }),
     _useState90 = _slicedToArray(_useState89, 2),
-    icOn = _useState90[0],
-    setIcOn = _useState90[1];
+    metaTags = _useState90[0],
+    setMetaTags = _useState90[1];
   var _useState91 = useState(false),
     _useState92 = _slicedToArray(_useState91, 2),
-    adsSvd = _useState92[0],
-    setAdsSvd = _useState92[1];
-  var _useMT = useState(function() { return localStorage.getItem("mp_meta_tags") || ""; }),
-    _useMT2 = _slicedToArray(_useMT, 2),
-    metaTags = _useMT2[0],
-    setMetaTags = _useMT2[1];
-  var _useMTS = useState(false),
-    _useMTS2 = _slicedToArray(_useMTS, 2),
-    metaTagsSaved = _useMTS2[0],
-    setMetaTagsSaved = _useMTS2[1];
-
-  // Load persisted data
+    metaTagsSaved = _useState92[0],
+    setMetaTagsSaved = _useState92[1];
+  var injectMetaTags = function injectMetaTags(tagsStr) {
+    document.querySelectorAll("meta[data-mp-custom]").forEach(function (el) {
+      return el.remove();
+    });
+    if (!tagsStr || !tagsStr.trim()) return;
+    tagsStr.split("\n").forEach(function (line) {
+      line = line.trim();
+      if (!line) return;
+      try {
+        var div = document.createElement("div");
+        div.innerHTML = line;
+        var tag = div.firstElementChild;
+        if (tag && tag.tagName === "META") {
+          tag.setAttribute("data-mp-custom", "1");
+          document.head.appendChild(tag);
+        }
+      } catch (e) {}
+    });
+  };
   useEffect(function () {
     _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
-      var r, b, res, data, s, _res, _data, _window$MP_ADS3, m, adminKey, _res2, _data2, _b, _t, _t2, _t3, _t4, _t5, _t6, _t7;
+      var r, b, savedMeta, res, data, s, _res, _data, _window$MP_ADS3, m, _res2, _data2, adminKey, _res3, _data3, _t, _t2, _t3, _t4, _t5, _t6, _t7;
       return _regenerator().w(function (_context) {
         while (1) switch (_context.p = _context.n) {
           case 0:
@@ -806,41 +774,43 @@ function App() {
             _context.p = 5;
             _t2 = _context.v;
           case 6:
-            _context.p = 6;
-            _context.n = 7;
-            return fetch("/api/sponsors");
-          case 7:
-            res = _context.v;
+            savedMeta = localStorage.getItem("mp_meta_tags");
+            if (savedMeta) injectMetaTags(savedMeta);
+            _context.p = 7;
             _context.n = 8;
-            return res.json();
+            return fetch("/api/sponsors");
           case 8:
+            res = _context.v;
+            _context.n = 9;
+            return res.json();
+          case 9:
             data = _context.v;
             if (Array.isArray(data.sponsors)) setSponsors(data.sponsors);
-            _context.n = 13;
+            _context.n = 14;
             break;
-          case 9:
-            _context.p = 9;
-            _t3 = _context.v;
+          case 10:
             _context.p = 10;
-            _context.n = 11;
+            _t3 = _context.v;
+            _context.p = 11;
+            _context.n = 12;
             return window.storage.get("meal-sponsors");
-          case 11:
+          case 12:
             s = _context.v;
             if (s !== null && s !== void 0 && s.value) setSponsors(JSON.parse(s.value));
-            _context.n = 13;
+            _context.n = 14;
             break;
-          case 12:
-            _context.p = 12;
-            _t4 = _context.v;
           case 13:
             _context.p = 13;
-            _context.n = 14;
-            return fetch("/api/data?key=mp_monetization");
+            _t4 = _context.v;
           case 14:
-            _res = _context.v;
+            _context.p = 14;
             _context.n = 15;
-            return _res.json();
+            return fetch("/api/data?key=mp_monetization");
           case 15:
+            _res = _context.v;
+            _context.n = 16;
+            return _res.json();
+          case 16:
             _data = _context.v;
             if (_data.value) {
               m = _data.value;
@@ -850,7 +820,6 @@ function App() {
               setAdsOn(!!m.adsOn);
               setAmOn(!!m.amOn);
               setIcOn(!!m.icOn);
-              // Apply immediately to window.MP_ADS
               window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
                 enabled: !!m.adsOn,
                 pubId: m.adsPub || "",
@@ -864,84 +833,73 @@ function App() {
                 })
               });
             }
-            _context.n = 17;
+            _context.n = 18;
             break;
-          case 16:
-            _context.p = 16;
-            _t5 = _context.v;
           case 17:
-            var _savedMeta = localStorage.getItem("mp_meta_tags");
-    if (_savedMeta) injectMetaTags(_savedMeta);
-    // Load billing from server if admin API key is available
-            adminKey = localStorage.getItem("mp_admin_api_key");
-            if (!adminKey) {
-              _context.n = 25;
-              break;
-            }
+            _context.p = 17;
+            _t5 = _context.v;
+          case 18:
             _context.p = 18;
             _context.n = 19;
-            return fetch("/api/data?key=mp_billing", {
-              headers: {
-                "X-Admin-Key": adminKey
-              }
-            });
+            return fetch("/api/data?key=mp_meta_tags");
           case 19:
             _res2 = _context.v;
             _context.n = 20;
             return _res2.json();
           case 20:
             _data2 = _context.v;
-            if (Array.isArray(_data2.value)) setBilling(_data2.value);
-            _context.n = 25;
+            if (_data2.value && typeof _data2.value === "string") {
+              setMetaTags(_data2.value);
+              injectMetaTags(_data2.value);
+              localStorage.setItem("mp_meta_tags", _data2.value);
+            }
+            _context.n = 22;
             break;
           case 21:
             _context.p = 21;
             _t6 = _context.v;
-            _context.p = 22;
-            _context.n = 23;
-            return window.storage.get("meal-billing");
-          case 23:
-            _b = _context.v;
-            if (_b !== null && _b !== void 0 && _b.value) setBilling(JSON.parse(_b.value));
-            _context.n = 25;
-            break;
+          case 22:
+            adminKey = localStorage.getItem("mp_admin_api_key");
+            if (!adminKey) {
+              _context.n = 27;
+              break;
+            }
+            _context.p = 23;
+            _context.n = 24;
+            return fetch("/api/data?key=mp_billing", {
+              headers: {
+                "X-Admin-Key": adminKey
+              }
+            });
           case 24:
-            _context.p = 24;
-            _t7 = _context.v;
+            _res3 = _context.v;
+            _context.n = 25;
+            return _res3.json();
           case 25:
+            _data3 = _context.v;
+            if (Array.isArray(_data3.value)) setBilling(_data3.value);
+            _context.n = 27;
+            break;
+          case 26:
+            _context.p = 26;
+            _t7 = _context.v;
+          case 27:
             return _context.a(2);
         }
-      }, _callee, null, [[22, 24], [18, 21], [13, 16], [10, 12], [6, 9], [3, 5], [0, 2]]);
+      }, _callee, null, [[23, 26], [18, 21], [14, 17], [11, 13], [7, 10], [3, 5], [0, 2]]);
     }))();
-    // Apply saved ad config
-    var p = localStorage.getItem("mp_ads_pubid");
-    if (p) {
-      var _window$MP_ADS4;
-      window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
-        enabled: localStorage.getItem("mp_ads_on") === "1",
-        pubId: p,
-        amazon: {
-          enabled: localStorage.getItem("mp_amazon_on") === "1",
-          tag: localStorage.getItem("mp_amazon_tag") || ""
-        },
-        instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS4 = window.MP_ADS) === null || _window$MP_ADS4 === void 0 ? void 0 : _window$MP_ADS4.instacart) || {}), {}, {
-          enabled: localStorage.getItem("mp_instacart_on") === "1",
-          affiliateId: localStorage.getItem("mp_instacart_id") || ""
-        })
-      });
-    }
   }, []);
   var saveRating = /*#__PURE__*/function () {
-    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(name, stars) {
-      var next, _t8;
+    var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(n, s) {
+      var nx, _t8;
       return _regenerator().w(function (_context2) {
         while (1) switch (_context2.p = _context2.n) {
           case 0:
-            next = _objectSpread(_objectSpread({}, ratings), {}, _defineProperty({}, name, stars));
-            setRatings(next);
+            nx = _objectSpread(_objectSpread({}, ratings), {}, _defineProperty({}, n, s));
+            setRatings(nx);
             _context2.p = 1;
             _context2.n = 2;
-            return window.storage.set("meal-ratings", JSON.stringify(next));
+            return window.storage.set("meal-ratings", JSON.stringify(nx));
           case 2:
             _context2.n = 4;
             break;
@@ -957,204 +915,24 @@ function App() {
       return _ref4.apply(this, arguments);
     };
   }();
-  var getRating = function getRating(name) {
-    return ratings[name] || 0;
+  var getRating = function getRating(n) {
+    return ratings[n] || 0;
   };
-  var saveSponsors = /*#__PURE__*/function () {
-    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(list) {
-      var key, res, _t9, _t0;
+  var serverPost = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(key, value) {
+      var adminKey, res, _t9;
       return _regenerator().w(function (_context3) {
         while (1) switch (_context3.p = _context3.n) {
           case 0:
-            setSponsors(list);
-            // Also save to localStorage as local cache
-            _context3.p = 1;
-            _context3.n = 2;
-            return window.storage.set("meal-sponsors", JSON.stringify(list));
-          case 2:
-            _context3.n = 4;
-            break;
-          case 3:
-            _context3.p = 3;
-            _t9 = _context3.v;
-          case 4:
-            // Sync to server so all visitors see the sponsors
-            key = localStorage.getItem("mp_admin_api_key");
-            if (key) {
-              _context3.n = 5;
-              break;
-            }
-            return _context3.a(2);
-          case 5:
-            setSyncStatus("saving");
-            _context3.p = 6;
-            _context3.n = 7;
-            return fetch("/api/sponsors", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-Admin-Key": key
-              },
-              body: JSON.stringify({
-                sponsors: list
-              })
-            });
-          case 7:
-            res = _context3.v;
-            if (res.ok) {
-              setSyncStatus("saved");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 2500);
-            } else {
-              setSyncStatus("error");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 3000);
-            }
-            _context3.n = 9;
-            break;
-          case 8:
-            _context3.p = 8;
-            _t0 = _context3.v;
-            setSyncStatus("error");
-            setTimeout(function () {
-              return setSyncStatus("idle");
-            }, 3000);
-          case 9:
-            return _context3.a(2);
-        }
-      }, _callee3, null, [[6, 8], [1, 3]]);
-    }));
-    return function saveSponsors(_x4) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-  var saveBilling = /*#__PURE__*/function () {
-    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(list) {
-      var ok, _t1;
-      return _regenerator().w(function (_context4) {
-        while (1) switch (_context4.p = _context4.n) {
-          case 0:
-            setBilling(list);
-            _context4.p = 1;
-            _context4.n = 2;
-            return window.storage.set("meal-billing", JSON.stringify(list));
-          case 2:
-            _context4.n = 4;
-            break;
-          case 3:
-            _context4.p = 3;
-            _t1 = _context4.v;
-          case 4:
-            // Sync billing to server (admin-only read, persists across devices)
-            setSyncStatus("saving");
-            _context4.n = 5;
-            return serverPost("mp_billing", list);
-          case 5:
-            ok = _context4.v;
-            if (ok) {
-              setSyncStatus("saved");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 2500);
-            } else {
-              setSyncStatus("error");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 3000);
-            }
-          case 6:
-            return _context4.a(2);
-        }
-      }, _callee4, null, [[1, 3]]);
-    }));
-    return function saveBilling(_x5) {
-      return _ref6.apply(this, arguments);
-    };
-  }();
-  var saveAds = /*#__PURE__*/function () {
-    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5() {
-      var _window$MP_ADS5;
-      var monetizationData, ok;
-      return _regenerator().w(function (_context5) {
-        while (1) switch (_context5.n) {
-          case 0:
-            // Save to localStorage
-            localStorage.setItem("mp_ads_pubid", adsPub);
-            localStorage.setItem("mp_ads_on", adsOn ? "1" : "0");
-            localStorage.setItem("mp_amazon_tag", amTag);
-            localStorage.setItem("mp_amazon_on", amOn ? "1" : "0");
-            localStorage.setItem("mp_instacart_id", icId);
-            localStorage.setItem("mp_instacart_on", icOn ? "1" : "0");
-            // Apply live
-            window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
-              enabled: adsOn,
-              pubId: adsPub,
-              amazon: {
-                enabled: amOn,
-                tag: amTag
-              },
-              instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS5 = window.MP_ADS) === null || _window$MP_ADS5 === void 0 ? void 0 : _window$MP_ADS5.instacart) || {}), {}, {
-                enabled: icOn,
-                affiliateId: icId
-              })
-            });
-            // Sync to server so all visitors get affiliate/ad settings
-            setSyncStatus("saving");
-            monetizationData = {
-              adsOn: adsOn,
-              adsPub: adsPub,
-              amOn: amOn,
-              amTag: amTag,
-              icOn: icOn,
-              icId: icId
-            };
-            _context5.n = 1;
-            return serverPost("mp_monetization", monetizationData);
-          case 1:
-            ok = _context5.v;
-            if (ok) {
-              setSyncStatus("saved");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 2500);
-            } else {
-              setSyncStatus("error");
-              setTimeout(function () {
-                return setSyncStatus("idle");
-              }, 3000);
-            }
-            setAdsSvd(true);
-            setTimeout(function () {
-              return setAdsSvd(false);
-            }, 2000);
-          case 2:
-            return _context5.a(2);
-        }
-      }, _callee5);
-    }));
-    return function saveAds() {
-      return _ref7.apply(this, arguments);
-    };
-  }();
-
-  // &#9472;&#9472; Server sync helper &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-  var serverPost = /*#__PURE__*/function () {
-    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(key, value) {
-      var adminKey, res, _t10;
-      return _regenerator().w(function (_context6) {
-        while (1) switch (_context6.p = _context6.n) {
-          case 0:
             adminKey = localStorage.getItem("mp_admin_api_key");
             if (adminKey) {
-              _context6.n = 1;
+              _context3.n = 1;
               break;
             }
-            return _context6.a(2, false);
+            return _context3.a(2, false);
           case 1:
-            _context6.p = 1;
-            _context6.n = 2;
+            _context3.p = 1;
+            _context3.n = 2;
             return fetch("/api/data", {
               method: "POST",
               headers: {
@@ -1167,37 +945,200 @@ function App() {
               })
             });
           case 2:
-            res = _context6.v;
-            return _context6.a(2, res.ok);
+            res = _context3.v;
+            return _context3.a(2, res.ok);
           case 3:
-            _context6.p = 3;
-            _t10 = _context6.v;
-            return _context6.a(2, false);
+            _context3.p = 3;
+            _t9 = _context3.v;
+            return _context3.a(2, false);
         }
-      }, _callee6, null, [[1, 3]]);
+      }, _callee3, null, [[1, 3]]);
     }));
-    return function serverPost(_x6, _x7) {
+    return function serverPost(_x4, _x5) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  var saveSponsors = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(list) {
+      var adminKey, res, _t0, _t1;
+      return _regenerator().w(function (_context4) {
+        while (1) switch (_context4.p = _context4.n) {
+          case 0:
+            setSponsors(list);
+            _context4.p = 1;
+            _context4.n = 2;
+            return window.storage.set("meal-sponsors", JSON.stringify(list));
+          case 2:
+            _context4.n = 4;
+            break;
+          case 3:
+            _context4.p = 3;
+            _t0 = _context4.v;
+          case 4:
+            adminKey = localStorage.getItem("mp_admin_api_key");
+            if (adminKey) {
+              _context4.n = 5;
+              break;
+            }
+            return _context4.a(2);
+          case 5:
+            setSyncStatus("saving");
+            _context4.p = 6;
+            _context4.n = 7;
+            return fetch("/api/sponsors", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-Admin-Key": adminKey
+              },
+              body: JSON.stringify({
+                sponsors: list
+              })
+            });
+          case 7:
+            res = _context4.v;
+            if (res.ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+            _context4.n = 9;
+            break;
+          case 8:
+            _context4.p = 8;
+            _t1 = _context4.v;
+            setSyncStatus("error");
+            setTimeout(function () {
+              return setSyncStatus("idle");
+            }, 3000);
+          case 9:
+            return _context4.a(2);
+        }
+      }, _callee4, null, [[6, 8], [1, 3]]);
+    }));
+    return function saveSponsors(_x6) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+  var saveBilling = /*#__PURE__*/function () {
+    var _ref7 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(list) {
+      var ok, _t10;
+      return _regenerator().w(function (_context5) {
+        while (1) switch (_context5.p = _context5.n) {
+          case 0:
+            setBilling(list);
+            _context5.p = 1;
+            _context5.n = 2;
+            return window.storage.set("meal-billing", JSON.stringify(list));
+          case 2:
+            _context5.n = 4;
+            break;
+          case 3:
+            _context5.p = 3;
+            _t10 = _context5.v;
+          case 4:
+            setSyncStatus("saving");
+            _context5.n = 5;
+            return serverPost("mp_billing", list);
+          case 5:
+            ok = _context5.v;
+            if (ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+          case 6:
+            return _context5.a(2);
+        }
+      }, _callee5, null, [[1, 3]]);
+    }));
+    return function saveBilling(_x7) {
+      return _ref7.apply(this, arguments);
+    };
+  }();
+  var saveAds = /*#__PURE__*/function () {
+    var _ref8 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6() {
+      var _window$MP_ADS4;
+      var monetizationData, ok;
+      return _regenerator().w(function (_context6) {
+        while (1) switch (_context6.n) {
+          case 0:
+            localStorage.setItem("mp_ads_pubid", adsPub);
+            localStorage.setItem("mp_ads_on", adsOn ? "1" : "0");
+            localStorage.setItem("mp_amazon_tag", amTag);
+            localStorage.setItem("mp_amazon_on", amOn ? "1" : "0");
+            localStorage.setItem("mp_instacart_id", icId);
+            localStorage.setItem("mp_instacart_on", icOn ? "1" : "0");
+            localStorage.setItem("mp_meta_tags", metaTags);
+            window.MP_ADS = _objectSpread(_objectSpread({}, window.MP_ADS), {}, {
+              enabled: adsOn,
+              pubId: adsPub,
+              amazon: {
+                enabled: amOn,
+                tag: amTag
+              },
+              instacart: _objectSpread(_objectSpread({}, ((_window$MP_ADS4 = window.MP_ADS) === null || _window$MP_ADS4 === void 0 ? void 0 : _window$MP_ADS4.instacart) || {}), {}, {
+                enabled: icOn,
+                affiliateId: icId
+              })
+            });
+            injectMetaTags(metaTags);
+            setSyncStatus("saving");
+            monetizationData = {
+              adsOn: adsOn,
+              adsPub: adsPub,
+              amOn: amOn,
+              amTag: amTag,
+              icOn: icOn,
+              icId: icId
+            };
+            _context6.n = 1;
+            return serverPost("mp_monetization", monetizationData);
+          case 1:
+            ok = _context6.v;
+            _context6.n = 2;
+            return serverPost("mp_meta_tags", metaTags);
+          case 2:
+            if (ok) {
+              setSyncStatus("saved");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 2500);
+            } else {
+              setSyncStatus("error");
+              setTimeout(function () {
+                return setSyncStatus("idle");
+              }, 3000);
+            }
+            setMetaTagsSaved(true);
+            setTimeout(function () {
+              return setMetaTagsSaved(false);
+            }, 3000);
+            setAdsSvd(true);
+            setTimeout(function () {
+              return setAdsSvd(false);
+            }, 2000);
+          case 3:
+            return _context6.a(2);
+        }
+      }, _callee6);
+    }));
+    return function saveAds() {
       return _ref8.apply(this, arguments);
     };
   }();
-  var injectMetaTags = function injectMetaTags(tagsStr) {
-    document.querySelectorAll("meta[data-mp-custom]").forEach(function(el) { el.remove(); });
-    if (!tagsStr || !tagsStr.trim()) return;
-    tagsStr.split("\n").forEach(function(line) {
-      line = line.trim();
-      if (!line) return;
-      try {
-        var div = document.createElement("div");
-        div.innerHTML = line;
-        var tag = div.firstElementChild;
-        if (tag && tag.tagName === "META") {
-          tag.setAttribute("data-mp-custom","1");
-          document.head.appendChild(tag);
-        }
-      } catch(e) {}
-    });
-  };
-
   var addSponsor = function addSponsor() {
     if (!nKw.trim() || !nBr.trim()) return;
     var price = Math.max(0, parseFloat(nPrc) || 0);
@@ -1249,217 +1190,258 @@ function App() {
     setNFrq(5);
     setNPrc("0.50");
   };
-
-  // &#9472;&#9472; Generate &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-  var MSGS = ["&#128269; Searching recipes...", "&#128104;&#8205;&#127859; Curating meals...", "&#129367; Balancing nutrition...", "&#128221; Building grocery list...", "&#10024; Almost ready..."];
-
+  var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
   var cleanJson = function cleanJson(raw) {
     raw = raw.trim();
     var bt = String.fromCharCode(96);
-    raw = raw.replace(new RegExp("^" + bt + bt + bt + "json\\s*", "i"), "")
-             .replace(new RegExp("^" + bt + bt + bt + "\\s*", "i"), "")
-             .replace(new RegExp(bt + bt + bt + "\\s*$", "i"), "").trim();
+    raw = raw.replace(new RegExp("^" + bt + bt + bt + "json\\s*", "i"), "").replace(new RegExp("^" + bt + bt + bt + "\\s*", "i"), "").replace(new RegExp(bt + bt + bt + "\\s*$", "i"), "").trim();
     if (raw.indexOf("{") === -1) return raw;
     raw = raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
     raw = raw.replace(/,\s*([}\]])/g, "$1");
     raw = raw.replace(/[\x00-\x1F\x7F]/g, " ");
     return raw;
   };
-
-  var callClaude = function callClaude(prompt) {
-    return fetch("/api/claude", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 6000,
-        messages: [{ role: "user", content: prompt }],
-      }),
-    }).then(function(res) {
-      return res.json();
-    }).then(function(data) {
-      if (data.error) throw new Error(data.error.message);
-      var block = data.content.find(function(b) { return b.type === "text"; });
-      if (!block) throw new Error("No response from AI");
-      return { text: block.text, fallback: !!data._fallback };
-    });
-  };
-
-  var buildDayPrompt = function buildDayPrompt(dayNums, prefNote, siNote, usedRecipes) {
-    var dayLabels = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-    var usedNote = usedRecipes.length > 0
-      ? " Do NOT repeat these recipes: " + usedRecipes.slice(-12).join(", ") + "."
-      : "";
-    var startDay = dayNums[0];
-    var lines = [
-      "Create meals for " + (dayNums.length > 1 ? "Days " + dayNums.join(",") : "Day " + dayNums[0]) + " of a meal plan (breakfast, lunch, dinner)." + prefNote + siNote + usedNote,
-      "Use real well-known recipes. Vary cuisines.",
-      "Return ONLY valid JSON, no markdown:",
-      '{"days":[{"dayLabel":"Day ' + startDay + ' - ' + (dayLabels[startDay-1]||"Day"+startDay) + '","meals":{',
-      '"breakfast":{"name":"Avocado Toast","cuisine":"American","description":"Creamy avocado on toast.","prepTime":"5 mins","cookTime":"5 mins","servings":2,"calories":"~350 kcal","ingredients":["2 slices bread","1 avocado","salt","lemon juice","pepper"],"instructions":["Toast the bread.","Mash avocado with salt and lemon.","Spread on toast and season."],"tips":"Add chili flakes for heat.","youtubeQuery":"how to make avocado toast"},',
-      '"lunch":{"name":"RECIPE NAME","cuisine":"CUISINE","description":"SHORT DESC.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d","e"],"instructions":["step1.","step2.","step3."],"tips":"tip.","youtubeQuery":"how to make RECIPE NAME"},',
-      '"dinner":{"name":"RECIPE NAME","cuisine":"CUISINE","description":"SHORT DESC.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d","e"],"instructions":["step1.","step2.","step3."],"tips":"tip.","youtubeQuery":"how to make RECIPE NAME"}',
-      "}}",
-    ];
-    if (dayNums.length > 1) {
-      lines.push(",...continue same JSON structure for days " + dayNums.slice(1).join(","));
-    }
-    lines.push("]}");
-    lines.push("RULES: valid JSON only. No trailing commas. Straight double quotes only. ingredients and instructions must be arrays of plain strings.");
-    return lines.join("\n");
-  };
-
-  var generate = /*#__PURE__*/function () {
-    var _generate = function _generate() {
-      setLoading(true); setError(""); var idx = 0; setLoadMsg(MSGS[0]);
-      var iv = setInterval(function() { idx = (idx + 1) % MSGS.length; setLoadMsg(MSGS[idx]); }, 2500);
-
-      var prefParts = [
-        diet !== "No Restrictions" ? diet : "",
-        cuisines.length ? "Cuisines: " + cuisines.join(", ") : "",
-        bfStyle.length  ? "Breakfast style: " + bfStyle.join(", ") : "",
-        luStyle.length  ? "Lunch style: "     + luStyle.join(", ") : "",
-        dnStyle.length  ? "Dinner style: "    + dnStyle.join(", ") : "",
-        extra,
-      ].filter(Boolean).join(". ");
-
-      var siNote = sponsors.length > 0
-        ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function(s) {
-            var f = s.frequency || 5;
-            var t = Math.round((f/10) * numDays * 3);
-            var p = f<=2?"rarely":f<=4?"occasionally":f<=6?"about half":f<=8?"often":"nearly always";
-            return "- \"" + s.keyword + "\": include " + p + " (~" + t + " of " + (numDays*3) + " meals)";
-          }).join("\n")
-        : "";
-
-      var prefNote = prefParts ? " Preferences: " + prefParts + "." : "";
-
-      // Chunk into groups of 3 days max to keep each API call small
-      var CHUNK = 3;
-      var chunks = [];
-      for (var ci = 0; ci < numDays; ci += CHUNK) {
-        var size = Math.min(CHUNK, numDays - ci);
-        var chunk = [];
-        for (var cj = 0; cj < size; cj++) chunk.push(ci + cj + 1);
-        chunks.push(chunk);
-      }
-
-      var allDays = [];
-      var usedRecipes = [];
-      var usedFallback = false;
-      var dayLabels2 = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-
-      var processChunks = function processChunks(chunkIndex) {
-        if (chunkIndex >= chunks.length) {
-          // All day chunks done &#8212; now generate grocery list
-          setLoadMsg("Building your grocery list...");
-          var mealNames = [];
-          allDays.forEach(function(d) {
-            ["breakfast","lunch","dinner"].forEach(function(mt) {
-              if (d.meals && d.meals[mt] && d.meals[mt].name) mealNames.push(d.meals[mt].name);
+  var callClaude = /*#__PURE__*/function () {
+    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7(prompt) {
+      var res, data, block;
+      return _regenerator().w(function (_context7) {
+        while (1) switch (_context7.n) {
+          case 0:
+            _context7.n = 1;
+            return fetch("/api/claude", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                model: "claude-sonnet-4-20250514",
+                max_tokens: 6000,
+                messages: [{
+                  role: "user",
+                  content: prompt
+                }]
+              })
             });
-          });
-          var grocPrompt = [
-            "Create a grocery shopping list for these meals: " + mealNames.join(", ") + "." + prefNote,
-            "Consolidate all ingredients across all meals. Use realistic quantities.",
-            "Return ONLY valid JSON, no markdown:",
-            '{"groceryList":{"\uD83E\uDD69 Proteins":["2 lbs chicken breast","\ud83e\udd69 example"],"\uD83E\uDD66 Produce":["3 bell peppers"],"Dairy & Eggs":["6 eggs"],"Grains & Bread":["1 loaf bread"],"Pantry":["olive oil","soy sauce"],"Herbs & Spices":["garlic powder","cumin"],"Frozen":[],"Other":[]}}',
-            "Use these category names exactly: Proteins, Produce, Dairy & Eggs, Grains & Bread, Pantry, Herbs & Spices, Frozen, Other",
-            "RULES: valid JSON only. No trailing commas. Plain strings in arrays only.",
-          ].join("\n");
-
-          return callClaude(grocPrompt).then(function(grocResult) {
+          case 1:
+            res = _context7.v;
+            _context7.n = 2;
+            return res.json();
+          case 2:
+            data = _context7.v;
+            if (!data.error) {
+              _context7.n = 3;
+              break;
+            }
+            throw new Error(data.error.message);
+          case 3:
+            block = data.content.find(function (b) {
+              return b.type === "text";
+            });
+            if (block) {
+              _context7.n = 4;
+              break;
+            }
+            throw new Error("No response from AI");
+          case 4:
+            return _context7.a(2, {
+              text: block.text,
+              fallback: !!data._fallback
+            });
+        }
+      }, _callee7);
+    }));
+    return function callClaude(_x8) {
+      return _ref9.apply(this, arguments);
+    };
+  }();
+  var buildDayPrompt = function buildDayPrompt(dayNums, prefNote, siNote, usedRecipes) {
+    var dayLabels = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    var usedNote = usedRecipes.length > 0 ? " Do NOT repeat these recipes: " + usedRecipes.slice(-12).join(", ") + "." : "";
+    var start = dayNums[0];
+    return ["Create meals for " + (dayNums.length > 1 ? "Days " + dayNums.join(",") : "Day " + dayNums[0]) + " of a meal plan (breakfast, lunch, dinner)." + prefNote + siNote + usedNote, "Use real well-known recipes. Vary cuisines.", "Return ONLY valid JSON, no markdown:", '{"days":[{"dayLabel":"Day ' + start + ' - ' + (dayLabels[start - 1] || "Day" + start) + '","meals":{', '"breakfast":{"name":"Avocado Toast","cuisine":"American","description":"Creamy avocado on toast.","prepTime":"5 mins","cookTime":"5 mins","servings":2,"calories":"~350 kcal","ingredients":["2 slices bread","1 avocado","salt","lemon juice","pepper"],"instructions":["Toast the bread.","Mash avocado with salt.","Spread on toast."],"tips":"Add chili flakes for heat.","youtubeQuery":"how to make avocado toast"},', '"lunch":{"name":"RECIPE","cuisine":"TYPE","description":"SHORT.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d"],"instructions":["1.","2.","3."],"tips":"tip.","youtubeQuery":"how to make RECIPE"},', '"dinner":{"name":"RECIPE","cuisine":"TYPE","description":"SHORT.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d"],"instructions":["1.","2.","3."],"tips":"tip.","youtubeQuery":"how to make RECIPE"}', "}}" + (dayNums.length > 1 ? ",... continue same structure for days " + dayNums.slice(1).join(",") : ""), "]}", "RULES: valid JSON only. No trailing commas. Straight double quotes. Arrays of plain strings only."].join("\n");
+  };
+  var generate = /*#__PURE__*/function () {
+    var _ref0 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8() {
+      var idx, iv, prefParts, siNote, prefNote, CHUNK, chunks, i, chunk, j, allDays, usedRecipes, usedFallback, dayLabels2, _loop, ci, mealNames, grocPrompt, grocResult, grocRaw, grocParsed, planId, charges, _t13;
+      return _regenerator().w(function (_context9) {
+        while (1) switch (_context9.p = _context9.n) {
+          case 0:
+            setLoading(true);
+            setError("");
+            idx = 0;
+            setLoadMsg(MSGS[0]);
+            iv = setInterval(function () {
+              idx = (idx + 1) % MSGS.length;
+              setLoadMsg(MSGS[idx]);
+            }, 2500);
+            _context9.p = 1;
+            prefParts = [diet !== "No Restrictions" ? diet : "", cuisines.length ? "Cuisines: " + cuisines.join(", ") : "", bfStyle.length ? "Breakfast style: " + bfStyle.join(", ") : "", luStyle.length ? "Lunch style: " + luStyle.join(", ") : "", dnStyle.length ? "Dinner style: " + dnStyle.join(", ") : "", extra].filter(Boolean).join(". ");
+            siNote = sponsors.length > 0 ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function (s) {
+              var f = s.frequency || 5,
+                t = Math.round(f / 10 * numDays * 3);
+              var p = f <= 2 ? "rarely" : f <= 4 ? "occasionally" : f <= 6 ? "about half" : f <= 8 ? "often" : "nearly always";
+              return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
+            }).join("\n") : "";
+            prefNote = prefParts ? " Preferences: " + prefParts + "." : "";
+            CHUNK = 3;
+            chunks = [];
+            for (i = 0; i < numDays; i += CHUNK) {
+              chunk = [];
+              for (j = 0; j < Math.min(CHUNK, numDays - i); j++) chunk.push(i + j + 1);
+              chunks.push(chunk);
+            }
+            allDays = [];
+            usedRecipes = [];
+            usedFallback = false;
+            dayLabels2 = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            _loop = /*#__PURE__*/_regenerator().m(function _loop() {
+              var chunkDays, prompt, result, raw, chunkParsed, days, _t11, _t12;
+              return _regenerator().w(function (_context8) {
+                while (1) switch (_context8.p = _context8.n) {
+                  case 0:
+                    chunkDays = chunks[ci];
+                    setLoadMsg("Generating days ".concat(chunkDays[0]).concat(chunkDays.length > 1 ? "-" + chunkDays[chunkDays.length - 1] : "", " of ").concat(numDays, "..."));
+                    prompt = buildDayPrompt(chunkDays, prefNote, siNote, usedRecipes);
+                    _context8.n = 1;
+                    return callClaude(prompt);
+                  case 1:
+                    result = _context8.v;
+                    if (result.fallback) usedFallback = true;
+                    raw = cleanJson(result.text);
+                    _context8.p = 2;
+                    chunkParsed = JSON.parse(raw);
+                    _context8.n = 6;
+                    break;
+                  case 3:
+                    _context8.p = 3;
+                    _t11 = _context8.v;
+                    raw = raw.replace(/,\s*([}\]])/g, "$1");
+                    _context8.p = 4;
+                    chunkParsed = JSON.parse(raw);
+                    _context8.n = 6;
+                    break;
+                  case 5:
+                    _context8.p = 5;
+                    _t12 = _context8.v;
+                    throw new Error("Failed parsing days " + chunkDays.join(",") + ". Please try again.");
+                  case 6:
+                    days = chunkParsed.days || [];
+                    days.forEach(function (d, i) {
+                      var dayNum = chunkDays[i] !== undefined ? chunkDays[i] : chunkDays[0] + i;
+                      d.dayLabel = "Day " + dayNum + " - " + (dayLabels2[dayNum - 1] || "Day " + dayNum);
+                      ["breakfast", "lunch", "dinner"].forEach(function (mt) {
+                        if (d.meals && d.meals[mt] && d.meals[mt].name) usedRecipes.push(d.meals[mt].name);
+                      });
+                    });
+                    allDays.push.apply(allDays, _toConsumableArray(days));
+                  case 7:
+                    return _context8.a(2);
+                }
+              }, _loop, null, [[4, 5], [2, 3]]);
+            });
+            ci = 0;
+          case 2:
+            if (!(ci < chunks.length)) {
+              _context9.n = 4;
+              break;
+            }
+            return _context9.d(_regeneratorValues(_loop()), 3);
+          case 3:
+            ci++;
+            _context9.n = 2;
+            break;
+          case 4:
+            setLoadMsg("Building your grocery list...");
+            mealNames = [];
+            allDays.forEach(function (d) {
+              return ["breakfast", "lunch", "dinner"].forEach(function (mt) {
+                if (d.meals && d.meals[mt]) mealNames.push(d.meals[mt].name);
+              });
+            });
+            grocPrompt = ["Create a grocery list for these meals: " + mealNames.join(", ") + "." + prefNote, "Consolidate all ingredients. Return ONLY valid JSON:", '{"groceryList":{"Proteins":["2 lbs chicken"],"Produce":["peppers"],"Dairy & Eggs":["6 eggs"],"Grains & Bread":["bread"],"Pantry":["olive oil"],"Herbs & Spices":["garlic"],"Frozen":[],"Other":[]}}', "Use these exact keys: Proteins, Produce, Dairy & Eggs, Grains & Bread, Pantry, Herbs & Spices, Frozen, Other", "RULES: valid JSON only. No trailing commas. Plain strings in arrays."].join("\n");
+            _context9.n = 5;
+            return callClaude(grocPrompt);
+          case 5:
+            grocResult = _context9.v;
             if (grocResult.fallback) usedFallback = true;
-            var grocRaw = cleanJson(grocResult.text);
-            var grocParsed;
+            grocRaw = cleanJson(grocResult.text);
             try {
               grocParsed = JSON.parse(grocRaw);
-            } catch(e) {
-              grocParsed = { groceryList: {
-                "Proteins":[], "Produce":[], "Dairy & Eggs":[],
-                "Grains & Bread":[], "Pantry":[], "Herbs & Spices":[],
-                "Frozen":[], "Other":[]
-              }};
+            } catch (e) {
+              grocParsed = {
+                groceryList: {
+                  "Proteins": [],
+                  "Produce": [],
+                  "Dairy & Eggs": [],
+                  "Grains & Bread": [],
+                  "Pantry": [],
+                  "Herbs & Spices": [],
+                  "Frozen": [],
+                  "Other": []
+                }
+              };
             }
             setMealPlan(allDays);
             setGrocery(grocParsed.groceryList);
-            if (usedFallback) { setFallback(true); setTimeout(function(){ setFallback(false); }, 6000); }
-            else setFallback(false);
-
-            // Log billing
+            if (usedFallback) {
+              setFallback(true);
+              setTimeout(function () {
+                return setFallback(false);
+              }, 6000);
+            } else setFallback(false);
             if (sponsors.length > 0) {
-              var planId = Date.now().toString();
-              var charges = [];
-              allDays.forEach(function(day) {
-                ["breakfast","lunch","dinner"].forEach(function(mt) {
+              planId = Date.now().toString();
+              charges = [];
+              allDays.forEach(function (day) {
+                return ["breakfast", "lunch", "dinner"].forEach(function (mt) {
                   var meal = day.meals && day.meals[mt];
                   if (!meal) return;
-                  (meal.ingredients || []).forEach(function(ing) {
-                    sponsors.forEach(function(sp) {
+                  (meal.ingredients || []).forEach(function (ing) {
+                    return sponsors.forEach(function (sp) {
                       if (sp.keyword && ing.toLowerCase().includes(sp.keyword.toLowerCase())) {
                         charges.push({
-                          id: planId + "-" + charges.length,
-                          planId: planId, sponsorId: sp.id, brand: sp.brand, keyword: sp.keyword,
-                          color: sp.color || OR, recipeName: meal.name, mealType: mt,
-                          dayLabel: day.dayLabel, date: new Date().toISOString(),
-                          charge: sp.pricePerPull || 0, settled: false,
+                          id: "".concat(planId, "-").concat(charges.length),
+                          planId: planId,
+                          sponsorId: sp.id,
+                          brand: sp.brand,
+                          keyword: sp.keyword,
+                          color: sp.color || OR,
+                          recipeName: meal.name,
+                          mealType: mt,
+                          dayLabel: day.dayLabel,
+                          date: new Date().toISOString(),
+                          charge: sp.pricePerPull || 0,
+                          settled: false
                         });
                       }
                     });
                   });
                 });
               });
-              if (charges.length > 0) saveBilling(billing.concat(charges));
+              if (charges.length > 0) saveBilling([].concat(_toConsumableArray(billing), charges));
             }
             setView("plan");
-          });
+            _context9.n = 7;
+            break;
+          case 6:
+            _context9.p = 6;
+            _t13 = _context9.v;
+            console.error(_t13);
+            setError("Something went wrong — please try again. " + _t13.message);
+          case 7:
+            _context9.p = 7;
+            clearInterval(iv);
+            setLoading(false);
+            return _context9.f(7);
+          case 8:
+            return _context9.a(2);
         }
-
-        var chunkDays = chunks[chunkIndex];
-        var label = chunkDays.length > 1
-          ? "days " + chunkDays[0] + "-" + chunkDays[chunkDays.length-1]
-          : "day " + chunkDays[0];
-        setLoadMsg("\uD83C\uDF73 Generating " + label + " of " + numDays + "...");
-
-        var prompt = buildDayPrompt(chunkDays, prefNote, siNote, usedRecipes);
-        return callClaude(prompt).then(function(result) {
-          if (result.fallback) usedFallback = true;
-          var raw = cleanJson(result.text);
-          var chunkParsed;
-          try {
-            chunkParsed = JSON.parse(raw);
-          } catch(e1) {
-            raw = raw.replace(/,\s*([}\]])/g, "$1");
-            try {
-              chunkParsed = JSON.parse(raw);
-            } catch(e2) {
-              throw new Error("Failed parsing " + label + ". Please try again.");
-            }
-          }
-          var days = chunkParsed.days || [];
-          days.forEach(function(d, i) {
-            var dayNum = chunkDays[i] !== undefined ? chunkDays[i] : chunkDays[0] + i;
-            d.dayLabel = "Day " + dayNum + " - " + (dayLabels2[dayNum-1] || "Day " + dayNum);
-            ["breakfast","lunch","dinner"].forEach(function(mt) {
-              if (d.meals && d.meals[mt] && d.meals[mt].name) usedRecipes.push(d.meals[mt].name);
-            });
-          });
-          allDays.push.apply(allDays, days);
-          return processChunks(chunkIndex + 1);
-        });
-      };
-
-      return processChunks(0).catch(function(e) {
-        console.error(e);
-        setError("Something went wrong &#8212; please try again. " + e.message);
-      }).finally(function() {
-        clearInterval(iv);
-        setLoading(false);
-      });
+      }, _callee8, null, [[1, 6, 7, 8]]);
+    }));
+    return function generate() {
+      return _ref0.apply(this, arguments);
     };
-    return function generate() { return _generate.apply(this, arguments); };
   }();
-
   var openRecipe = function openRecipe(di, mt) {
     setSelMeal(_objectSpread(_objectSpread({}, mealPlan[di].meals[mt]), {}, {
       mealType: mt,
@@ -1470,14 +1452,14 @@ function App() {
   };
   var copyGrocery = function copyGrocery() {
     if (!grocery) return;
-    var txt = Object.entries(grocery).filter(function (_ref0) {
-      var _ref1 = _slicedToArray(_ref0, 2),
-        v = _ref1[1];
+    var txt = Object.entries(grocery).filter(function (_ref1) {
+      var _ref10 = _slicedToArray(_ref1, 2),
+        v = _ref10[1];
       return v === null || v === void 0 ? void 0 : v.length;
-    }).map(function (_ref10) {
-      var _ref11 = _slicedToArray(_ref10, 2),
-        cat = _ref11[0],
-        items = _ref11[1];
+    }).map(function (_ref11) {
+      var _ref12 = _slicedToArray(_ref11, 2),
+        cat = _ref12[0],
+        items = _ref12[1];
       return "".concat(cat, "\n").concat(items.map(function (i) {
         return "  \u2022 ".concat(i);
       }).join("\n"));
@@ -1489,9 +1471,9 @@ function App() {
       }, 2000);
     });
   };
-  var mealPasses = function mealPasses(name) {
+  var mealPasses = function mealPasses(n) {
     if (rFilter === 0) return true;
-    var r = getRating(name);
+    var r = getRating(n);
     if (rFilter === -1) return r === 0;
     if (rFilter === 5) return r === 5;
     return r >= rFilter;
@@ -1501,9 +1483,6 @@ function App() {
       return day.meals[mt] && mealPasses(day.meals[mt].name);
     });
   };
-
-  // &#9472;&#9472;&#9472; Views &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-
   function InstallBtn() {
     return /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
@@ -1555,7 +1534,7 @@ function App() {
         fontSize: 11,
         color: "rgba(196,181,253,0.6)"
       }
-    }, "Claude was unavailable \u2014 your plan was created using Groq Llama 3.3 instead")), /*#__PURE__*/React.createElement("button", {
+    }, "Claude was unavailable \u2014 plan created using Groq Llama 3.3 instead")), /*#__PURE__*/React.createElement("button", {
       onClick: function onClick() {
         return setFallback(false);
       },
@@ -1569,7 +1548,7 @@ function App() {
     }, "\u2715"));
   }
   function Home() {
-    var _window$MP_ADS6;
+    var _window$MP_ADS5;
     return /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(255,255,255,0.04)",
@@ -1663,7 +1642,7 @@ function App() {
         color: MID,
         marginBottom: 8
       }
-    }, "\uD83C\uDF0D Cuisine Types", " ", /*#__PURE__*/React.createElement("span", {
+    }, "\uD83C\uDF0D Cuisine Types ", /*#__PURE__*/React.createElement("span", {
       style: {
         fontWeight: 400,
         textTransform: "none",
@@ -1676,9 +1655,9 @@ function App() {
         flexWrap: "wrap",
         gap: 7
       }
-    }, CUISINE_OPTIONS.map(function (_ref12) {
-      var label = _ref12.label,
-        value = _ref12.value;
+    }, CUISINE_OPTIONS.map(function (_ref13) {
+      var label = _ref13.label,
+        value = _ref13.value;
       return /*#__PURE__*/React.createElement("button", {
         key: value,
         style: chip(cuisines.includes(value)),
@@ -1703,28 +1682,28 @@ function App() {
       }
     }, "\uD83C\uDF74 Meal Styles"), [{
       key: "breakfast",
-      emoji: "&#127749;",
+      emoji: "🌅",
       label: "Breakfast",
       arr: bfStyle,
       set: setBfStyle
     }, {
       key: "lunch",
-      emoji: "&#9728;&#65039;",
+      emoji: "☀️",
       label: "Lunch",
       arr: luStyle,
       set: setLuStyle
     }, {
       key: "dinner",
-      emoji: "&#127769;",
+      emoji: "🌙",
       label: "Dinner",
       arr: dnStyle,
       set: setDnStyle
-    }].map(function (_ref13) {
-      var key = _ref13.key,
-        emoji = _ref13.emoji,
-        label = _ref13.label,
-        arr = _ref13.arr,
-        set = _ref13.set;
+    }].map(function (_ref14) {
+      var key = _ref14.key,
+        emoji = _ref14.emoji,
+        label = _ref14.label,
+        arr = _ref14.arr,
+        set = _ref14.set;
       return /*#__PURE__*/React.createElement("div", {
         key: key,
         style: {
@@ -1763,9 +1742,9 @@ function App() {
           flexWrap: "wrap",
           gap: 7
         }
-      }, MEAL_STYLES[key].map(function (_ref14) {
-        var lb = _ref14.label,
-          value = _ref14.value;
+      }, MEAL_STYLES[key].map(function (_ref15) {
+        var lb = _ref15.label,
+          value = _ref15.value;
         return /*#__PURE__*/React.createElement("button", {
           key: value,
           style: chip(arr.includes(value)),
@@ -1795,8 +1774,8 @@ function App() {
       style: genBtn(loading),
       onClick: generate,
       disabled: loading
-    }, loading ? "&#9203; Generating&#8230;" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.banner
+    }, loading ? "⏳ Generating…" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
+      slot: (_window$MP_ADS5 = window.MP_ADS) === null || _window$MP_ADS5 === void 0 || (_window$MP_ADS5 = _window$MP_ADS5.slots) === null || _window$MP_ADS5 === void 0 ? void 0 : _window$MP_ADS5.banner
     }), mealPlan && /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
@@ -1856,8 +1835,8 @@ function App() {
     }, loadMsg));
   }
   function Plan() {
-    var _window$MP_ADS7;
-    var ratedCount = Object.values(ratings).filter(function (v) {
+    var _window$MP_ADS6;
+    var rc = Object.values(ratings).filter(function (v) {
       return v > 0;
     }).length;
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
@@ -1876,7 +1855,7 @@ function App() {
         color: MID,
         fontSize: 13
       }
-    }, "Tap any meal for the full recipe", ratedCount > 0 ? " \xB7 ".concat(ratedCount, " rated") : "")), /*#__PURE__*/React.createElement("div", {
+    }, "Tap any meal for the full recipe", rc > 0 ? " \xB7 ".concat(rc, " rated") : "")), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         gap: 7
@@ -1914,9 +1893,9 @@ function App() {
         flexWrap: "wrap",
         gap: 6
       }
-    }, FILTER_OPTS.map(function (_ref15) {
-      var label = _ref15.label,
-        value = _ref15.value;
+    }, FILTER_OPTS.map(function (_ref16) {
+      var label = _ref16.label,
+        value = _ref16.value;
       return /*#__PURE__*/React.createElement("button", {
         key: value,
         style: fchip(rFilter === value),
@@ -2018,7 +1997,7 @@ function App() {
             color: "#f59e0b",
             marginTop: 3
           }
-        }, "&#9733;".repeat(r), "&#9734;".repeat(5 - r), " ", /*#__PURE__*/React.createElement("span", {
+        }, "★".repeat(r), "☆".repeat(5 - r), " ", /*#__PURE__*/React.createElement("span", {
           style: {
             color: MUT,
             fontSize: 10
@@ -2045,15 +2024,15 @@ function App() {
         marginBottom: 10
       }
     }, "\u2B50"), /*#__PURE__*/React.createElement("div", null, "No meals match this filter.")), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS7 = window.MP_ADS) === null || _window$MP_ADS7 === void 0 || (_window$MP_ADS7 = _window$MP_ADS7.slots) === null || _window$MP_ADS7 === void 0 ? void 0 : _window$MP_ADS7.inContent
+      slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.inContent
     }));
   }
   function Recipe() {
-    var _window$MP_ADS8;
+    var _window$MP_ADS7;
     if (!selMeal) return null;
-    var m = selMeal;
-    var r = getRating(m.name);
-    var disp = hStar || r;
+    var m = selMeal,
+      r = getRating(m.name),
+      disp = hStar || r;
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       style: {
         display: "flex",
@@ -2224,9 +2203,15 @@ function App() {
         marginBottom: 18
       }
     }, /*#__PURE__*/React.createElement("div", {
-      style: subCardSty
+      style: subCard
     }, /*#__PURE__*/React.createElement("div", {
-      style: subTitleSty
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 15,
+        color: MID,
+        marginBottom: 10,
+        fontWeight: 700
+      }
     }, "\uD83D\uDCCB Ingredients"), (m.ingredients || []).map(function (ing, i) {
       return /*#__PURE__*/React.createElement(IngredientRow, {
         key: i,
@@ -2241,9 +2226,15 @@ function App() {
         fontStyle: "italic"
       }
     }, "\uD83C\uDFF7 Sponsored brands shown where available")), /*#__PURE__*/React.createElement("div", {
-      style: subCardSty
+      style: subCard
     }, /*#__PURE__*/React.createElement("div", {
-      style: subTitleSty
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 15,
+        color: MID,
+        marginBottom: 10,
+        fontWeight: 700
+      }
     }, "\uD83D\uDC68\u200D\uD83C\uDF73 Instructions"), (m.instructions || []).map(function (step, i) {
       return /*#__PURE__*/React.createElement("div", {
         key: i,
@@ -2287,30 +2278,123 @@ function App() {
         marginBottom: 16
       }
     }, "\uD83D\uDCA1 ", /*#__PURE__*/React.createElement("strong", null, "Chef's Tip:"), " ", m.tips), /*#__PURE__*/React.createElement(AdUnit, {
-      slot: (_window$MP_ADS8 = window.MP_ADS) === null || _window$MP_ADS8 === void 0 || (_window$MP_ADS8 = _window$MP_ADS8.slots) === null || _window$MP_ADS8 === void 0 ? void 0 : _window$MP_ADS8.recipe
+      slot: (_window$MP_ADS7 = window.MP_ADS) === null || _window$MP_ADS7 === void 0 || (_window$MP_ADS7 = _window$MP_ADS7.slots) === null || _window$MP_ADS7 === void 0 ? void 0 : _window$MP_ADS7.recipe
     }));
   }
-
-  // &#9472;&#9472;&#9472; Alexa Shopping List Modal &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
-  function AlexaModal() {
-    if (!alexaOpen || !grocery) return null;
-
-    // Build flat item list from all grocery categories
-    var allItems = Object.values(grocery).flat().filter(Boolean);
-
-    // Generate Alexa voice commands
-    var commands = allItems.map(function (item) {
-      // Strip leading quantities/measures for cleaner Alexa commands
-      // e.g. "2 lbs chicken breast" &#8594; "chicken breast"
-      var clean = item.replace(/^[\d\/\s]+(cup|cups|lb|lbs|oz|tbsp|tsp|kg|g|ml|l|bunch|clove|cloves|slice|slices|can|cans|pkg|package|loaf|bag|jar|bottle|head|piece|pieces|handful|pinch|dash)s?\s+/i, '').trim();
-      return clean || item;
+  function Grocery() {
+    if (!grocery) return null;
+    var filled = Object.entries(grocery).filter(function (_ref17) {
+      var _ref18 = _slicedToArray(_ref17, 2),
+        v = _ref18[1];
+      return (v === null || v === void 0 ? void 0 : v.length) > 0;
     });
-
-    // Amazon shopping list URL (adds items via URL)
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 6,
+        padding: "7px 14px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 20,
+        color: SOFT,
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600,
+        marginBottom: 18
+      },
+      onClick: function onClick() {
+        return setView("plan");
+      }
+    }, "\u2190 Back to Meal Plan"), /*#__PURE__*/React.createElement("div", {
+      style: _objectSpread(_objectSpread({}, secTitle), {}, {
+        marginBottom: 4
+      })
+    }, "\uD83D\uDED2 Grocery List"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        color: MID,
+        fontSize: 13,
+        marginBottom: 16
+      }
+    }, "Everything for your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: copied ? "linear-gradient(135deg,#16a34a,#15803d)" : "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        cursor: "pointer",
+        fontSize: 13,
+        fontWeight: 700,
+        marginBottom: 14
+      },
+      onClick: copyGrocery
+    }, copied ? "✅ Copied!" : "📋 Copy Full List"), /*#__PURE__*/React.createElement("button", {
+      style: {
+        display: "flex",
+        alignItems: "center",
+        gap: 8,
+        padding: "11px 22px",
+        background: "linear-gradient(135deg,#0077c8,#005fa3)",
+        border: "none",
+        borderRadius: 10,
+        color: W,
+        cursor: "pointer",
+        fontSize: 13,
+        fontWeight: 700,
+        marginBottom: 20
+      },
+      onClick: function onClick() {
+        return setView("alexa");
+      }
+    }, "\uD83D\uDD35 Add to Alexa List"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))",
+        gap: 14
+      }
+    }, filled.map(function (_ref19) {
+      var _ref20 = _slicedToArray(_ref19, 2),
+        cat = _ref20[0],
+        items = _ref20[1];
+      return /*#__PURE__*/React.createElement("div", {
+        key: cat,
+        style: {
+          background: CARD,
+          borderRadius: 12,
+          border: "1px solid rgba(249,115,22,0.12)",
+          overflow: "hidden"
+        }
+      }, /*#__PURE__*/React.createElement("div", {
+        style: {
+          background: "linear-gradient(135deg,".concat(BRN, ",").concat(BRN2, ")"),
+          padding: "9px 14px",
+          fontSize: 12,
+          fontWeight: 700,
+          color: SOFT
+        }
+      }, cat), items.map(function (item, i) {
+        return /*#__PURE__*/React.createElement(IngredientRow, {
+          key: i,
+          text: item,
+          sponsors: sponsors
+        });
+      }));
+    })));
+  }
+  function AlexaView() {
+    if (!grocery) return null;
+    var allItems = Object.values(grocery).flat().filter(Boolean);
+    var _useState93 = useState(false),
+      _useState94 = _slicedToArray(_useState93, 2),
+      alexaCopied = _useState94[0],
+      setAlexaCopied = _useState94[1];
     var amzTag = "justaminor04a-20";
-    var amzListUrl = "https://www.amazon.com/gp/registry/wishlist?tag=".concat(amzTag);
     var copyCommands = function copyCommands() {
-      var text = commands.map(function (c) {
+      var text = allItems.map(function (c) {
         return "Alexa, add ".concat(c, " to my shopping list");
       }).join("\n");
       navigator.clipboard.writeText(text).then(function () {
@@ -2320,44 +2404,30 @@ function App() {
         }, 2500);
       });
     };
-    return /*#__PURE__*/React.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
       style: {
-        position: "fixed",
-        inset: 0,
-        background: "rgba(0,0,0,0.85)",
-        zIndex: 9999,
         display: "flex",
         alignItems: "center",
-        justifyContent: "center",
-        padding: 16
+        gap: 6,
+        padding: "7px 14px",
+        background: "rgba(255,255,255,0.07)",
+        border: "1px solid rgba(255,255,255,0.12)",
+        borderRadius: 20,
+        color: SOFT,
+        cursor: "pointer",
+        fontSize: 12,
+        fontWeight: 600,
+        marginBottom: 18
       },
-      onClick: function onClick(e) {
-        if (e.target === e.currentTarget) setAlexaOpen(false);
+      onClick: function onClick() {
+        return setView("grocery");
       }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        background: "linear-gradient(135deg,#1a0a00,#2d1200)",
-        border: "1px solid rgba(0,153,204,0.45)",
-        borderRadius: 18,
-        width: "100%",
-        maxWidth: 520,
-        maxHeight: "85vh",
-        display: "flex",
-        flexDirection: "column",
-        boxShadow: "0 24px 80px rgba(0,0,0,0.7)"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
+    }, "\u2190 Back to Grocery List"), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "linear-gradient(135deg,rgba(0,100,160,0.6),rgba(0,153,204,0.4))",
         padding: "18px 22px",
-        borderRadius: "18px 18px 0 0",
-        borderBottom: "1px solid rgba(0,153,204,0.3)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
+        borderRadius: "14px 14px 0 0",
+        border: "1px solid rgba(0,153,204,0.3)",
         display: "flex",
         alignItems: "center",
         gap: 12
@@ -2371,8 +2441,7 @@ function App() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        fontSize: 22,
-        boxShadow: "0 0 16px rgba(0,153,220,0.5)"
+        fontSize: 22
       }
     }, "\uD83D\uDD35"), /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2387,24 +2456,13 @@ function App() {
         color: "rgba(224,244,255,0.55)",
         marginTop: 2
       }
-    }, allItems.length, " items from your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"))), /*#__PURE__*/React.createElement("button", {
-      onClick: function onClick() {
-        return setAlexaOpen(false);
-      },
+    }, allItems.length, " items from your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"))), /*#__PURE__*/React.createElement("div", {
       style: {
-        background: "none",
-        border: "none",
-        color: "rgba(224,244,255,0.5)",
-        cursor: "pointer",
-        fontSize: 22,
-        lineHeight: 1,
-        padding: 4
-      }
-    }, "\u2715")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: "18px 22px",
-        overflowY: "auto",
-        flex: 1
+        background: CARD,
+        border: "1px solid rgba(0,153,204,0.2)",
+        borderRadius: "0 0 14px 14px",
+        padding: 20,
+        marginBottom: 20
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2436,7 +2494,7 @@ function App() {
         fontSize: 11,
         color: "rgba(224,244,255,0.5)"
       }
-    }, "Copy commands & read them to your Echo device"))), /*#__PURE__*/React.createElement("div", {
+    }, "Copy commands & read them to your Echo"))), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(0,0,0,0.3)",
         borderRadius: 8,
@@ -2449,7 +2507,7 @@ function App() {
         color: "#93c5fd",
         lineHeight: 1.7
       }
-    }, commands.slice(0, 8).map(function (c, i) {
+    }, allItems.slice(0, 8).map(function (c, i) {
       return /*#__PURE__*/React.createElement("div", {
         key: i
       }, /*#__PURE__*/React.createElement("span", {
@@ -2458,15 +2516,15 @@ function App() {
         }
       }, "\u275D"), " Alexa, add ", /*#__PURE__*/React.createElement("strong", {
         style: {
-          color: "#fff"
+          color: W
         }
       }, c), " to my shopping list");
-    }), commands.length > 8 && /*#__PURE__*/React.createElement("div", {
+    }), allItems.length > 8 && /*#__PURE__*/React.createElement("div", {
       style: {
         color: "rgba(147,197,253,0.4)",
         marginTop: 4
       }
-    }, "+ ", commands.length - 8, " more items...")), /*#__PURE__*/React.createElement("button", {
+    }, "+ ", allItems.length - 8, " more items...")), /*#__PURE__*/React.createElement("button", {
       onClick: copyCommands,
       style: {
         width: "100%",
@@ -2474,18 +2532,17 @@ function App() {
         background: alexaCopied ? "linear-gradient(135deg,#16a34a,#15803d)" : "linear-gradient(135deg,#0077c8,#005fa3)",
         border: "none",
         borderRadius: 9,
-        color: "#fff",
+        color: W,
         fontSize: 13,
         fontWeight: 700,
         cursor: "pointer"
       }
-    }, alexaCopied ? "&#9989; All Commands Copied!" : "\uD83D\uDCCB Copy All ".concat(commands.length, " Voice Commands"))), /*#__PURE__*/React.createElement("div", {
+    }, alexaCopied ? "\u2705 All ".concat(allItems.length, " Commands Copied!") : "\uD83D\uDCCB Copy All ".concat(allItems.length, " Voice Commands"))), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(255,153,0,0.08)",
         border: "1px solid rgba(255,153,0,0.3)",
         borderRadius: 12,
-        padding: "16px 18px",
-        marginBottom: 14
+        padding: "16px 18px"
       }
     }, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2509,18 +2566,16 @@ function App() {
         fontSize: 11,
         color: "rgba(253,215,170,0.55)"
       }
-    }, "Open Amazon \u2014 your Alexa list syncs automatically"))), /*#__PURE__*/React.createElement("div", {
+    }, "Your Alexa list syncs automatically"))), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
         gap: 8
       }
     }, allItems.slice(0, 6).map(function (item, i) {
-      var clean = item.replace(/^[\d\/\s]+(cup|cups|lb|lbs|oz|tbsp|tsp|kg|g|ml|l|bunch|clove|cloves|can|cans|pkg|loaf|bag|jar|bottle|head|piece|pieces|handful|pinch|dash)s?\s+/i, '').trim();
-      var searchQ = clean || item;
       return /*#__PURE__*/React.createElement("a", {
         key: i,
-        href: "https://www.amazon.com/s?k=".concat(encodeURIComponent(searchQ), "&tag=justaminor04a-20&linkCode=ll2&language=en_US"),
+        href: "https://www.amazon.com/s?k=".concat(encodeURIComponent(item), "&tag=").concat(amzTag, "&linkCode=ll2&language=en_US"),
         target: "_blank",
         rel: "noopener noreferrer",
         style: {
@@ -2548,224 +2603,9 @@ function App() {
           overflow: "hidden",
           textOverflow: "ellipsis"
         }
-      }, searchQ));
-    })), allItems.length > 6 && /*#__PURE__*/React.createElement("a", {
-      href: "https://www.amazon.com/s?k=grocery+pantry+essentials&tag=justaminor04a-20",
-      target: "_blank",
-      rel: "noopener noreferrer",
-      style: {
-        display: "block",
-        textAlign: "center",
-        marginTop: 10,
-        fontSize: 12,
-        color: "rgba(251,191,36,0.6)",
-        textDecoration: "none"
-      }
-    }, "+ ", allItems.length - 6, " more items \u2014 search on Amazon \u2192")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        background: "rgba(0,0,0,0.2)",
-        border: "1px solid rgba(255,255,255,0.08)",
-        borderRadius: 12,
-        padding: "14px 18px"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 12,
-        fontWeight: 700,
-        color: "rgba(255,255,255,0.5)",
-        textTransform: "uppercase",
-        letterSpacing: 1,
-        marginBottom: 10
-      }
-    }, "\uD83D\uDCA1 Pro Tips"), /*#__PURE__*/React.createElement("ul", {
-      style: {
-        listStyle: "none",
-        padding: 0,
-        display: "flex",
-        flexDirection: "column",
-        gap: 7
-      }
-    }, /*#__PURE__*/React.createElement("li", {
-      style: {
-        fontSize: 12,
-        color: "rgba(255,255,255,0.55)",
-        display: "flex",
-        gap: 8
-      }
-    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDD35"), /*#__PURE__*/React.createElement("span", null, "Your Alexa shopping list syncs to the ", /*#__PURE__*/React.createElement("strong", {
-      style: {
-        color: "rgba(255,255,255,0.75)"
-      }
-    }, "Amazon Shopping app"), " automatically")), /*#__PURE__*/React.createElement("li", {
-      style: {
-        fontSize: 12,
-        color: "rgba(255,255,255,0.55)",
-        display: "flex",
-        gap: 8
-      }
-    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDED2"), /*#__PURE__*/React.createElement("span", null, "Say ", /*#__PURE__*/React.createElement("strong", {
-      style: {
-        color: "rgba(255,255,255,0.75)"
-      }
-    }, "\"Alexa, open my shopping list\""), " to review all items on any Echo device")), /*#__PURE__*/React.createElement("li", {
-      style: {
-        fontSize: 12,
-        color: "rgba(255,255,255,0.55)",
-        display: "flex",
-        gap: 8
-      }
-    }, /*#__PURE__*/React.createElement("span", null, "\uD83D\uDCF1"), /*#__PURE__*/React.createElement("span", null, "Open the ", /*#__PURE__*/React.createElement("strong", {
-      style: {
-        color: "rgba(255,255,255,0.75)"
-      }
-    }, "Amazon Alexa app"), " on your phone to manage the list anytime")), /*#__PURE__*/React.createElement("li", {
-      style: {
-        fontSize: 12,
-        color: "rgba(255,255,255,0.55)",
-        display: "flex",
-        gap: 8
-      }
-    }, /*#__PURE__*/React.createElement("span", null, "\uD83C\uDF99\uFE0F"), /*#__PURE__*/React.createElement("span", null, "Adding via voice? Say each item one at a time for best accuracy"))))), /*#__PURE__*/React.createElement("div", {
-      style: {
-        padding: "14px 22px",
-        borderTop: "1px solid rgba(0,153,204,0.15)",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center"
-      }
-    }, /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontSize: 11,
-        color: "rgba(255,255,255,0.25)"
-      }
-    }, "Amazon links use affiliate tag justaminor04a-20"), /*#__PURE__*/React.createElement("button", {
-      onClick: function onClick() {
-        return setAlexaOpen(false);
-      },
-      style: {
-        padding: "8px 18px",
-        background: "rgba(255,255,255,0.07)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: 10,
-        color: "#fed7aa",
-        cursor: "pointer",
-        fontSize: 12,
-        fontWeight: 600
-      }
-    }, "Close"))));
+      }, item));
+    })))));
   }
-  function Grocery() {
-    if (!grocery) return null;
-    var filled = Object.entries(grocery).filter(function (_ref16) {
-      var _ref17 = _slicedToArray(_ref16, 2),
-        v = _ref17[1];
-      return (v === null || v === void 0 ? void 0 : v.length) > 0;
-    });
-    return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("button", {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 6,
-        padding: "7px 14px",
-        background: "rgba(255,255,255,0.07)",
-        border: "1px solid rgba(255,255,255,0.12)",
-        borderRadius: 20,
-        color: SOFT,
-        cursor: "pointer",
-        fontSize: 12,
-        fontWeight: 600,
-        marginBottom: 18
-      },
-      onClick: function onClick() {
-        return setView("plan");
-      }
-    }, "\u2190 Back to Meal Plan"), /*#__PURE__*/React.createElement("div", {
-      style: _objectSpread(_objectSpread({}, secTitle), {}, {
-        marginBottom: 4
-      })
-    }, "\uD83D\uDED2 Grocery List"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        color: MID,
-        fontSize: 13,
-        marginBottom: 16
-      }
-    }, "Everything for your ", mealPlan === null || mealPlan === void 0 ? void 0 : mealPlan.length, "-day plan"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "flex",
-        gap: 10,
-        marginBottom: 20,
-        flexWrap: "wrap"
-      }
-    }, /*#__PURE__*/React.createElement("button", {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        padding: "11px 22px",
-        background: copied ? "linear-gradient(135deg,#16a34a,#15803d)" : "linear-gradient(135deg,".concat(OR, ",").concat(OR2, ")"),
-        border: "none",
-        borderRadius: 10,
-        color: W,
-        cursor: "pointer",
-        fontSize: 13,
-        fontWeight: 700
-      },
-      onClick: copyGrocery
-    }, copied ? "&#9989; Copied!" : "&#128203; Copy Full List"), /*#__PURE__*/React.createElement("button", {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: 8,
-        padding: "11px 22px",
-        background: "linear-gradient(135deg,#0077c8,#005fa3)",
-        border: "none",
-        borderRadius: 10,
-        color: W,
-        cursor: "pointer",
-        fontSize: 13,
-        fontWeight: 700,
-        boxShadow: "0 4px 16px rgba(0,119,200,0.35)"
-      },
-      onClick: function onClick() {
-        return setAlexaOpen(true);
-      }
-    }, "\uD83D\uDD35 Add to Alexa List")), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill,minmax(230px,1fr))",
-        gap: 14
-      }
-    }, filled.map(function (_ref18) {
-      var _ref19 = _slicedToArray(_ref18, 2),
-        cat = _ref19[0],
-        items = _ref19[1];
-      return /*#__PURE__*/React.createElement("div", {
-        key: cat,
-        style: {
-          background: CARD,
-          borderRadius: 12,
-          border: "1px solid rgba(249,115,22,0.12)",
-          overflow: "hidden"
-        }
-      }, /*#__PURE__*/React.createElement("div", {
-        style: {
-          background: "linear-gradient(135deg,".concat(BRN, ",").concat(BRN2, ")"),
-          padding: "9px 14px",
-          fontSize: 12,
-          fontWeight: 700,
-          color: SOFT
-        }
-      }, cat), items.map(function (item, i) {
-        return /*#__PURE__*/React.createElement(IngredientRow, {
-          key: i,
-          text: item,
-          sponsors: sponsors
-        });
-      }));
-    })));
-  }
-
-  // &#9472;&#9472;&#9472; Admin &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   function AdminLogin() {
     return /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2809,30 +2649,30 @@ function App() {
         return setAPass(e.target.value);
       },
       onKeyDown: (/*#__PURE__*/function () {
-        var _ref20 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee8(e) {
+        var _ref21 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9(e) {
           var h;
-          return _regenerator().w(function (_context8) {
-            while (1) switch (_context8.n) {
+          return _regenerator().w(function (_context0) {
+            while (1) switch (_context0.n) {
               case 0:
                 if (!(e.key === "Enter")) {
-                  _context8.n = 2;
+                  _context0.n = 2;
                   break;
                 }
-                _context8.n = 1;
+                _context0.n = 1;
                 return hashPassword(aPass);
               case 1:
-                h = _context8.v;
+                h = _context0.v;
                 if (h === ADMIN_PASS_HASH) {
                   setUnlocked(true);
                   setAErr("");
                 } else setAErr("Incorrect password");
               case 2:
-                return _context8.a(2);
+                return _context0.a(2);
             }
-          }, _callee8);
+          }, _callee9);
         }));
-        return function (_x8) {
-          return _ref20.apply(this, arguments);
+        return function (_x9) {
+          return _ref21.apply(this, arguments);
         };
       }())
     }), aErr && /*#__PURE__*/React.createElement("div", {
@@ -2843,23 +2683,23 @@ function App() {
       }
     }, "\u274C ", aErr), /*#__PURE__*/React.createElement("button", {
       style: genBtn(false),
-      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee9() {
+      onClick: /*#__PURE__*/_asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0() {
         var h;
-        return _regenerator().w(function (_context9) {
-          while (1) switch (_context9.n) {
+        return _regenerator().w(function (_context1) {
+          while (1) switch (_context1.n) {
             case 0:
-              _context9.n = 1;
+              _context1.n = 1;
               return hashPassword(aPass);
             case 1:
-              h = _context9.v;
+              h = _context1.v;
               if (h === ADMIN_PASS_HASH) {
                 setUnlocked(true);
                 setAErr("");
               } else setAErr("Incorrect password");
             case 2:
-              return _context9.a(2);
+              return _context1.a(2);
           }
-        }, _callee9);
+        }, _callee0);
       }))
     }, "Unlock Admin Panel"));
   }
@@ -2880,7 +2720,7 @@ function App() {
         marginBottom: 16,
         fontWeight: 700
       }
-    }, eId ? "&#9999;&#65039; Edit Sponsor" : "&#10133; Add New Sponsor"), /*#__PURE__*/React.createElement("div", {
+    }, eId ? "✏️ Edit Sponsor" : "➕ Add New Sponsor"), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
@@ -3040,7 +2880,7 @@ function App() {
         color: MUT,
         marginTop: 2
       }
-    }, nFrq <= 2 ? "&#128994; Rarely" : nFrq <= 4 ? "&#128993; Occasional" : nFrq <= 6 ? "&#128992; Moderate" : nFrq <= 8 ? "&#128308; Often" : "&#128293; Always"))), /*#__PURE__*/React.createElement("div", {
+    }, nFrq <= 2 ? "🟢 Rarely" : nFrq <= 4 ? "🟡 Occasional" : nFrq <= 6 ? "🟠 Moderate" : nFrq <= 8 ? "🔴 Often" : "🔥 Always"))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: "rgba(251,146,60,0.7)",
@@ -3061,7 +2901,7 @@ function App() {
       }),
       onClick: addSponsor,
       disabled: !nKw.trim() || !nBr.trim()
-    }, sSvd ? "&#9989; Saved!" : eId ? "&#128190; Update" : "&#10133; Add Sponsor"), eId && /*#__PURE__*/React.createElement("button", {
+    }, sSvd ? "✅ Saved!" : eId ? "💾 Update" : "➕ Add Sponsor"), eId && /*#__PURE__*/React.createElement("button", {
       style: {
         padding: "12px 20px",
         background: "rgba(255,255,255,0.08)",
@@ -3094,16 +2934,16 @@ function App() {
         fontSize: 36,
         marginBottom: 10
       }
-    }, "\uD83C\uDFF7"), /*#__PURE__*/React.createElement("div", null, "No sponsors yet. Add one above!")) : /*#__PURE__*/React.createElement("div", {
+    }, "\uD83C\uDFF7"), /*#__PURE__*/React.createElement("div", null, "No sponsors yet.")) : /*#__PURE__*/React.createElement("div", {
       style: {
         display: "flex",
         flexDirection: "column",
         gap: 10
       }
     }, sponsors.map(function (s) {
-      var f = s.frequency || 5;
-      var fl = f <= 2 ? "Rarely" : f <= 4 ? "Occasionally" : f <= 6 ? "Moderately" : f <= 8 ? "Often" : "Almost Always";
-      var fe = f <= 2 ? "&#128994;" : f <= 4 ? "&#128993;" : f <= 6 ? "&#128992;" : f <= 8 ? "&#128308;" : "&#128293;";
+      var f = s.frequency || 5,
+        fl = f <= 2 ? "Rarely" : f <= 4 ? "Occasionally" : f <= 6 ? "Moderately" : f <= 8 ? "Often" : "Almost Always",
+        fe = f <= 2 ? "🟢" : f <= 4 ? "🟡" : f <= 6 ? "🟠" : f <= 8 ? "🔴" : "🔥";
       var owed = billing.filter(function (b) {
         return b.sponsorId === s.id && !b.settled;
       }).reduce(function (a, b) {
@@ -3240,15 +3080,7 @@ function App() {
           alignItems: "center",
           gap: 8
         }
-      }, /*#__PURE__*/React.createElement("span", {
-        style: {
-          fontSize: 10,
-          color: MUT,
-          fontWeight: 700,
-          textTransform: "uppercase",
-          letterSpacing: 1
-        }
-      }, "\uD83D\uDCB5"), /*#__PURE__*/React.createElement("span", {
+      }, /*#__PURE__*/React.createElement("div", {
         style: {
           background: "rgba(34,197,94,0.15)",
           border: "1px solid rgba(34,197,94,0.3)",
@@ -3258,7 +3090,7 @@ function App() {
           fontWeight: 700,
           color: "#4ade80"
         }
-      }, "$", (s.pricePerPull || 0).toFixed(2), "/pull"), owed > 0 && /*#__PURE__*/React.createElement("span", {
+      }, "$", (s.pricePerPull || 0).toFixed(2), "/pull"), owed > 0 && /*#__PURE__*/React.createElement("div", {
         style: {
           background: "rgba(220,38,38,0.2)",
           border: "1px solid rgba(220,38,38,0.35)",
@@ -3273,17 +3105,17 @@ function App() {
   }
   function BillingTab() {
     var unsettled = billing.filter(function (b) {
-      return !b.settled;
-    });
-    var settled = billing.filter(function (b) {
-      return b.settled;
-    });
+        return !b.settled;
+      }),
+      settled = billing.filter(function (b) {
+        return b.settled;
+      });
     var totalOwed = unsettled.reduce(function (a, b) {
-      return a + b.charge;
-    }, 0);
-    var totalPaid = settled.reduce(function (a, b) {
-      return a + b.charge;
-    }, 0);
+        return a + b.charge;
+      }, 0),
+      totalPaid = settled.reduce(function (a, b) {
+        return a + b.charge;
+      }, 0);
     var bySponsor = {};
     unsettled.forEach(function (b) {
       if (!bySponsor[b.sponsorId]) bySponsor[b.sponsorId] = {
@@ -3396,11 +3228,11 @@ function App() {
         gap: 12,
         marginBottom: 22
       }
-    }, Object.entries(bySponsor).map(function (_ref22) {
+    }, Object.entries(bySponsor).map(function (_ref23) {
       var _sponsors$find;
-      var _ref23 = _slicedToArray(_ref22, 2),
-        sid = _ref23[0],
-        data = _ref23[1];
+      var _ref24 = _slicedToArray(_ref23, 2),
+        sid = _ref24[0],
+        data = _ref24[1];
       return /*#__PURE__*/React.createElement("div", {
         key: sid,
         style: {
@@ -3632,18 +3464,33 @@ function App() {
       }
     }, "\uD83D\uDDD1 Clear All")));
   }
-  function Toggle(_ref24) {
-    var on = _ref24.on,
-      onToggle = _ref24.onToggle,
-      _ref24$color = _ref24.color,
-      color = _ref24$color === void 0 ? "#22c55e" : _ref24$color;
+  function Toggle(_ref25) {
+    var on = _ref25.on,
+      onToggle = _ref25.onToggle,
+      _ref25$color = _ref25.color,
+      color = _ref25$color === void 0 ? "#22c55e" : _ref25$color;
     return /*#__PURE__*/React.createElement("div", {
-      style: _objectSpread(_objectSpread({}, toggle2Sty(on)), {}, {
-        background: on ? "linear-gradient(135deg,".concat(color, ",").concat(color, "cc)") : "rgba(255,255,255,0.1)"
-      }),
+      style: {
+        width: 44,
+        height: 24,
+        borderRadius: 12,
+        background: on ? "linear-gradient(135deg,".concat(color, ",").concat(color, "cc)") : "rgba(255,255,255,0.1)",
+        border: "1px solid rgba(255,255,255,0.2)",
+        position: "relative",
+        cursor: "pointer"
+      },
       onClick: onToggle
     }, /*#__PURE__*/React.createElement("div", {
-      style: toggleKnob(on)
+      style: {
+        width: 18,
+        height: 18,
+        borderRadius: "50%",
+        background: W,
+        position: "absolute",
+        top: 2,
+        left: on ? 22 : 2,
+        transition: "left 0.2s"
+      }
     }));
   }
   function MonetizeTab() {
@@ -3747,7 +3594,7 @@ function App() {
         color: "rgba(255,220,50,0.8)",
         lineHeight: 1.6
       }
-    }, "\u26A0\uFE0F AdSense requires your site to be hosted on a domain with HTTPS and approved by Google before ads show.")), /*#__PURE__*/React.createElement("div", {
+    }, "\u26A0\uFE0F AdSense requires your site to be on HTTPS with a real domain and approved by Google before ads show.")), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(255,153,0,0.07)",
         border: "1px solid rgba(255,153,0,0.22)",
@@ -3819,7 +3666,7 @@ function App() {
         color: MUT,
         marginTop: 4
       }
-    }, "Each ingredient shows a \uD83D\uDCE6 Amazon link. Sign up at", " ", /*#__PURE__*/React.createElement("a", {
+    }, "Each ingredient shows a \uD83D\uDCE6 Amazon link. Sign up at ", /*#__PURE__*/React.createElement("a", {
       href: "https://affiliate-program.amazon.com",
       target: "_blank",
       rel: "noreferrer",
@@ -3898,7 +3745,7 @@ function App() {
         color: MUT,
         marginTop: 4
       }
-    }, "Apply at", " ", /*#__PURE__*/React.createElement("a", {
+    }, "Apply at ", /*#__PURE__*/React.createElement("a", {
       href: "https://www.instacart.com/affiliates",
       target: "_blank",
       rel: "noreferrer",
@@ -3906,6 +3753,56 @@ function App() {
         color: "#4ade80"
       }
     }, "instacart.com/affiliates")))), /*#__PURE__*/React.createElement("div", {
+      style: {
+        background: "rgba(99,102,241,0.08)",
+        border: "1px solid rgba(99,102,241,0.25)",
+        borderRadius: 14,
+        padding: 20,
+        marginBottom: 18
+      }
+    }, /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontFamily: "Georgia,serif",
+        fontSize: 16,
+        fontWeight: 700,
+        color: SOFT,
+        marginBottom: 6
+      }
+    }, "\uD83C\uDFF7\uFE0F Custom Meta Tags"), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: MUT,
+        marginBottom: 10,
+        lineHeight: 1.6
+      }
+    }, "Add verification or SEO meta tags. One per line. They are injected into the page head on save."), /*#__PURE__*/React.createElement("textarea", {
+      style: _objectSpread(_objectSpread({}, inputSty), {}, {
+        width: "100%",
+        height: 120,
+        resize: "vertical",
+        fontFamily: "monospace",
+        fontSize: 12,
+        lineHeight: 1.6
+      }),
+      placeholder: "<meta name='impact-site-verification' value='YOUR_CODE'/>\n<meta name='google-site-verification' content='YOUR_CODE'/>",
+      value: metaTags,
+      onChange: function onChange(e) {
+        return setMetaTags(e.target.value);
+      }
+    }), /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 10,
+        color: MUT,
+        marginTop: 6
+      }
+    }, "Click Save below to apply. Tags persist across all visitors."), metaTagsSaved && /*#__PURE__*/React.createElement("div", {
+      style: {
+        fontSize: 12,
+        color: "#4ade80",
+        fontWeight: 700,
+        marginTop: 8
+      }
+    }, "\u2705 Meta tags saved and injected!")), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(0,0,0,0.25)",
         border: "1px solid ".concat(BDR),
@@ -3928,22 +3825,22 @@ function App() {
         gap: 10
       }
     }, [{
-      icon: "&#128178;",
+      icon: "💲",
       name: "AdSense",
-      est: "$2&#8211;$8 CPM",
+      est: "$2–$8 CPM",
       note: "per 1,000 page views"
     }, {
-      icon: "&#128230;",
+      icon: "📦",
       name: "Amazon",
-      est: "1&#8211;3% commission",
+      est: "1–3% commission",
       note: "on ingredient purchases"
     }, {
-      icon: "&#128722;",
+      icon: "🛒",
       name: "Instacart",
-      est: "$5&#8211;$15 per order",
+      est: "$5–$15 per order",
       note: "on completed deliveries"
     }, {
-      icon: "&#127991;",
+      icon: "🏷",
       name: "Sponsors",
       est: "Custom rate",
       note: "set per keyword"
@@ -3985,32 +3882,14 @@ function App() {
         boxShadow: "0 4px 20px rgba(34,197,94,0.3)"
       }),
       onClick: saveAds
-    }, adsSvd ? "&#9989; Settings Saved!" : "&#128190; Save Monetization Settings"), /*#__PURE__*/React.createElement("div", {
+    }, adsSvd ? "✅ Settings Saved!" : "💾 Save Monetization Settings"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: MUT,
         marginTop: 8,
         textAlign: "center"
       }
-    }, "Changes apply after saving and refreshing"), React.createElement("div", {
-      style: {background:"rgba(99,102,241,0.08)",border:"1px solid rgba(99,102,241,0.25)",borderRadius:14,padding:20,marginTop:18}
-    },
-      React.createElement("div", {style:{fontFamily:"Georgia,serif",fontSize:16,fontWeight:700,color:SOFT,marginBottom:6}},
-        "\uD83C\uDFF7\uFE0F Custom Meta Tags"),
-      React.createElement("div", {style:{fontSize:12,color:MUT,marginBottom:10,lineHeight:1.6}},
-        "Add verification or SEO meta tags. One per line. Injected into page head on save."),
-      React.createElement("textarea", {
-        style:{width:"100%",height:130,resize:"vertical",fontFamily:"monospace",fontSize:12,lineHeight:1.6,
-          background:"rgba(0,0,0,0.4)",border:"1px solid rgba(249,115,22,0.35)",color:"#fff",
-          padding:"10px 12px",borderRadius:10,outline:"none"},
-        placeholder: "<meta name='impact-site-verification' value='YOUR_CODE'/>",
-        value: metaTags,
-        onChange: function(e){ setMetaTags(e.target.value); }
-      }),
-      React.createElement("div", {style:{fontSize:10,color:MUT,marginTop:6}},
-        "Click Save Monetization Settings above to apply."),
-      metaTagsSaved && React.createElement("div", {style:{fontSize:12,color:"#4ade80",fontWeight:700,marginTop:8}},
-        "\u2705 Meta tags saved and injected!")));
+    }, "Changes apply after saving and refreshing"));
   }
   function Admin() {
     if (!unlocked) return /*#__PURE__*/React.createElement(AdminLogin, null);
@@ -4032,7 +3911,7 @@ function App() {
         alignItems: "center",
         gap: 10
       })
-    }, "\uD83C\uDFF7 Sponsor Manager", " ", /*#__PURE__*/React.createElement("span", {
+    }, "\uD83C\uDFF7 Sponsor Manager ", /*#__PURE__*/React.createElement("span", {
       style: {
         background: "linear-gradient(135deg,#7c3aed,#6d28d9)",
         fontSize: 11,
@@ -4135,11 +4014,11 @@ function App() {
     }, /*#__PURE__*/React.createElement("span", {
       style: {
         fontSize: 14,
-        color: "#4ade80"
+        color: "#4ade80",
+        flex: 1
       }
-    }, syncStatus === "saving" ? "&#9203; Syncing to server..." : syncStatus === "saved" ? "&#9989; Synced to server" : syncStatus === "error" ? "&#10060; Sync failed &#8212; check your ADMIN_API_KEY" : "&#127760; Connected &#8212; sponsors sync to all visitors"), /*#__PURE__*/React.createElement("button", {
+    }, syncStatus === "saving" ? "⏳ Syncing..." : syncStatus === "saved" ? "✅ Synced" : syncStatus === "error" ? "❌ Sync failed — check your ADMIN_API_KEY" : "🌐 Connected — sponsors sync to all visitors"), /*#__PURE__*/React.createElement("button", {
       style: {
-        marginLeft: "auto",
         fontSize: 11,
         color: "rgba(255,255,255,0.3)",
         background: "none",
@@ -4163,16 +4042,16 @@ function App() {
       }
     }, [{
       id: "sponsors",
-      icon: "&#127991;",
+      icon: "🏷",
       label: "Sponsors"
     }, {
       id: "billing",
-      icon: "&#128176;",
+      icon: "💰",
       label: "Billing",
       badge: pendingBilling > 0 ? pendingBilling : null
     }, {
       id: "monetize",
-      icon: "&#128200;",
+      icon: "📈",
       label: "Monetization"
     }].map(function (t) {
       return /*#__PURE__*/React.createElement("button", {
@@ -4201,8 +4080,6 @@ function App() {
       }, t.badge));
     })), aTab === "sponsors" && /*#__PURE__*/React.createElement(SponsorTab, null), aTab === "billing" && /*#__PURE__*/React.createElement(BillingTab, null), aTab === "monetize" && /*#__PURE__*/React.createElement(MonetizeTab, null));
   }
-
-  // &#9472;&#9472;&#9472; Public pages &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   function SponsorPage() {
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -4264,29 +4141,29 @@ function App() {
         marginBottom: 28
       }
     }, [{
-      icon: "&#127919;",
+      icon: "🎯",
       title: "Keyword Targeting",
-      body: "Match your brand to specific ingredients &#8212; oil, spices, flour, broth, and more."
+      body: "Match your brand to specific ingredients — oil, spices, flour, broth, and more."
     }, {
-      icon: "&#128279;",
+      icon: "🔗",
       title: "Direct Links",
       body: "Your badge links to your product page for purchase-intent traffic."
     }, {
-      icon: "&#127922;",
+      icon: "🎲",
       title: "Frequency Control",
-      body: "Set how often your ingredient appears &#8212; from occasional to always."
+      body: "Set how often your ingredient appears — from occasional to always."
     }, {
-      icon: "&#128181;",
+      icon: "💵",
       title: "Pay Per Pull",
       body: "Only charged when your ingredient appears in a generated recipe."
     }, {
-      icon: "&#128202;",
+      icon: "📊",
       title: "Transparent Billing",
       body: "Full itemized log with one-click payment marking."
     }, {
-      icon: "&#127859;",
+      icon: "🍳",
       title: "Best Placement",
-      body: "Inline in ingredient lists &#8212; the highest-intent moment possible."
+      body: "Inline in ingredient lists — the highest-intent moment possible."
     }].map(function (c, i) {
       return /*#__PURE__*/React.createElement("div", {
         key: i,
@@ -4316,99 +4193,6 @@ function App() {
           lineHeight: 1.6
         }
       }, c.body));
-    })), /*#__PURE__*/React.createElement("div", {
-      style: {
-        fontFamily: "Georgia,serif",
-        fontSize: 22,
-        fontWeight: 700,
-        color: SOFT,
-        marginBottom: 16
-      }
-    }, "Sponsorship Tiers"), /*#__PURE__*/React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill,minmax(180px,1fr))",
-        gap: 14,
-        marginBottom: 28
-      }
-    }, [{
-      name: "Starter",
-      price: "$0.10",
-      color: "#6366f1",
-      features: ["1 keyword", "Badge + link", "Monthly billing"]
-    }, {
-      name: "Growth",
-      price: "$0.35",
-      color: OR,
-      badge: "Popular",
-      features: ["3 keywords", "Frequency control", "Full billing log"]
-    }, {
-      name: "Premium",
-      price: "$0.75",
-      color: "#f59e0b",
-      features: ["Unlimited keywords", "Max priority", "Dedicated support"]
-    }].map(function (t, i) {
-      return /*#__PURE__*/React.createElement("div", {
-        key: i,
-        style: {
-          background: CARD,
-          borderRadius: 14,
-          border: "2px solid ".concat(t.color, "33"),
-          padding: "20px 16px",
-          position: "relative"
-        }
-      }, t.badge && /*#__PURE__*/React.createElement("div", {
-        style: {
-          position: "absolute",
-          top: 10,
-          right: 10,
-          background: t.color,
-          color: W,
-          fontSize: 10,
-          fontWeight: 700,
-          padding: "2px 9px",
-          borderRadius: 10
-        }
-      }, t.badge), /*#__PURE__*/React.createElement("div", {
-        style: {
-          fontSize: 13,
-          fontWeight: 700,
-          color: t.color,
-          marginBottom: 5,
-          textTransform: "uppercase",
-          letterSpacing: 1
-        }
-      }, t.name), /*#__PURE__*/React.createElement("div", {
-        style: {
-          fontSize: 30,
-          fontWeight: 800,
-          color: W,
-          lineHeight: 1
-        }
-      }, t.price), /*#__PURE__*/React.createElement("div", {
-        style: {
-          fontSize: 12,
-          color: MUT,
-          marginBottom: 12
-        }
-      }, "per pull"), t.features.map(function (f, j) {
-        return /*#__PURE__*/React.createElement("div", {
-          key: j,
-          style: {
-            display: "flex",
-            alignItems: "center",
-            gap: 7,
-            fontSize: 12,
-            color: "#e5e7eb",
-            marginBottom: 5
-          }
-        }, /*#__PURE__*/React.createElement("span", {
-          style: {
-            color: t.color,
-            fontWeight: 700
-          }
-        }, "\u2713"), f);
-      }));
     })), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "linear-gradient(135deg,rgba(124,45,18,0.5),rgba(154,52,18,0.25))",
@@ -4534,14 +4318,14 @@ function App() {
         border: "1px solid ".concat(BDR),
         padding: "22px 24px"
       }
-    }, S("1. Acceptance of Terms", /*#__PURE__*/React.createElement("p", null, "By using AI Meal Planner (\"Service\") you agree to these Terms. We may update them; continued use constitutes acceptance.")), S("2. Description of Service", /*#__PURE__*/React.createElement("p", null, "AI Meal Planner generates AI-powered meal plans using publicly available recipe data. The Service may include sponsored ingredient badges from third-party brands, clearly labeled with a \uD83C\uDFF7 badge.")), S("3. User Responsibilities", /*#__PURE__*/React.createElement("ul", {
+    }, S("1. Acceptance of Terms", /*#__PURE__*/React.createElement("p", null, "By using AI Meal Planner you agree to these Terms. We may update them; continued use constitutes acceptance.")), S("2. Description of Service", /*#__PURE__*/React.createElement("p", null, "AI Meal Planner generates AI-powered meal plans. The Service may include sponsored ingredient badges, clearly labeled with a \uD83C\uDFF7 badge.")), S("3. User Responsibilities", /*#__PURE__*/React.createElement("ul", {
       style: {
         paddingLeft: 18,
         display: "flex",
         flexDirection: "column",
         gap: 5
       }
-    }, /*#__PURE__*/React.createElement("li", null, "You must be at least 13 years of age."), /*#__PURE__*/React.createElement("li", null, "You are responsible for use under your account or device."), /*#__PURE__*/React.createElement("li", null, "Do not reverse-engineer or misuse the Service."), /*#__PURE__*/React.createElement("li", null, "Recipes are for informational purposes only. Consult a physician before major dietary changes."), /*#__PURE__*/React.createElement("li", null, "Confirm ingredient safety based on your own allergies and health needs."))), S("4. Sponsored Content", /*#__PURE__*/React.createElement("p", null, "Sponsored badges are paid placements that do not affect recipe quality. Clicking sponsor links may take you to third-party sites we are not responsible for.")), S("5. Sponsor Agreement", /*#__PURE__*/React.createElement("p", null, "Sponsors agree to: pay-per-pull billing; no promotion of illegal or harmful products; accept removal at our discretion; understand pricing may be adjusted by the platform admin.")), S("6. Intellectual Property", /*#__PURE__*/React.createElement("p", null, "All platform branding and technology belong to AI Meal Planner. Recipe content is sourced from public data via AI search.")), S("7. Disclaimer of Warranties", /*#__PURE__*/React.createElement("p", null, "The Service is provided \"as is.\" We do not warrant uninterrupted or error-free operation. Use at your own risk.")), S("8. Limitation of Liability", /*#__PURE__*/React.createElement("p", null, "AI Meal Planner is not liable for indirect damages including dietary harm, allergic reactions, or reliance on sponsored product recommendations.")), S("9. Privacy", /*#__PURE__*/React.createElement("p", null, "Preferences, ratings, and billing records are stored locally on your device. We do not sell personal data.")), S("10. Governing Law", /*#__PURE__*/React.createElement("p", null, "These Terms are governed by US law. Disputes resolved through binding arbitration or a court of competent jurisdiction.")), S("11. Contact", /*#__PURE__*/React.createElement("p", null, "Questions: ", /*#__PURE__*/React.createElement("a", {
+    }, /*#__PURE__*/React.createElement("li", null, "You must be at least 13 years of age."), /*#__PURE__*/React.createElement("li", null, "Do not reverse-engineer or misuse the Service."), /*#__PURE__*/React.createElement("li", null, "Recipes are for informational purposes only. Consult a physician before major dietary changes."))), S("4. Sponsored Content", /*#__PURE__*/React.createElement("p", null, "Sponsored badges are paid placements that do not affect recipe quality. Clicking sponsor links may take you to third-party sites we are not responsible for.")), S("5. Disclaimer of Warranties", /*#__PURE__*/React.createElement("p", null, "The Service is provided \"as is.\" We do not warrant uninterrupted or error-free operation. Use at your own risk.")), S("6. Privacy", /*#__PURE__*/React.createElement("p", null, "Preferences, ratings, and billing records are stored locally on your device and on our secure server. We do not sell personal data.")), S("7. Contact", /*#__PURE__*/React.createElement("p", null, "Questions: ", /*#__PURE__*/React.createElement("a", {
       href: "mailto:legal@aimeaplanner.com",
       style: {
         color: OR,
@@ -4550,8 +4334,6 @@ function App() {
       }
     }, "legal@aimeaplanner.com")))));
   }
-
-  // &#9472;&#9472;&#9472; Root render &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
@@ -4561,7 +4343,10 @@ function App() {
       display: "flex",
       flexDirection: "column"
     }
-  }, /*#__PURE__*/React.createElement("div", {
+  }, /*#__PURE__*/React.createElement("link", {
+    href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;600;700&display=swap",
+    rel: "stylesheet"
+  }), /*#__PURE__*/React.createElement("div", {
     style: {
       background: "linear-gradient(to right,".concat(BRN, ",").concat(BRN2, ",").concat(BRN, ")"),
       padding: "17px 20px 13px",
@@ -4632,7 +4417,7 @@ function App() {
     onClick: function onClick() {
       return setView("admin");
     }
-  }, unlocked ? "&#128275; Admin" : "&#128272; Admin"))), /*#__PURE__*/React.createElement("div", {
+  }, unlocked ? "🔓 Admin" : "🔐 Admin"))), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
       maxWidth: 900,
@@ -4640,13 +4425,13 @@ function App() {
       margin: "0 auto",
       padding: "20px 14px"
     }
-  }, loading ? /*#__PURE__*/React.createElement(LoadingView, null) : view === "admin" ? /*#__PURE__*/React.createElement(Admin, null) : view === "home" ? /*#__PURE__*/React.createElement(Home, null) : view === "plan" && mealPlan ? /*#__PURE__*/React.createElement(Plan, null) : view === "recipe" && selMeal ? /*#__PURE__*/React.createElement(Recipe, null) : view === "grocery" && grocery ? /*#__PURE__*/React.createElement(Grocery, null) : view === "sponsor" ? /*#__PURE__*/React.createElement(SponsorPage, null) : view === "tos" ? /*#__PURE__*/React.createElement(ToSPage, null) : /*#__PURE__*/React.createElement(Home, null)), /*#__PURE__*/React.createElement(AlexaModal, null), /*#__PURE__*/React.createElement("div", {
+  }, loading ? /*#__PURE__*/React.createElement(LoadingView, null) : view === "admin" ? /*#__PURE__*/React.createElement(Admin, null) : view === "home" ? /*#__PURE__*/React.createElement(Home, null) : view === "plan" && mealPlan ? /*#__PURE__*/React.createElement(Plan, null) : view === "recipe" && selMeal ? /*#__PURE__*/React.createElement(Recipe, null) : view === "grocery" && grocery ? /*#__PURE__*/React.createElement(Grocery, null) : view === "alexa" && grocery ? /*#__PURE__*/React.createElement(AlexaView, null) : view === "sponsor" ? /*#__PURE__*/React.createElement(SponsorPage, null) : view === "tos" ? /*#__PURE__*/React.createElement(ToSPage, null) : /*#__PURE__*/React.createElement(Home, null)), /*#__PURE__*/React.createElement("div", {
     style: {
       borderTop: "1px solid rgba(249,115,22,0.15)",
       background: "rgba(0,0,0,0.3)"
     }
   }, /*#__PURE__*/React.createElement(AdUnit, {
-    slot: (_window$MP_ADS9 = window.MP_ADS) === null || _window$MP_ADS9 === void 0 || (_window$MP_ADS9 = _window$MP_ADS9.slots) === null || _window$MP_ADS9 === void 0 ? void 0 : _window$MP_ADS9.footer
+    slot: (_window$MP_ADS8 = window.MP_ADS) === null || _window$MP_ADS8 === void 0 || (_window$MP_ADS8 = _window$MP_ADS8.slots) === null || _window$MP_ADS8 === void 0 ? void 0 : _window$MP_ADS8.footer
   }), /*#__PURE__*/React.createElement("div", {
     style: {
       padding: "12px 20px",
@@ -4689,10 +4474,10 @@ function App() {
       flexWrap: "wrap"
     }
   }, [{
-    label: "&#127991; Become a Sponsor",
+    label: "🏷 Become a Sponsor",
     v: "sponsor"
   }, {
-    label: "&#128196; Terms of Service",
+    label: "📄 Terms of Service",
     v: "tos"
   }].map(function (l) {
     return /*#__PURE__*/React.createElement("button", {
