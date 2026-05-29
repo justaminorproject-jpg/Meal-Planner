@@ -75,150 +75,150 @@ var _React = React,
   useEffect = _React.useEffect,
   useRef = _React.useRef;
 
-// ─── Constants ────────────────────────────────────────────────────────────────
+// &#9472;&#9472;&#9472; Constants &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 var DIET_OPTIONS = ["No Restrictions", "Vegetarian", "Vegan", "Gluten-Free", "Keto", "Paleo", "Dairy-Free", "Mediterranean"];
 var CUISINE_OPTIONS = [{
-  label: "🇺🇸 American",
+  label: "&#127482;&#127480; American",
   value: "American"
 }, {
-  label: "🇮🇹 Italian",
+  label: "&#127470;&#127481; Italian",
   value: "Italian"
 }, {
-  label: "🇲🇽 Mexican",
+  label: "&#127474;&#127485; Mexican",
   value: "Mexican"
 }, {
-  label: "🇯🇵 Japanese",
+  label: "&#127471;&#127477; Japanese",
   value: "Japanese"
 }, {
-  label: "🇨🇳 Chinese",
+  label: "&#127464;&#127475; Chinese",
   value: "Chinese"
 }, {
-  label: "🇮🇳 Indian",
+  label: "&#127470;&#127475; Indian",
   value: "Indian"
 }, {
-  label: "🇹🇭 Thai",
+  label: "&#127481;&#127469; Thai",
   value: "Thai"
 }, {
-  label: "🇬🇷 Greek",
+  label: "&#127468;&#127479; Greek",
   value: "Greek"
 }, {
-  label: "🇫🇷 French",
+  label: "&#127467;&#127479; French",
   value: "French"
 }, {
-  label: "🌍 Mediterranean",
+  label: "&#127757; Mediterranean",
   value: "Mediterranean"
 }, {
-  label: "🇰🇷 Korean",
+  label: "&#127472;&#127479; Korean",
   value: "Korean"
 }, {
-  label: "🕌 Middle Eastern",
+  label: "&#128332; Middle Eastern",
   value: "Middle Eastern"
 }, {
-  label: "🇪🇸 Spanish",
+  label: "&#127466;&#127480; Spanish",
   value: "Spanish"
 }, {
-  label: "🇻🇳 Vietnamese",
+  label: "&#127483;&#127475; Vietnamese",
   value: "Vietnamese"
 }];
 var MEAL_STYLES = {
   breakfast: [{
-    label: "⚡ Quick & Easy",
+    label: "&#9889; Quick & Easy",
     value: "quick and easy"
   }, {
-    label: "🍳 Eggs & Savory",
+    label: "&#127859; Eggs & Savory",
     value: "eggs and savory"
   }, {
-    label: "🥣 Bowls & Oats",
+    label: "&#129379; Bowls & Oats",
     value: "bowls and oats"
   }, {
-    label: "🥞 Pancakes & Waffles",
+    label: "&#129374; Pancakes & Waffles",
     value: "pancakes and waffles"
   }, {
-    label: "🍓 Smoothies & Light",
+    label: "&#127827; Smoothies & Light",
     value: "smoothies and light"
   }, {
-    label: "🥐 Bakery Style",
+    label: "&#129360; Bakery Style",
     value: "bakery style pastries"
   }],
   lunch: [{
-    label: "🥗 Salads & Bowls",
+    label: "&#129367; Salads & Bowls",
     value: "salads and bowls"
   }, {
-    label: "🥪 Sandwiches & Wraps",
+    label: "&#129386; Sandwiches & Wraps",
     value: "sandwiches and wraps"
   }, {
-    label: "🍲 Soups & Stews",
+    label: "&#127858; Soups & Stews",
     value: "soups and stews"
   }, {
-    label: "🍝 Pasta & Grains",
+    label: "&#127837; Pasta & Grains",
     value: "pasta and grains"
   }, {
-    label: "🌮 Tacos & Street Food",
+    label: "&#127790; Tacos & Street Food",
     value: "tacos and street food"
   }, {
-    label: "🥡 Stir-Fry",
+    label: "&#129377; Stir-Fry",
     value: "stir-fry"
   }],
   dinner: [{
-    label: "🥩 Grilled & BBQ",
+    label: "&#129385; Grilled & BBQ",
     value: "grilled and BBQ"
   }, {
-    label: "🍝 Pasta & Italian",
+    label: "&#127837; Pasta & Italian",
     value: "pasta and Italian"
   }, {
-    label: "🫕 Comfort Food",
+    label: "&#129749; Comfort Food",
     value: "comfort food"
   }, {
-    label: "🐟 Seafood",
+    label: "&#128031; Seafood",
     value: "seafood"
   }, {
-    label: "🥘 One-Pot Meals",
+    label: "&#129368; One-Pot Meals",
     value: "one-pot meals"
   }, {
-    label: "🌱 Plant-Based",
+    label: "&#127793; Plant-Based",
     value: "plant-based"
   }, {
-    label: "🍛 Curry & Rice",
+    label: "&#127835; Curry & Rice",
     value: "curry and rice"
   }, {
-    label: "🔥 Slow-Cooked",
+    label: "&#128293; Slow-Cooked",
     value: "slow-cooked"
   }]
 };
 var MEAL_EMOJI = {
-  breakfast: "🌅",
-  lunch: "☀️",
-  dinner: "🌙"
+  breakfast: "&#127749;",
+  lunch: "&#9728;&#65039;",
+  dinner: "&#127769;"
 };
 var MEAL_BADGE = {
   breakfast: "#EA580C",
   lunch: "#CA8A04",
   dinner: "#16A34A"
 };
-var RATING_LABELS = ["", "Not for me 😕", "It's okay 🙂", "Pretty good! 😋", "Really good! 😍", "Absolutely love it! 🔥"];
+var RATING_LABELS = ["", "Not for me &#128533;", "It's okay &#128578;", "Pretty good! &#128523;", "Really good! &#128525;", "Absolutely love it! &#128293;"];
 var FILTER_OPTS = [{
   label: "All",
   value: 0
 }, {
-  label: "⭐ 1+",
+  label: "&#11088; 1+",
   value: 1
 }, {
-  label: "⭐⭐ 2+",
+  label: "&#11088;&#11088; 2+",
   value: 2
 }, {
-  label: "⭐⭐⭐ 3+",
+  label: "&#11088;&#11088;&#11088; 3+",
   value: 3
 }, {
-  label: "⭐⭐⭐⭐ 4+",
+  label: "&#11088;&#11088;&#11088;&#11088; 4+",
   value: 4
 }, {
-  label: "5 ⭐ Only",
+  label: "5 &#11088; Only",
   value: 5
 }, {
-  label: "🔲 Unrated",
+  label: "&#128306; Unrated",
   value: -1
 }];
-var ADMIN_PASS_HASH = "b5d0b8ffab5a374c88ea07e70e17c32160847bf0061bed0dfda11ab4a35ec875"; // SHA-256 — actual password is not stored here
+var ADMIN_PASS_HASH = "b5d0b8ffab5a374c88ea07e70e17c32160847bf0061bed0dfda11ab4a35ec875"; // SHA-256 &#8212; actual password is not stored here
 
 var toggle = function toggle(arr, val) {
   return arr.includes(val) ? arr.filter(function (x) {
@@ -234,10 +234,10 @@ var matchSponsors = function matchSponsors(text, sponsors) {
   });
 };
 
-// ─── Admin password check (SHA-256, never stores plaintext) ──────────────────
+// &#9472;&#9472;&#9472; Admin password check (SHA-256, never stores plaintext) &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function hashPassword(_x) {
   return _hashPassword.apply(this, arguments);
-} // ─── Ad Unit ──────────────────────────────────────────────────────────────────
+} // &#9472;&#9472;&#9472; Ad Unit &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function _hashPassword() {
   _hashPassword = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee0(pw) {
     var buf;
@@ -302,7 +302,7 @@ function AdUnit(_ref) {
   }));
 }
 
-// ─── Affiliate helpers ────────────────────────────────────────────────────────
+// &#9472;&#9472;&#9472; Affiliate helpers &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function amazonLink(query) {
   var _window$MP_ADS;
   var cfg = (_window$MP_ADS = window.MP_ADS) === null || _window$MP_ADS === void 0 ? void 0 : _window$MP_ADS.amazon;
@@ -316,7 +316,7 @@ function instacartLink(query) {
   return "".concat(cfg.baseUrl, "?utm_source=").concat(cfg.affiliateId, "&search=").concat(encodeURIComponent(query));
 }
 
-// ─── Ingredient Row ───────────────────────────────────────────────────────────
+// &#9472;&#9472;&#9472; Ingredient Row &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function IngredientRow(_ref2) {
   var text = _ref2.text,
     sponsors = _ref2.sponsors;
@@ -422,7 +422,7 @@ function IngredientRow(_ref2) {
   }, "\uD83D\uDED2 Instacart")));
 }
 
-// ─── Shared style helpers ─────────────────────────────────────────────────────
+// &#9472;&#9472;&#9472; Shared style helpers &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 var OR = "#f97316",
   OR2 = "#ea580c",
   BRN = "#7c2d12",
@@ -552,7 +552,7 @@ var divider = {
   margin: "16px 0"
 };
 
-// ─── Main App ─────────────────────────────────────────────────────────────────
+// &#9472;&#9472;&#9472; Main App &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 function App() {
   var _window$MP_ADS9;
   // Settings
@@ -766,6 +766,14 @@ function App() {
     _useState92 = _slicedToArray(_useState91, 2),
     adsSvd = _useState92[0],
     setAdsSvd = _useState92[1];
+  var _useMT = useState(function() { return localStorage.getItem("mp_meta_tags") || ""; }),
+    _useMT2 = _slicedToArray(_useMT, 2),
+    metaTags = _useMT2[0],
+    setMetaTags = _useMT2[1];
+  var _useMTS = useState(false),
+    _useMTS2 = _slicedToArray(_useMTS, 2),
+    metaTagsSaved = _useMTS2[0],
+    setMetaTagsSaved = _useMTS2[1];
 
   // Load persisted data
   useEffect(function () {
@@ -862,7 +870,9 @@ function App() {
             _context.p = 16;
             _t5 = _context.v;
           case 17:
-            // Load billing from server if admin API key is available
+            var _savedMeta = localStorage.getItem("mp_meta_tags");
+    if (_savedMeta) injectMetaTags(_savedMeta);
+    // Load billing from server if admin API key is available
             adminKey = localStorage.getItem("mp_admin_api_key");
             if (!adminKey) {
               _context.n = 25;
@@ -1129,7 +1139,7 @@ function App() {
     };
   }();
 
-  // ── Server sync helper ───────────────────────────────────────────────────────
+  // &#9472;&#9472; Server sync helper &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   var serverPost = /*#__PURE__*/function () {
     var _ref8 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee6(key, value) {
       var adminKey, res, _t10;
@@ -1170,6 +1180,24 @@ function App() {
       return _ref8.apply(this, arguments);
     };
   }();
+  var injectMetaTags = function injectMetaTags(tagsStr) {
+    document.querySelectorAll("meta[data-mp-custom]").forEach(function(el) { el.remove(); });
+    if (!tagsStr || !tagsStr.trim()) return;
+    tagsStr.split("\n").forEach(function(line) {
+      line = line.trim();
+      if (!line) return;
+      try {
+        var div = document.createElement("div");
+        div.innerHTML = line;
+        var tag = div.firstElementChild;
+        if (tag && tag.tagName === "META") {
+          tag.setAttribute("data-mp-custom","1");
+          document.head.appendChild(tag);
+        }
+      } catch(e) {}
+    });
+  };
+
   var addSponsor = function addSponsor() {
     if (!nKw.trim() || !nBr.trim()) return;
     var price = Math.max(0, parseFloat(nPrc) || 0);
@@ -1222,203 +1250,216 @@ function App() {
     setNPrc("0.50");
   };
 
-  // ── Generate ────────────────────────────────────────────────────────────────
-  var MSGS = ["🔍 Searching recipes...", "👨‍🍳 Curating meals...", "🥗 Balancing nutrition...", "📝 Building grocery list...", "✨ Almost ready..."];
+  // &#9472;&#9472; Generate &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+  var MSGS = ["&#128269; Searching recipes...", "&#128104;&#8205;&#127859; Curating meals...", "&#129367; Balancing nutrition...", "&#128221; Building grocery list...", "&#10024; Almost ready..."];
+
+  var cleanJson = function cleanJson(raw) {
+    raw = raw.trim();
+    var bt = String.fromCharCode(96);
+    raw = raw.replace(new RegExp("^" + bt + bt + bt + "json\\s*", "i"), "")
+             .replace(new RegExp("^" + bt + bt + bt + "\\s*", "i"), "")
+             .replace(new RegExp(bt + bt + bt + "\\s*$", "i"), "").trim();
+    if (raw.indexOf("{") === -1) return raw;
+    raw = raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
+    raw = raw.replace(/,\s*([}\]])/g, "$1");
+    raw = raw.replace(/[\x00-\x1F\x7F]/g, " ");
+    return raw;
+  };
+
+  var callClaude = function callClaude(prompt) {
+    return fetch("/api/claude", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 6000,
+        messages: [{ role: "user", content: prompt }],
+      }),
+    }).then(function(res) {
+      return res.json();
+    }).then(function(data) {
+      if (data.error) throw new Error(data.error.message);
+      var block = data.content.find(function(b) { return b.type === "text"; });
+      if (!block) throw new Error("No response from AI");
+      return { text: block.text, fallback: !!data._fallback };
+    });
+  };
+
+  var buildDayPrompt = function buildDayPrompt(dayNums, prefNote, siNote, usedRecipes) {
+    var dayLabels = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    var usedNote = usedRecipes.length > 0
+      ? " Do NOT repeat these recipes: " + usedRecipes.slice(-12).join(", ") + "."
+      : "";
+    var startDay = dayNums[0];
+    var lines = [
+      "Create meals for " + (dayNums.length > 1 ? "Days " + dayNums.join(",") : "Day " + dayNums[0]) + " of a meal plan (breakfast, lunch, dinner)." + prefNote + siNote + usedNote,
+      "Use real well-known recipes. Vary cuisines.",
+      "Return ONLY valid JSON, no markdown:",
+      '{"days":[{"dayLabel":"Day ' + startDay + ' - ' + (dayLabels[startDay-1]||"Day"+startDay) + '","meals":{',
+      '"breakfast":{"name":"Avocado Toast","cuisine":"American","description":"Creamy avocado on toast.","prepTime":"5 mins","cookTime":"5 mins","servings":2,"calories":"~350 kcal","ingredients":["2 slices bread","1 avocado","salt","lemon juice","pepper"],"instructions":["Toast the bread.","Mash avocado with salt and lemon.","Spread on toast and season."],"tips":"Add chili flakes for heat.","youtubeQuery":"how to make avocado toast"},',
+      '"lunch":{"name":"RECIPE NAME","cuisine":"CUISINE","description":"SHORT DESC.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d","e"],"instructions":["step1.","step2.","step3."],"tips":"tip.","youtubeQuery":"how to make RECIPE NAME"},',
+      '"dinner":{"name":"RECIPE NAME","cuisine":"CUISINE","description":"SHORT DESC.","prepTime":"Xmin","cookTime":"Xmin","servings":2,"calories":"~Xkcal","ingredients":["a","b","c","d","e"],"instructions":["step1.","step2.","step3."],"tips":"tip.","youtubeQuery":"how to make RECIPE NAME"}',
+      "}}",
+    ];
+    if (dayNums.length > 1) {
+      lines.push(",...continue same JSON structure for days " + dayNums.slice(1).join(","));
+    }
+    lines.push("]}");
+    lines.push("RULES: valid JSON only. No trailing commas. Straight double quotes only. ingredients and instructions must be arrays of plain strings.");
+    return lines.join("\n");
+  };
+
   var generate = /*#__PURE__*/function () {
-    var _ref9 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee7() {
-      var idx, iv, parts, si, prefNote, siNote, prompt, res, data, block, raw, attempt, bt, parsed, daysMatch, grocMatch, planId, charges, _t11, _t12, _t13;
-      return _regenerator().w(function (_context7) {
-        while (1) switch (_context7.p = _context7.n) {
-          case 0:
-            setLoading(true);
-            setError("");
-            idx = 0;
-            setLoadMsg(MSGS[0]);
-            iv = setInterval(function () {
-              idx = (idx + 1) % MSGS.length;
-              setLoadMsg(MSGS[idx]);
-            }, 2500);
-            _context7.p = 1;
-            parts = [diet !== "No Restrictions" ? diet : "", cuisines.length ? "Cuisines: ".concat(cuisines.join(", ")) : "", bfStyle.length ? "Breakfast: ".concat(bfStyle.join(", ")) : "", luStyle.length ? "Lunch: ".concat(luStyle.join(", ")) : "", dnStyle.length ? "Dinner: ".concat(dnStyle.join(", ")) : "", extra].filter(Boolean).join(". ");
-            si = sponsors.length > 0 ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function (s) {
-              var f = s.frequency || 5;
-              var t = Math.round(f / 10 * numDays * 3);
-              var p = f <= 2 ? "rarely" : f <= 4 ? "occasionally" : f <= 6 ? "about half" : f <= 8 ? "often" : "nearly always";
-              return "- \"".concat(s.keyword, "\": include ").concat(p, " (~").concat(t, " of ").concat(numDays * 3, " meals)");
-            }).join("\n") : "";
-            prefNote = parts ? " Preferences: " + parts + "." : "";
-            siNote = si || "";
-            prompt = ["Create a " + numDays + "-day meal plan with breakfast, lunch, dinner." + prefNote + siNote, "Use real well-known recipes. Vary cuisines each day.", "Return ONLY this JSON, no extra text, no markdown:", '{"days":[', '{"dayLabel":"Day 1","meals":{', '"breakfast":{"name":"Oatmeal with Berries","cuisine":"American","description":"Warm oats with fresh berries.","prepTime":"2 mins","cookTime":"5 mins","servings":2,"calories":"~310 kcal","ingredients":["1 cup rolled oats","2 cups water","1 cup mixed berries","2 tbsp honey","pinch of salt"],"instructions":["Boil water with salt.","Stir in oats, cook 5 min.","Top with berries and honey."],"tips":"Use steel-cut oats for extra texture.","youtubeQuery":"how to make oatmeal with berries"},', '"lunch":{"name":"REAL RECIPE NAME","cuisine":"CUISINE","description":"SHORT.","prepTime":"X min","cookTime":"X min","servings":2,"calories":"~X kcal","ingredients":["item1","item2","item3","item4","item5"],"instructions":["Step 1.","Step 2.","Step 3."],"tips":"One tip.","youtubeQuery":"how to make RECIPE NAME"},', '"dinner":{"name":"REAL RECIPE NAME","cuisine":"CUISINE","description":"SHORT.","prepTime":"X min","cookTime":"X min","servings":2,"calories":"~X kcal","ingredients":["item1","item2","item3","item4","item5"],"instructions":["Step 1.","Step 2.","Step 3."],"tips":"One tip.","youtubeQuery":"how to make RECIPE NAME"}', '}},... repeat for all ' + numDays + ' days ...', "],\"groceryList\":{\"\uD83E\uDD69 Proteins\":[\"item\"],\"\uD83E\uDD66 Produce\":[\"item\"],\"\uD83E\uDD5B Dairy & Eggs\":[\"item\"],\"\uD83C\uDF3E Grains & Bread\":[\"item\"],\"\uD83E\uDD2B Pantry\":[\"item\"],\"\uD83E\uDDC4 Herbs & Spices\":[\"item\"],\"\u2744\uFE0F Frozen\":[],\"\uD83E\uDDF4 Other\":[]}}", "\n\nCRITICAL: valid JSON only. No trailing commas. All strings in straight double quotes. ingredients and instructions must be arrays of strings."].join("\n"); // Try up to 2 times in case of JSON parse issues
-            attempt = 1;
-          case 2:
-            if (!(attempt <= 2)) {
-              _context7.n = 8;
-              break;
-            }
-            _context7.n = 3;
-            return fetch("/api/claude", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({
-                model: "claude-sonnet-4-20250514",
-                max_tokens: 8000,
-                messages: [{
-                  role: "user",
-                  content: prompt
-                }]
-              })
-            });
-          case 3:
-            res = _context7.v;
-            _context7.n = 4;
-            return res.json();
-          case 4:
-            data = _context7.v;
-            if (!data.error) {
-              _context7.n = 5;
-              break;
-            }
-            throw new Error(data.error.message);
-          case 5:
-            block = data.content.find(function (b) {
-              return b.type === "text";
-            });
-            if (!block) {
-              _context7.n = 6;
-              break;
-            }
-            return _context7.a(3, 8);
-          case 6:
-            if (!(attempt === 2)) {
-              _context7.n = 7;
-              break;
-            }
-            throw new Error("No response from AI after 2 attempts");
-          case 7:
-            attempt++;
-            _context7.n = 2;
-            break;
-          case 8:
-            if (block) {
-              _context7.n = 9;
-              break;
-            }
-            throw new Error("No response from AI");
-          case 9:
-            raw = block.text.trim();
-            bt = String.fromCharCode(96);
-            raw = raw.replace(new RegExp('^' + bt + bt + bt + 'json\\s*', 'i'), '').replace(new RegExp('^' + bt + bt + bt + '\\s*', 'i'), '').replace(new RegExp(bt + bt + bt + '\\s*$', 'i'), '').trim();
-            raw = raw.slice(raw.indexOf("{"), raw.lastIndexOf("}") + 1);
+    var _generate = function _generate() {
+      setLoading(true); setError(""); var idx = 0; setLoadMsg(MSGS[0]);
+      var iv = setInterval(function() { idx = (idx + 1) % MSGS.length; setLoadMsg(MSGS[idx]); }, 2500);
 
-            // ── Robust JSON cleaning ────────────────────────────────────────────────
-            // Fix trailing commas before ] or } (common AI mistake)
-            raw = raw.replace(/,\s*([}\]])/g, "$1");
-            // Fix unescaped newlines inside strings
-            raw = raw.replace(/"([^"]*?)\n([^"]*?)"/g, function (m, a, b) {
-              return '"' + a + " " + b + '"';
-            });
-            // Remove any control characters
-            raw = raw.replace(/[\x00-\x1F\x7F]/g, " ");
-            _context7.p = 10;
-            parsed = JSON.parse(raw);
-            _context7.n = 16;
-            break;
-          case 11:
-            _context7.p = 11;
-            _t11 = _context7.v;
-            // If still failing, try to extract just the days and groceryList
-            console.error("JSON parse failed, attempting repair...", _t11.message);
-            // Find days array and groceryList separately
-            daysMatch = raw.match(/"days"\s*:\s*(\[[^]*?\])(?=\s*,\s*"groceryList")/);
-            grocMatch = raw.match(/"groceryList"\s*:\s*(\{[^]*?\})(?=\s*\}\s*$)/);
-            if (!(daysMatch && grocMatch)) {
-              _context7.n = 15;
-              break;
-            }
-            _context7.p = 12;
-            parsed = {
-              days: JSON.parse(daysMatch[1].replace(/,\s*([}\]])/g, "$1")),
-              groceryList: JSON.parse(grocMatch[1].replace(/,\s*([}\]])/g, "$1"))
-            };
-            _context7.n = 14;
-            break;
-          case 13:
-            _context7.p = 13;
-            _t12 = _context7.v;
-            throw new Error("AI returned malformed JSON. Please try again — this sometimes happens with longer plans. Try a shorter plan (3-4 days) if the problem persists.");
-          case 14:
-            _context7.n = 16;
-            break;
-          case 15:
-            throw new Error("AI returned malformed JSON. Please try again — this sometimes happens with longer plans.");
-          case 16:
-            setMealPlan(parsed.days);
-            setGrocery(parsed.groceryList);
-            if (data._fallback) {
-              setFallback(true);
-              setTimeout(function () {
-                return setFallback(false);
-              }, 6000);
-            } else {
-              setFallback(false);
-            }
+      var prefParts = [
+        diet !== "No Restrictions" ? diet : "",
+        cuisines.length ? "Cuisines: " + cuisines.join(", ") : "",
+        bfStyle.length  ? "Breakfast style: " + bfStyle.join(", ") : "",
+        luStyle.length  ? "Lunch style: "     + luStyle.join(", ") : "",
+        dnStyle.length  ? "Dinner style: "    + dnStyle.join(", ") : "",
+        extra,
+      ].filter(Boolean).join(". ");
 
-            // Log billing charges
+      var siNote = sponsors.length > 0
+        ? "\n\nSPONSOR FREQUENCY:\n" + sponsors.map(function(s) {
+            var f = s.frequency || 5;
+            var t = Math.round((f/10) * numDays * 3);
+            var p = f<=2?"rarely":f<=4?"occasionally":f<=6?"about half":f<=8?"often":"nearly always";
+            return "- \"" + s.keyword + "\": include " + p + " (~" + t + " of " + (numDays*3) + " meals)";
+          }).join("\n")
+        : "";
+
+      var prefNote = prefParts ? " Preferences: " + prefParts + "." : "";
+
+      // Chunk into groups of 3 days max to keep each API call small
+      var CHUNK = 3;
+      var chunks = [];
+      for (var ci = 0; ci < numDays; ci += CHUNK) {
+        var size = Math.min(CHUNK, numDays - ci);
+        var chunk = [];
+        for (var cj = 0; cj < size; cj++) chunk.push(ci + cj + 1);
+        chunks.push(chunk);
+      }
+
+      var allDays = [];
+      var usedRecipes = [];
+      var usedFallback = false;
+      var dayLabels2 = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+
+      var processChunks = function processChunks(chunkIndex) {
+        if (chunkIndex >= chunks.length) {
+          // All day chunks done &#8212; now generate grocery list
+          setLoadMsg("Building your grocery list...");
+          var mealNames = [];
+          allDays.forEach(function(d) {
+            ["breakfast","lunch","dinner"].forEach(function(mt) {
+              if (d.meals && d.meals[mt] && d.meals[mt].name) mealNames.push(d.meals[mt].name);
+            });
+          });
+          var grocPrompt = [
+            "Create a grocery shopping list for these meals: " + mealNames.join(", ") + "." + prefNote,
+            "Consolidate all ingredients across all meals. Use realistic quantities.",
+            "Return ONLY valid JSON, no markdown:",
+            '{"groceryList":{"\uD83E\uDD69 Proteins":["2 lbs chicken breast","\ud83e\udd69 example"],"\uD83E\uDD66 Produce":["3 bell peppers"],"Dairy & Eggs":["6 eggs"],"Grains & Bread":["1 loaf bread"],"Pantry":["olive oil","soy sauce"],"Herbs & Spices":["garlic powder","cumin"],"Frozen":[],"Other":[]}}',
+            "Use these category names exactly: Proteins, Produce, Dairy & Eggs, Grains & Bread, Pantry, Herbs & Spices, Frozen, Other",
+            "RULES: valid JSON only. No trailing commas. Plain strings in arrays only.",
+          ].join("\n");
+
+          return callClaude(grocPrompt).then(function(grocResult) {
+            if (grocResult.fallback) usedFallback = true;
+            var grocRaw = cleanJson(grocResult.text);
+            var grocParsed;
+            try {
+              grocParsed = JSON.parse(grocRaw);
+            } catch(e) {
+              grocParsed = { groceryList: {
+                "Proteins":[], "Produce":[], "Dairy & Eggs":[],
+                "Grains & Bread":[], "Pantry":[], "Herbs & Spices":[],
+                "Frozen":[], "Other":[]
+              }};
+            }
+            setMealPlan(allDays);
+            setGrocery(grocParsed.groceryList);
+            if (usedFallback) { setFallback(true); setTimeout(function(){ setFallback(false); }, 6000); }
+            else setFallback(false);
+
+            // Log billing
             if (sponsors.length > 0) {
-              planId = Date.now().toString();
-              charges = [];
-              parsed.days.forEach(function (day) {
-                ["breakfast", "lunch", "dinner"].forEach(function (mt) {
-                  var meal = day.meals[mt];
+              var planId = Date.now().toString();
+              var charges = [];
+              allDays.forEach(function(day) {
+                ["breakfast","lunch","dinner"].forEach(function(mt) {
+                  var meal = day.meals && day.meals[mt];
                   if (!meal) return;
-                  (meal.ingredients || []).forEach(function (ing) {
-                    sponsors.forEach(function (sp) {
+                  (meal.ingredients || []).forEach(function(ing) {
+                    sponsors.forEach(function(sp) {
                       if (sp.keyword && ing.toLowerCase().includes(sp.keyword.toLowerCase())) {
                         charges.push({
-                          id: "".concat(planId, "-").concat(charges.length),
-                          planId: planId,
-                          sponsorId: sp.id,
-                          brand: sp.brand,
-                          keyword: sp.keyword,
-                          color: sp.color || OR,
-                          recipeName: meal.name,
-                          mealType: mt,
-                          dayLabel: day.dayLabel,
-                          date: new Date().toISOString(),
-                          charge: sp.pricePerPull || 0,
-                          settled: false
+                          id: planId + "-" + charges.length,
+                          planId: planId, sponsorId: sp.id, brand: sp.brand, keyword: sp.keyword,
+                          color: sp.color || OR, recipeName: meal.name, mealType: mt,
+                          dayLabel: day.dayLabel, date: new Date().toISOString(),
+                          charge: sp.pricePerPull || 0, settled: false,
                         });
                       }
                     });
                   });
                 });
               });
-              if (charges.length > 0) saveBilling([].concat(_toConsumableArray(billing), charges));
+              if (charges.length > 0) saveBilling(billing.concat(charges));
             }
             setView("plan");
-            _context7.n = 18;
-            break;
-          case 17:
-            _context7.p = 17;
-            _t13 = _context7.v;
-            console.error(_t13);
-            setError("Something went wrong — please try again. " + _t13.message);
-          case 18:
-            _context7.p = 18;
-            clearInterval(iv);
-            setLoading(false);
-            return _context7.f(18);
-          case 19:
-            return _context7.a(2);
+          });
         }
-      }, _callee7, null, [[12, 13], [10, 11], [1, 17, 18, 19]]);
-    }));
-    return function generate() {
-      return _ref9.apply(this, arguments);
+
+        var chunkDays = chunks[chunkIndex];
+        var label = chunkDays.length > 1
+          ? "days " + chunkDays[0] + "-" + chunkDays[chunkDays.length-1]
+          : "day " + chunkDays[0];
+        setLoadMsg("\uD83C\uDF73 Generating " + label + " of " + numDays + "...");
+
+        var prompt = buildDayPrompt(chunkDays, prefNote, siNote, usedRecipes);
+        return callClaude(prompt).then(function(result) {
+          if (result.fallback) usedFallback = true;
+          var raw = cleanJson(result.text);
+          var chunkParsed;
+          try {
+            chunkParsed = JSON.parse(raw);
+          } catch(e1) {
+            raw = raw.replace(/,\s*([}\]])/g, "$1");
+            try {
+              chunkParsed = JSON.parse(raw);
+            } catch(e2) {
+              throw new Error("Failed parsing " + label + ". Please try again.");
+            }
+          }
+          var days = chunkParsed.days || [];
+          days.forEach(function(d, i) {
+            var dayNum = chunkDays[i] !== undefined ? chunkDays[i] : chunkDays[0] + i;
+            d.dayLabel = "Day " + dayNum + " - " + (dayLabels2[dayNum-1] || "Day " + dayNum);
+            ["breakfast","lunch","dinner"].forEach(function(mt) {
+              if (d.meals && d.meals[mt] && d.meals[mt].name) usedRecipes.push(d.meals[mt].name);
+            });
+          });
+          allDays.push.apply(allDays, days);
+          return processChunks(chunkIndex + 1);
+        });
+      };
+
+      return processChunks(0).catch(function(e) {
+        console.error(e);
+        setError("Something went wrong &#8212; please try again. " + e.message);
+      }).finally(function() {
+        clearInterval(iv);
+        setLoading(false);
+      });
     };
+    return function generate() { return _generate.apply(this, arguments); };
   }();
+
   var openRecipe = function openRecipe(di, mt) {
     setSelMeal(_objectSpread(_objectSpread({}, mealPlan[di].meals[mt]), {}, {
       mealType: mt,
@@ -1461,7 +1502,7 @@ function App() {
     });
   };
 
-  // ─── Views ──────────────────────────────────────────────────────────────────
+  // &#9472;&#9472;&#9472; Views &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
 
   function InstallBtn() {
     return /*#__PURE__*/React.createElement("button", {
@@ -1662,19 +1703,19 @@ function App() {
       }
     }, "\uD83C\uDF74 Meal Styles"), [{
       key: "breakfast",
-      emoji: "🌅",
+      emoji: "&#127749;",
       label: "Breakfast",
       arr: bfStyle,
       set: setBfStyle
     }, {
       key: "lunch",
-      emoji: "☀️",
+      emoji: "&#9728;&#65039;",
       label: "Lunch",
       arr: luStyle,
       set: setLuStyle
     }, {
       key: "dinner",
-      emoji: "🌙",
+      emoji: "&#127769;",
       label: "Dinner",
       arr: dnStyle,
       set: setDnStyle
@@ -1754,7 +1795,7 @@ function App() {
       style: genBtn(loading),
       onClick: generate,
       disabled: loading
-    }, loading ? "⏳ Generating…" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
+    }, loading ? "&#9203; Generating&#8230;" : "\u2728 Generate ".concat(numDays, "-Day Meal Plan")), /*#__PURE__*/React.createElement(AdUnit, {
       slot: (_window$MP_ADS6 = window.MP_ADS) === null || _window$MP_ADS6 === void 0 || (_window$MP_ADS6 = _window$MP_ADS6.slots) === null || _window$MP_ADS6 === void 0 ? void 0 : _window$MP_ADS6.banner
     }), mealPlan && /*#__PURE__*/React.createElement("div", {
       style: {
@@ -1977,7 +2018,7 @@ function App() {
             color: "#f59e0b",
             marginTop: 3
           }
-        }, "★".repeat(r), "☆".repeat(5 - r), " ", /*#__PURE__*/React.createElement("span", {
+        }, "&#9733;".repeat(r), "&#9734;".repeat(5 - r), " ", /*#__PURE__*/React.createElement("span", {
           style: {
             color: MUT,
             fontSize: 10
@@ -2250,7 +2291,7 @@ function App() {
     }));
   }
 
-  // ─── Alexa Shopping List Modal ──────────────────────────────────────────────
+  // &#9472;&#9472;&#9472; Alexa Shopping List Modal &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   function AlexaModal() {
     if (!alexaOpen || !grocery) return null;
 
@@ -2260,7 +2301,7 @@ function App() {
     // Generate Alexa voice commands
     var commands = allItems.map(function (item) {
       // Strip leading quantities/measures for cleaner Alexa commands
-      // e.g. "2 lbs chicken breast" → "chicken breast"
+      // e.g. "2 lbs chicken breast" &#8594; "chicken breast"
       var clean = item.replace(/^[\d\/\s]+(cup|cups|lb|lbs|oz|tbsp|tsp|kg|g|ml|l|bunch|clove|cloves|slice|slices|can|cans|pkg|package|loaf|bag|jar|bottle|head|piece|pieces|handful|pinch|dash)s?\s+/i, '').trim();
       return clean || item;
     });
@@ -2438,7 +2479,7 @@ function App() {
         fontWeight: 700,
         cursor: "pointer"
       }
-    }, alexaCopied ? "✅ All Commands Copied!" : "\uD83D\uDCCB Copy All ".concat(commands.length, " Voice Commands"))), /*#__PURE__*/React.createElement("div", {
+    }, alexaCopied ? "&#9989; All Commands Copied!" : "\uD83D\uDCCB Copy All ".concat(commands.length, " Voice Commands"))), /*#__PURE__*/React.createElement("div", {
       style: {
         background: "rgba(255,153,0,0.08)",
         border: "1px solid rgba(255,153,0,0.3)",
@@ -2670,7 +2711,7 @@ function App() {
         fontWeight: 700
       },
       onClick: copyGrocery
-    }, copied ? "✅ Copied!" : "📋 Copy Full List"), /*#__PURE__*/React.createElement("button", {
+    }, copied ? "&#9989; Copied!" : "&#128203; Copy Full List"), /*#__PURE__*/React.createElement("button", {
       style: {
         display: "flex",
         alignItems: "center",
@@ -2724,7 +2765,7 @@ function App() {
     })));
   }
 
-  // ─── Admin ───────────────────────────────────────────────────────────────────
+  // &#9472;&#9472;&#9472; Admin &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   function AdminLogin() {
     return /*#__PURE__*/React.createElement("div", {
       style: {
@@ -2839,7 +2880,7 @@ function App() {
         marginBottom: 16,
         fontWeight: 700
       }
-    }, eId ? "✏️ Edit Sponsor" : "➕ Add New Sponsor"), /*#__PURE__*/React.createElement("div", {
+    }, eId ? "&#9999;&#65039; Edit Sponsor" : "&#10133; Add New Sponsor"), /*#__PURE__*/React.createElement("div", {
       style: {
         display: "grid",
         gridTemplateColumns: "1fr 1fr",
@@ -2999,7 +3040,7 @@ function App() {
         color: MUT,
         marginTop: 2
       }
-    }, nFrq <= 2 ? "🟢 Rarely" : nFrq <= 4 ? "🟡 Occasional" : nFrq <= 6 ? "🟠 Moderate" : nFrq <= 8 ? "🔴 Often" : "🔥 Always"))), /*#__PURE__*/React.createElement("div", {
+    }, nFrq <= 2 ? "&#128994; Rarely" : nFrq <= 4 ? "&#128993; Occasional" : nFrq <= 6 ? "&#128992; Moderate" : nFrq <= 8 ? "&#128308; Often" : "&#128293; Always"))), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: "rgba(251,146,60,0.7)",
@@ -3020,7 +3061,7 @@ function App() {
       }),
       onClick: addSponsor,
       disabled: !nKw.trim() || !nBr.trim()
-    }, sSvd ? "✅ Saved!" : eId ? "💾 Update" : "➕ Add Sponsor"), eId && /*#__PURE__*/React.createElement("button", {
+    }, sSvd ? "&#9989; Saved!" : eId ? "&#128190; Update" : "&#10133; Add Sponsor"), eId && /*#__PURE__*/React.createElement("button", {
       style: {
         padding: "12px 20px",
         background: "rgba(255,255,255,0.08)",
@@ -3062,7 +3103,7 @@ function App() {
     }, sponsors.map(function (s) {
       var f = s.frequency || 5;
       var fl = f <= 2 ? "Rarely" : f <= 4 ? "Occasionally" : f <= 6 ? "Moderately" : f <= 8 ? "Often" : "Almost Always";
-      var fe = f <= 2 ? "🟢" : f <= 4 ? "🟡" : f <= 6 ? "🟠" : f <= 8 ? "🔴" : "🔥";
+      var fe = f <= 2 ? "&#128994;" : f <= 4 ? "&#128993;" : f <= 6 ? "&#128992;" : f <= 8 ? "&#128308;" : "&#128293;";
       var owed = billing.filter(function (b) {
         return b.sponsorId === s.id && !b.settled;
       }).reduce(function (a, b) {
@@ -3887,22 +3928,22 @@ function App() {
         gap: 10
       }
     }, [{
-      icon: "💲",
+      icon: "&#128178;",
       name: "AdSense",
-      est: "$2–$8 CPM",
+      est: "$2&#8211;$8 CPM",
       note: "per 1,000 page views"
     }, {
-      icon: "📦",
+      icon: "&#128230;",
       name: "Amazon",
-      est: "1–3% commission",
+      est: "1&#8211;3% commission",
       note: "on ingredient purchases"
     }, {
-      icon: "🛒",
+      icon: "&#128722;",
       name: "Instacart",
-      est: "$5–$15 per order",
+      est: "$5&#8211;$15 per order",
       note: "on completed deliveries"
     }, {
-      icon: "🏷",
+      icon: "&#127991;",
       name: "Sponsors",
       est: "Custom rate",
       note: "set per keyword"
@@ -3944,14 +3985,32 @@ function App() {
         boxShadow: "0 4px 20px rgba(34,197,94,0.3)"
       }),
       onClick: saveAds
-    }, adsSvd ? "✅ Settings Saved!" : "💾 Save Monetization Settings"), /*#__PURE__*/React.createElement("div", {
+    }, adsSvd ? "&#9989; Settings Saved!" : "&#128190; Save Monetization Settings"), /*#__PURE__*/React.createElement("div", {
       style: {
         fontSize: 11,
         color: MUT,
         marginTop: 8,
         textAlign: "center"
       }
-    }, "Changes apply after saving and refreshing"));
+    }, "Changes apply after saving and refreshing"), React.createElement("div", {
+      style: {background:"rgba(99,102,241,0.08)",border:"1px solid rgba(99,102,241,0.25)",borderRadius:14,padding:20,marginTop:18}
+    },
+      React.createElement("div", {style:{fontFamily:"Georgia,serif",fontSize:16,fontWeight:700,color:SOFT,marginBottom:6}},
+        "\uD83C\uDFF7\uFE0F Custom Meta Tags"),
+      React.createElement("div", {style:{fontSize:12,color:MUT,marginBottom:10,lineHeight:1.6}},
+        "Add verification or SEO meta tags. One per line. Injected into page head on save."),
+      React.createElement("textarea", {
+        style:{width:"100%",height:130,resize:"vertical",fontFamily:"monospace",fontSize:12,lineHeight:1.6,
+          background:"rgba(0,0,0,0.4)",border:"1px solid rgba(249,115,22,0.35)",color:"#fff",
+          padding:"10px 12px",borderRadius:10,outline:"none"},
+        placeholder: "<meta name='impact-site-verification' value='YOUR_CODE'/>",
+        value: metaTags,
+        onChange: function(e){ setMetaTags(e.target.value); }
+      }),
+      React.createElement("div", {style:{fontSize:10,color:MUT,marginTop:6}},
+        "Click Save Monetization Settings above to apply."),
+      metaTagsSaved && React.createElement("div", {style:{fontSize:12,color:"#4ade80",fontWeight:700,marginTop:8}},
+        "\u2705 Meta tags saved and injected!")));
   }
   function Admin() {
     if (!unlocked) return /*#__PURE__*/React.createElement(AdminLogin, null);
@@ -4078,7 +4137,7 @@ function App() {
         fontSize: 14,
         color: "#4ade80"
       }
-    }, syncStatus === "saving" ? "⏳ Syncing to server..." : syncStatus === "saved" ? "✅ Synced to server" : syncStatus === "error" ? "❌ Sync failed — check your ADMIN_API_KEY" : "🌐 Connected — sponsors sync to all visitors"), /*#__PURE__*/React.createElement("button", {
+    }, syncStatus === "saving" ? "&#9203; Syncing to server..." : syncStatus === "saved" ? "&#9989; Synced to server" : syncStatus === "error" ? "&#10060; Sync failed &#8212; check your ADMIN_API_KEY" : "&#127760; Connected &#8212; sponsors sync to all visitors"), /*#__PURE__*/React.createElement("button", {
       style: {
         marginLeft: "auto",
         fontSize: 11,
@@ -4104,16 +4163,16 @@ function App() {
       }
     }, [{
       id: "sponsors",
-      icon: "🏷",
+      icon: "&#127991;",
       label: "Sponsors"
     }, {
       id: "billing",
-      icon: "💰",
+      icon: "&#128176;",
       label: "Billing",
       badge: pendingBilling > 0 ? pendingBilling : null
     }, {
       id: "monetize",
-      icon: "📈",
+      icon: "&#128200;",
       label: "Monetization"
     }].map(function (t) {
       return /*#__PURE__*/React.createElement("button", {
@@ -4143,7 +4202,7 @@ function App() {
     })), aTab === "sponsors" && /*#__PURE__*/React.createElement(SponsorTab, null), aTab === "billing" && /*#__PURE__*/React.createElement(BillingTab, null), aTab === "monetize" && /*#__PURE__*/React.createElement(MonetizeTab, null));
   }
 
-  // ─── Public pages ─────────────────────────────────────────────────────────────
+  // &#9472;&#9472;&#9472; Public pages &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   function SponsorPage() {
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       style: {
@@ -4205,29 +4264,29 @@ function App() {
         marginBottom: 28
       }
     }, [{
-      icon: "🎯",
+      icon: "&#127919;",
       title: "Keyword Targeting",
-      body: "Match your brand to specific ingredients — oil, spices, flour, broth, and more."
+      body: "Match your brand to specific ingredients &#8212; oil, spices, flour, broth, and more."
     }, {
-      icon: "🔗",
+      icon: "&#128279;",
       title: "Direct Links",
       body: "Your badge links to your product page for purchase-intent traffic."
     }, {
-      icon: "🎲",
+      icon: "&#127922;",
       title: "Frequency Control",
-      body: "Set how often your ingredient appears — from occasional to always."
+      body: "Set how often your ingredient appears &#8212; from occasional to always."
     }, {
-      icon: "💵",
+      icon: "&#128181;",
       title: "Pay Per Pull",
       body: "Only charged when your ingredient appears in a generated recipe."
     }, {
-      icon: "📊",
+      icon: "&#128202;",
       title: "Transparent Billing",
       body: "Full itemized log with one-click payment marking."
     }, {
-      icon: "🍳",
+      icon: "&#127859;",
       title: "Best Placement",
-      body: "Inline in ingredient lists — the highest-intent moment possible."
+      body: "Inline in ingredient lists &#8212; the highest-intent moment possible."
     }].map(function (c, i) {
       return /*#__PURE__*/React.createElement("div", {
         key: i,
@@ -4492,7 +4551,7 @@ function App() {
     }, "legal@aimeaplanner.com")))));
   }
 
-  // ─── Root render ──────────────────────────────────────────────────────────────
+  // &#9472;&#9472;&#9472; Root render &#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
   return /*#__PURE__*/React.createElement("div", {
     style: {
       minHeight: "100vh",
@@ -4573,7 +4632,7 @@ function App() {
     onClick: function onClick() {
       return setView("admin");
     }
-  }, unlocked ? "🔓 Admin" : "🔐 Admin"))), /*#__PURE__*/React.createElement("div", {
+  }, unlocked ? "&#128275; Admin" : "&#128272; Admin"))), /*#__PURE__*/React.createElement("div", {
     style: {
       flex: 1,
       maxWidth: 900,
@@ -4630,10 +4689,10 @@ function App() {
       flexWrap: "wrap"
     }
   }, [{
-    label: "🏷 Become a Sponsor",
+    label: "&#127991; Become a Sponsor",
     v: "sponsor"
   }, {
-    label: "📄 Terms of Service",
+    label: "&#128196; Terms of Service",
     v: "tos"
   }].map(function (l) {
     return /*#__PURE__*/React.createElement("button", {
